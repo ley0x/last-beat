@@ -119,3 +119,24 @@ export const LastFmTopTags = z.object({
   count: z.string(),
   url: z.string().url(),
 })
+
+export const SpotifyArtistSchema = z.object({
+  external_urls: z.object({
+    spotify: z.string().url(),
+  }),
+  followers: z.object({
+    total: z.number(),
+  }),
+  genres: z.array(z.string()),
+  href: z.string().url(),
+  id: z.string(),
+  images: z.array(z.object({
+    height: z.number(),
+    url: z.string().url(),
+    width: z.number(),
+  })),
+  name: z.string(),
+  popularity: z.number(),
+  type: z.string(),
+  uri: z.string().url(),
+})

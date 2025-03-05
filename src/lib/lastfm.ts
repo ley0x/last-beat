@@ -47,13 +47,14 @@ export const lastFmUserGetInfo = async (username: string): Promise<z.infer<typeo
   return LastFmUserInfo.parse(data.user);
 }
 
-export const lastFmUserGetTopArtists = async (username: string, timeframe: Timeframe): Promise<z.infer<typeof LastFmTopArtists>[]> => {
+export const lastFmUserGetTopArtists = async (username: string, timeframe: Timeframe, limit: number = 10): Promise<z.infer<typeof LastFmTopArtists>[]> => {
   const args = {
     user: username,
     api_key: environment.LASTFM_API_KEY,
     format: 'json',
     method: 'user.getTopArtists',
     period: timeframe,
+    limit: limit.toString(),
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
@@ -61,13 +62,14 @@ export const lastFmUserGetTopArtists = async (username: string, timeframe: Timef
   return LastFmTopArtists.array().parse(data.topartists.artist);
 }
 
-export const lastFmUserGetTopAlbums = async (username: string, timeframe: Timeframe): Promise<z.infer<typeof LastFmTopAlbums>[]> => {
+export const lastFmUserGetTopAlbums = async (username: string, timeframe: Timeframe, limit: number = 10): Promise<z.infer<typeof LastFmTopAlbums>[]> => {
   const args = {
     user: username,
     api_key: environment.LASTFM_API_KEY,
     format: 'json',
     method: 'user.getTopAlbums',
     period: timeframe,
+    limit: limit.toString(),
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
@@ -75,13 +77,14 @@ export const lastFmUserGetTopAlbums = async (username: string, timeframe: Timefr
   return LastFmTopAlbums.array().parse(data.topalbums.album);
 }
 
-export const lastFmUserGetTopTracks = async (username: string, timeframe: Timeframe): Promise<z.infer<typeof LastFmTopTracks>[]> => {
+export const lastFmUserGetTopTracks = async (username: string, timeframe: Timeframe, limit: number = 10): Promise<z.infer<typeof LastFmTopTracks>[]> => {
   const args = {
     user: username,
     api_key: environment.LASTFM_API_KEY,
     format: 'json',
     method: 'user.getTopTracks',
     period: timeframe,
+    limit: limit.toString(),
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
@@ -89,13 +92,14 @@ export const lastFmUserGetTopTracks = async (username: string, timeframe: Timefr
   return LastFmTopTracks.array().parse(data.toptracks.track);
 }
 
-export const lastFmUserGetTopTags = async (username: string, timeframe: Timeframe): Promise<z.infer<typeof LastFmTopTags>[]> => {
+export const lastFmUserGetTopTags = async (username: string, timeframe: Timeframe, limit: number = 10): Promise<z.infer<typeof LastFmTopTags>[]> => {
   const args = {
     user: username,
     api_key: environment.LASTFM_API_KEY,
     format: 'json',
     method: 'user.getTopTags',
     period: timeframe,
+    limit: limit.toString(),
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);

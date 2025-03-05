@@ -8,6 +8,7 @@ import { TopTracks } from "@/components/top-tracks"
 import { TopArtists } from "@/components/top-artists"
 import { SelectTimeframe } from "@/components/select-timeframe"
 import { TopTags } from "@/components/top-tags"
+import { getArtistProfilePicture, getSpotifyArtistID } from "@/lib/spotify"
 
 export default async function Page({
   params,
@@ -21,6 +22,9 @@ export default async function Page({
   const albums = await lastFmUserGetTopAlbums(username, "1month")
   const tracks = await lastFmUserGetTopTracks(username, "1month")
   const tags = await lastFmUserGetTopTags(username, "1month")
+  const artistId = await getSpotifyArtistID("Kendrick Lamar");
+  const profilePicture = await getArtistProfilePicture(artistId ?? "");
+  console.log(profilePicture)
   return <Main className="flex-col">
     <Profile data={data} />
     <Wrapper className="flex-col gap-5 py-5">
