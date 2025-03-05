@@ -9,7 +9,7 @@ type Props = {
 const Header = ({ children, as = "h1", className }: Props) => {
   const HeaderTag = as;
   return (
-    <HeaderTag className={cx("mt-2 mb-4 font-bold", {
+    <HeaderTag className={cx("mt-2 mb-2 font-bold", {
       "text-2xl": as === "h1",
       "text-xl": as === "h2",
       "text-lg": as === "h3",

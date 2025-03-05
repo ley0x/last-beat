@@ -6,6 +6,8 @@ import { z } from "zod"
 
 import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
+
 import {
   Form,
   FormControl,
@@ -15,8 +17,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-
 import { Input } from "@/components/ui/input"
+
+import { useRouter } from 'next/navigation'
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -25,6 +28,8 @@ const FormSchema = z.object({
 })
 
 export function Login() {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -37,6 +42,7 @@ export function Login() {
     toast(`Hello ${data.username}! 👋`, {
       description: "Contacting Last.fm API to retrieve user scrobbles..."
     })
+    router.push(`/stats/${data.username}`)
   }
 
   return (
@@ -58,7 +64,10 @@ export function Login() {
             </FormItem>
           )}
         />
-        <Button type="submit" variant="outline" className="hover:cursor-pointer">Search on Last.fm</Button>
+        <Button type="submit" variant="outline" className="hover:cursor-pointer">
+          <span>Search on Last.fm</span>
+          <Image src="/lastfm.png" width={20} height={20} alt="Last.fm logo" />
+        </Button>
       </form>
     </Form>
   )

@@ -9,6 +9,8 @@ import { TopArtists } from "@/components/top-artists"
 import { SelectTimeframe } from "@/components/select-timeframe"
 import { TopTags } from "@/components/top-tags"
 import { getArtistProfilePicture, getSpotifyArtistID } from "@/lib/spotify"
+import Divider from "@/components/_common/divider"
+import Header from "@/components/_common/header"
 
 export default async function Page({
   params,
@@ -28,12 +30,16 @@ export default async function Page({
   return <Main className="flex-col">
     <Profile data={data} />
     <Wrapper className="flex-col gap-5 py-5">
-      <div className="flex justify-end">
+      <div className="flex items-center justify-between">
+        <Header as="h1">Your <span className="text-red-400">Last.fm</span> statistics</Header>
         <SelectTimeframe />
       </div>
-      <TopTags tags={tags} />
+      <Divider />
       <TopArtists artists={artists} />
+      <Divider />
       <TopAlbums albums={albums} />
+      <TopTags tags={tags} />
+      <Divider />
       <TopTracks tracks={tracks} />
     </Wrapper>
   </Main>
