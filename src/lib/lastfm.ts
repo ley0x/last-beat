@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { environment } from "./zod/environment";
-import { LastFmAlbumSchema, LastFmSearchAlbumSchema, LastFmTopArtists, LastFmUserInfo } from "./zod/schemas";
+import { LastFmAlbumSchema, LastFmSearchAlbumSchema, LastFmTopAlbums, LastFmTopArtists, LastFmTopTags, LastFmTopTracks, LastFmUserInfo } from "./zod/schemas";
 import { Timeframe } from "./types";
 
 export const lastFmAlbumSearch = async (q: string): Promise<z.infer<typeof LastFmSearchAlbumSchema>[]> => {
@@ -58,6 +58,47 @@ export const lastFmUserGetTopArtists = async (username: string, timeframe: Timef
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data.topartists.artist[0])
   return LastFmTopArtists.array().parse(data.topartists.artist);
+}
+
+export const lastFmUserGetTopAlbums = async (username: string, timeframe: Timeframe): Promise<z.infer<typeof LastFmTopAlbums>[]> => {
+  const args = {
+    user: username,
+    api_key: environment.LASTFM_API_KEY,
+    format: 'json',
+    method: 'user.getTopAlbums',
+    period: timeframe,
+  }
+  const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return LastFmTopAlbums.array().parse(data.topalbums.album);
+}
+
+export const lastFmUserGetTopTracks = async (username: string, timeframe: Timeframe): Promise<z.infer<typeof LastFmTopTracks>[]> => {
+  const args = {
+    user: username,
+    api_key: environment.LASTFM_API_KEY,
+    format: 'json',
+    method: 'user.getTopTracks',
+    period: timeframe,
+  }
+  const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return LastFmTopTracks.array().parse(data.toptracks.track);
+}
+
+export const lastFmUserGetTopTags = async (username: string, timeframe: Timeframe): Promise<z.infer<typeof LastFmTopTags>[]> => {
+  const args = {
+    user: username,
+    api_key: environment.LASTFM_API_KEY,
+    format: 'json',
+    method: 'user.getTopTags',
+    period: timeframe,
+  }
+  const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return LastFmTopTags.array().parse(data.toptags.tag);
 }

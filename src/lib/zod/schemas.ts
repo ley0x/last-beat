@@ -10,14 +10,17 @@ export const LastFmTrackSchema = z.object({
   url: z.string().url(),
 })
 
+
+export const LastFmImage = z.object({
+  "#text": z.string(),
+  size: z.union([z.literal('small'), z.literal('medium'), z.literal('large'), z.literal('extralarge'), z.literal('mega'), z.literal("")]),
+})
+
 export const LastFmAlbumSchema = z.object({
   name: z.string(),
   artist: z.string(),
   url: z.string().url(),
-  image: z.array(z.object({
-    "#text": z.string(),
-    size: z.union([z.literal('small'), z.literal('medium'), z.literal('large'), z.literal('extralarge'), z.literal('mega'), z.literal("")]),
-  })),
+  image: z.array(LastFmImage),
   listeners: z.string().nullish(),
   playcount: z.string().nullish(),
   tags: z.union([
@@ -38,32 +41,9 @@ export const LastFmSearchAlbumSchema = z.object({
   name: z.string(),
   artist: z.string(),
   url: z.string().url(),
-  image: z.array(z.object({
-    "#text": z.string(),
-    size: z.union([z.literal('small'), z.literal('medium'), z.literal('large'), z.literal('extralarge'), z.literal('mega'), z.literal("")]),
-  }))
+  image: z.array(LastFmImage),
 })
 
-// {
-//   user: {
-//     name: 'ley0x',
-//     age: '0',
-//     subscriber: '0',
-//     realname: 'ley0x',
-//     bootstrap: '0',
-//     playcount: '104473',
-//     artist_count: '3582',
-//     playlists: '0',
-//     track_count: '19459',
-//     album_count: '6520',
-//     image: [ [Object], [Object], [Object], [Object] ],
-//     registered: { unixtime: '1653504399', '#text': 1653504399 },
-//     country: 'France',
-//     gender: 'n',
-//     url: 'https://www.last.fm/user/ley0x',
-//     type: 'user'
-//   }
-// }
 export const LastFmUserInfo = z.object({
   name: z.string(),
   age: z.string(),
@@ -74,10 +54,7 @@ export const LastFmUserInfo = z.object({
   playlists: z.string().nullish(),
   track_count: z.string().nullish(),
   album_count: z.string().nullish(),
-  image: z.array(z.object({
-    "#text": z.string(),
-    size: z.union([z.literal('small'), z.literal('medium'), z.literal('large'), z.literal('extralarge'), z.literal('mega'), z.literal("")]),
-  })),
+  image: z.array(LastFmImage),
   registered: z.object({
     unixtime: z.string(),
     "#text": z.number(),
@@ -90,10 +67,7 @@ export const LastFmUserInfo = z.object({
 
 export const LastFmTopArtists = z.object({
   streamable: z.string(),
-  image: z.array(z.object({
-    "#text": z.string(),
-    size: z.union([z.literal('small'), z.literal('medium'), z.literal('large'), z.literal('extralarge'), z.literal('mega'), z.literal("")]),
-  })),
+  image: z.array(LastFmImage),
   mbid: z.string(),
   url: z.string().url(),
   playcount: z.string(),
@@ -101,4 +75,47 @@ export const LastFmTopArtists = z.object({
     rank: z.string(),
   }),
   name: z.string(),
+})
+
+export const LastFmTopAlbums = z.object({
+  artist: z.object({
+    url: z.string().url(),
+    name: z.string(),
+    mbid: z.string(),
+  }),
+  image: z.array(LastFmImage),
+  mbid: z.string(),
+  url: z.string().url(),
+  playcount: z.string(),
+  '@attr': z.object({
+    rank: z.string(),
+  }),
+  name: z.string(),
+})
+
+export const LastFmTopTracks = z.object({
+  streamable: z.object({
+    fulltrack: z.string(),
+    "#text": z.string(),
+  }),
+  mbid: z.string(),
+  name: z.string(),
+  image: z.array(LastFmImage),
+  artist: z.object({
+    url: z.string().url(),
+    name: z.string(),
+    mbid: z.string(),
+  }),
+  url: z.string().url(),
+  duration: z.string(),
+  '@attr': z.object({
+    rank: z.string(),
+  }),
+  playcount: z.string(),
+})
+
+export const LastFmTopTags = z.object({
+  name: z.string(),
+  count: z.string(),
+  url: z.string().url(),
 })

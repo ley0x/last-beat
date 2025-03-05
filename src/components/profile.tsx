@@ -8,22 +8,13 @@ import Header from './_common/header';
 import { Wrapper } from './_common/wrapper';
 import Link from 'next/link'
 import { ToggleTheme } from './_common/toggle-theme';
+import { findLargestImage } from '@/lib/utils';
 
 type Props = {
   data: z.infer<typeof LastFmUserInfo>
 }
 
 export const Profile = ({ data }: Props) => {
-  const findLargestImage = (data: z.infer<typeof LastFmUserInfo>) => {
-    const images = data.image;
-    let largestImage = images[0]['#text'];
-    for (let i = 1; i < images.length; i++) {
-      if (images[i]['#text'].length > largestImage.length) {
-        largestImage = images[i]['#text'];
-      }
-    }
-    return largestImage;
-  }
 
   function beautify(number: number): string {
     const formatter = new Intl.NumberFormat('en-US', {
@@ -42,7 +33,7 @@ export const Profile = ({ data }: Props) => {
 
         <Link href={data.url ?? "#"} rel="noopener noreferrer" target="_blank">
           <Avatar>
-            <AvatarImage className="h-24 w-24 rounded-full shadow" src={findLargestImage(data)} />
+            <AvatarImage className="h-24 w-24 rounded-full shadow" src={findLargestImage(data.image)} />
             <AvatarFallback>{data.name}</AvatarFallback>
           </Avatar>
         </Link>

@@ -29,11 +29,11 @@ export function SelectTimeframe() {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Select a timeframe</SelectLabel>
-          <SelectItem value="7-days">7 days</SelectItem>
-          <SelectItem value="1-month">1 month</SelectItem>
-          <SelectItem value="3-months">3 months</SelectItem>
-          <SelectItem value="6-months">6 months</SelectItem>
-          <SelectItem value="12-months">12 months</SelectItem>
+          <SelectItem value="7day">7 days</SelectItem>
+          <SelectItem value="1month">1 month</SelectItem>
+          <SelectItem value="3month">3 months</SelectItem>
+          <SelectItem value="6month">6 months</SelectItem>
+          <SelectItem value="12month">12 months</SelectItem>
           <SelectItem value="overall">Overall</SelectItem>
         </SelectGroup>
       </SelectContent>
