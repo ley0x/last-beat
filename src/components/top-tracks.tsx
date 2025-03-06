@@ -6,12 +6,21 @@ import { LastFmTopTracks } from '@/lib/zod/schemas';
 import { z } from 'zod';
 import { Track } from './_common/track';
 import { useTimeframe } from '@/hooks/useTimeframe';
+import { Button } from './ui/button';
+import { Ellipsis } from 'lucide-react';
+
+import { useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
+
 
 type Props = {
   tracks: z.infer<typeof LastFmTopTracks>[]
+  viewMore?: boolean
 }
 
-export const TopTracks = ({ tracks }: Props) => {
+export const TopTracks = ({ tracks, viewMore }: Props) => {
+  const router = useRouter();
+  const params = useParams<{ username: string; }>()
   const timeframe = useTimeframe();
   return (
     <section className="flex flex-col gap-5 justify-center">
@@ -24,6 +33,11 @@ export const TopTracks = ({ tracks }: Props) => {
           <Track track={track} key={index} />
         ))}
       </div>
+      {!!viewMore && (
+        <div className="flex justify-end">
+          <Button variant="outline" className="hover:cursor-pointer" onClick={() => router.push(`/stats/${params.username}/tracks`)}><span>View more</span><Ellipsis /> </Button>
+        </div>
+      )}
     </section>
   )
 }

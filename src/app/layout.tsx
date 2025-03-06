@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "StatsFM but for Last.fm",
-  description: "StatsFM but for Last.fm. A web app to track your Last.fm scrobbles.",
+  title: "LastBeat",
+  description: "The Rhythm of Your Life, Quantified",
 };
 
 export default function RootLayout({
@@ -38,7 +38,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
-            <Toaster />
+            <Toaster theme="system" />
           </ThemeProvider>
         </Provider>
       </body>

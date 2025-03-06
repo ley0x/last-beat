@@ -4,29 +4,21 @@ import { Main } from "@/components/_common/main"
 import { Wrapper } from "@/components/_common/wrapper"
 
 import { Profile } from "@/components/profile"
-
 import { SelectTimeframe } from "@/components/select-timeframe"
-import { TopTags } from "@/components/top-tags"
 
-import { TopAlbums } from "@/components/top-albums"
-import { TopTracks } from "@/components/top-tracks"
 import { TopArtists } from "@/components/top-artists"
 
-import { lastFmUserGetInfo, lastFmUserGetTopAlbums, lastFmUserGetTopArtists, lastFmUserGetTopTags, lastFmUserGetTopTracks } from "@/lib/lastfm"
-
+import { lastFmUserGetInfo, lastFmUserGetTopArtists } from "@/lib/lastfm"
 
 export default async function Page({
   params,
 }: {
   params: Promise<{ username: string }>
 }) {
-  const { username } = await params
+  const { username } = await params;
 
   const data = await lastFmUserGetInfo(username)
-  const artists = await lastFmUserGetTopArtists(username, "1month")
-  const albums = await lastFmUserGetTopAlbums(username, "1month")
-  const tracks = await lastFmUserGetTopTracks(username, "1month")
-  const tags = await lastFmUserGetTopTags(username, "1month")
+  const artists = await lastFmUserGetTopArtists(username, "1month", 50)
   return <Main className="flex-col">
     <Profile data={data} />
     <Wrapper className="flex-col gap-5 py-5">
@@ -35,12 +27,7 @@ export default async function Page({
         <SelectTimeframe />
       </div>
       <Divider />
-      <TopArtists viewMore artists={artists} />
-      <Divider />
-      <TopAlbums viewMore albums={albums} />
-      <TopTags tags={tags} />
-      <Divider />
-      <TopTracks viewMore tracks={tracks} />
+      <TopArtists artists={artists} />
     </Wrapper>
   </Main>
 }

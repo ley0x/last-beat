@@ -6,26 +6,28 @@ import { z } from 'zod';
 import { LastFmTopArtists } from '@/lib/zod/schemas';
 import { Artist } from './_common/artist';
 import { Button } from './ui/button';
-import { ChevronLeft, ChevronRight, Ellipsis, Grid3x3, Share } from 'lucide-react';
+import { Ellipsis } from 'lucide-react';
 import { useTimeframe } from '@/hooks/useTimeframe';
+
+import { useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
+import { Controls } from './controls';
 
 type Props = {
   artists: z.infer<typeof LastFmTopArtists>[]
+  viewMore?: boolean
 }
 
-export const TopArtists = ({ artists }: Props) => {
+export const TopArtists = ({ artists, viewMore }: Props) => {
+  const router = useRouter();
+  const params = useParams<{ username: string; }>()
   const timeframe = useTimeframe();
   return (
     <section className="flex flex-col gap-5 justify-center">
       <div>
         <div className="w-full flex flew-wrap gap-2 items-center justify-between">
           <Header as="h2">Top Artists</Header>
-          <div className="flex gap-1">
-            <Button variant="outline" size="icon" className="rounded-full hover:cursor-pointer"> <Grid3x3 /> </Button>
-            <Button variant="outline" size="icon" className="rounded-full hover:cursor-pointer"> <ChevronLeft /> </Button>
-            <Button variant="outline" size="icon" className="rounded-full hover:cursor-pointer"> <ChevronRight /> </Button>
-            <Button variant="outline" size="icon" className="rounded-full hover:cursor-pointer"> <Share /> </Button>
-          </div>
+          <Controls />
         </div>
         <Header as="h4" className="text-gray-400 font-normal">Your top albums from the {timeframe}.</Header>
       </div>
@@ -34,9 +36,11 @@ export const TopArtists = ({ artists }: Props) => {
           <Artist artist={artist} key={index} />
         ))}
       </div>
-      <div className="flex justify-end">
-        <Button variant="outline" className="hover:cursor-pointer"><span>View more</span><Ellipsis /> </Button>
-      </div>
+      {!!viewMore && (
+        <div className="flex justify-end">
+          <Button onClick={() => router.push(`/stats/${params.username}/artists`)} variant="outline" className="hover:cursor-pointer"><span>View more</span><Ellipsis /> </Button>
+        </div>
+      )}
     </section>
   )
 }

@@ -42,7 +42,7 @@ export const Profile = ({ data }: Props) => {
             <Header as="h1">{data.name}</Header>
             <ToggleTheme />
           </div>
-          <Header as="h3">Hey there! 👋 I'm using <strong className="text-red-400">app.ley0x.me</strong> to track my Last.fm scrobbles.</Header>
+          <Header as="h3">Hey there! 👋 I'm using <strong className="text-red-400">LastBeat</strong> to track my Last.fm scrobbles.</Header>
           <ul className="list-disc list-inside">
             <li>Playcount: <strong className="text-red-400">{beautify(parseInt(data.playcount ?? "0", 10))}</strong></li>
             <li>Albums: <strong className="text-red-400">{beautify(parseInt(data.album_count ?? "0", 10))}</strong></li>
