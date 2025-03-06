@@ -34,7 +34,7 @@ export const Artist = ({ artist }: Props) => {
       setProfilePicture(profilePicture);
     });
 
-  }, [])
+  }, [artist.name])
   return (
     <div className="w-42 flex flex-col justify-center items-center">
       <Link href={artist.url ?? "#"} rel="noopener noreferrer" target="_blank">

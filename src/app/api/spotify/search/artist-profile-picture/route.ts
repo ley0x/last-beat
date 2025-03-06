@@ -14,7 +14,7 @@ export async function GET(request: NextRequest): Promise<void | Response> {
     const profilePicture = await searchArtistProfilePicture(q);
 
     return Response.json({ success: true, data: profilePicture });
-  } catch (e: any) {
+  } catch (e: Error | unknown) {
     if (e instanceof Error) return Response.json({ success: false, error: e.message });
     return Response.json({ success: false, error: e });
   }
