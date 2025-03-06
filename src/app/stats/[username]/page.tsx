@@ -12,7 +12,8 @@ import { TopAlbums } from "@/components/top-albums"
 import { TopTracks } from "@/components/top-tracks"
 import { TopArtists } from "@/components/top-artists"
 
-import { lastFmUserGetInfo, lastFmUserGetTopAlbums, lastFmUserGetTopArtists, lastFmUserGetTopTags, lastFmUserGetTopTracks } from "@/lib/lastfm"
+import { lastFmUserGetInfo } from "@/lib/lastfm"
+import { ReactQueryProvider } from "@/components/_common/react-query-provider"
 
 
 export default async function Page({
@@ -20,27 +21,27 @@ export default async function Page({
 }: {
   params: Promise<{ username: string }>
 }) {
-  const { username } = await params
-
-  const data = await lastFmUserGetInfo(username)
-  const artists = await lastFmUserGetTopArtists(username, "1month")
-  const albums = await lastFmUserGetTopAlbums(username, "1month")
-  const tracks = await lastFmUserGetTopTracks(username, "1month")
-  const tags = await lastFmUserGetTopTags(username, "1month")
-  return <Main className="flex-col">
-    <Profile data={data} />
-    <Wrapper className="flex-col gap-5 py-5">
-      <div className="flex items-center justify-between">
-        <Header as="h1">Your <span className="text-red-400">Last.fm</span> statistics</Header>
-        <SelectTimeframe />
-      </div>
-      <Divider />
-      <TopArtists viewMore artists={artists} />
-      <Divider />
-      <TopAlbums viewMore albums={albums} />
-      <TopTags tags={tags} />
-      <Divider />
-      <TopTracks viewMore tracks={tracks} />
-    </Wrapper>
-  </Main>
+  const { username } = await params;
+  const profile = await lastFmUserGetInfo(username)
+  return (
+    <Main className="flex-col">
+      <Profile data={profile} />
+      <Wrapper className="flex-col gap-5 py-5">
+        <div className="flex items-center justify-between">
+          <Header as="h1">Your <span className="text-red-400">Last.fm</span> statistics</Header>
+          <SelectTimeframe />
+        </div>
+        <Divider />
+        <ReactQueryProvider>
+          <TopAlbums username={username} viewMore />
+          <Divider />
+          <TopArtists username={username} viewMore />
+          <Divider />
+          <TopTracks username={username} viewMore />
+          {/* <TopTags tags={tags} /> */}
+          {/* <Divider /> */}
+        </ReactQueryProvider>
+      </Wrapper>
+    </Main>
+  )
 }

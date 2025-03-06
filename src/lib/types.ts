@@ -1,2 +1,4 @@
+import { z } from "zod";
+import { TimeframeSchema } from "./zod/schemas";
 
-export type Timeframe = "7day" | "1month" | "3month" | "6month" | "12month" | "overall";
+export type Timeframe = z.infer<typeof TimeframeSchema>;

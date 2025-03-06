@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+export const TimeframeSchema = z.union([z.literal('7day'), z.literal('1month'), z.literal('3month'), z.literal('6month'), z.literal('12month'), z.literal('overall')])
+
 export const LastFmTrackSchema = z.object({
   name: z.string(),
   duration: z.number().nullable(),

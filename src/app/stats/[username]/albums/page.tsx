@@ -1,13 +1,14 @@
 import Divider from "@/components/_common/divider"
 import Header from "@/components/_common/header"
 import { Main } from "@/components/_common/main"
+import { ReactQueryProvider } from "@/components/_common/react-query-provider"
 import { Wrapper } from "@/components/_common/wrapper"
 
 import { Profile } from "@/components/profile"
 import { SelectTimeframe } from "@/components/select-timeframe"
 import { TopAlbums } from "@/components/top-albums"
 
-import { lastFmUserGetInfo, lastFmUserGetTopAlbums } from "@/lib/lastfm"
+import { lastFmUserGetInfo } from "@/lib/lastfm"
 
 export default async function Page({
   params,
@@ -17,7 +18,6 @@ export default async function Page({
   const { username } = await params;
 
   const data = await lastFmUserGetInfo(username)
-  const albums = await lastFmUserGetTopAlbums(username, "1month", 50)
   return <Main className="flex-col">
     <Profile data={data} />
     <Wrapper className="flex-col gap-5 py-5">
@@ -26,7 +26,9 @@ export default async function Page({
         <SelectTimeframe />
       </div>
       <Divider />
-      <TopAlbums albums={albums} />
+      <ReactQueryProvider>
+        <TopAlbums username={username} />
+      </ReactQueryProvider>
     </Wrapper>
   </Main>
 }

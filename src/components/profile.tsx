@@ -30,7 +30,6 @@ export const Profile = ({ data }: Props) => {
   return (
     <section className="py-5 bg-primary-foreground">
       <Wrapper className="flex-wrap gap-5 justify-center">
-
         <Link href={data.url ?? "#"} rel="noopener noreferrer" target="_blank">
           <Avatar>
             <AvatarImage className="h-24 w-24 rounded-full shadow" src={findLargestImage(data.image)} />

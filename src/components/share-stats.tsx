@@ -18,6 +18,6 @@ export const ShareStats = () => {
   };
 
   return (
-    <Button onClick={copyURLToClipboard} variant="outline" size="icon" className="rounded-full hover:cursor-pointer"> <Share /> </Button>
+    <Button variant="outline" size="icon" className="rounded-full hover:cursor-pointer" onClick={copyURLToClipboard}> <Share /> </Button>
   );
 };
