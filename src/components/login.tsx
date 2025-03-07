@@ -39,7 +39,7 @@ export function Login() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast.info(`Hello ${data.username}! 👋`, {
-      description: "Contacting Last.fm API to retrieve user scrobbles..."
+      description: "We are contacting the Last.fm API to retrieve your data..."
     })
     router.push(`/stats/${data.username}`)
   }
