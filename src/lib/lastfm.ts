@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { environment } from "./zod/environment";
-import { LastFmAlbumSchema, LastFmSearchAlbumSchema, LastFmTopAlbums, LastFmTopArtists, LastFmTopTags, LastFmTopTracks, LastFmUserInfo } from "./zod/schemas";
+import { LastFmAlbumSchema, LastFmSearchAlbumSchema, LastFmTopAlbums, LastFmTopArtists, LastFmTopTags, LastFmTopTracks, LastFmTrackSchema, LastFmUserInfo } from "./zod/schemas";
 import { Timeframe } from "./types";
 
 export const lastFmAlbumSearch = async (q: string): Promise<z.infer<typeof LastFmSearchAlbumSchema>[]> => {
@@ -32,6 +32,46 @@ export const lastFmAlbumGetInfo = async (album: z.infer<typeof LastFmSearchAlbum
   const res = await fetch(url);
   const data = await res.json();
   return LastFmAlbumSchema.parse(data.album);
+}
+
+export const lastFmAlbumGetInfoByMbid = async (mbid: string): Promise<z.infer<typeof LastFmAlbumSchema>> => {
+  const args = {
+    mbid: encodeURIComponent(mbid),
+    api_key: environment.LASTFM_API_KEY,
+    format: 'json',
+    method: 'album.getinfo',
+  }
+  const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return LastFmAlbumSchema.parse(data.album);
+}
+
+export const lastFmTrackGetInfo = async (track: string, artist: string): Promise<z.infer<typeof LastFmTrackSchema>> => {
+  const args = {
+    track,
+    artist,
+    api_key: environment.LASTFM_API_KEY,
+    format: 'json',
+    method: 'track.getinfo',
+  }
+  const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return LastFmTrackSchema.parse(data.track);
+}
+
+export const lastFmTrackGetInfoByMbid = async (trackMbid: string): Promise<z.infer<typeof LastFmTrackSchema>> => {
+  const args = {
+    mbid: trackMbid,
+    api_key: environment.LASTFM_API_KEY,
+    format: 'json',
+    method: 'track.getinfo',
+  }
+  const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return LastFmTrackSchema.parse(data.track);
 }
 
 export const lastFmUserGetInfo = async (username: string): Promise<z.infer<typeof LastFmUserInfo>> => {
@@ -110,3 +150,4 @@ export const lastFmUserGetTopTags = async (username: string, timeframe: Timefram
   const data = await res.json();
   return LastFmTopTags.array().parse(data.toptags.tag);
 }
+

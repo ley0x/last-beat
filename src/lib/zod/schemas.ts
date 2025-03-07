@@ -2,7 +2,45 @@ import { z } from "zod"
 
 export const TimeframeSchema = z.union([z.literal('7day'), z.literal('1month'), z.literal('3month'), z.literal('6month'), z.literal('12month'), z.literal('overall')])
 
+export const LastFmImage = z.object({
+  "#text": z.string(),
+  size: z.union([z.literal('small'), z.literal('medium'), z.literal('large'), z.literal('extralarge'), z.literal('mega'), z.literal("")]),
+})
+
 export const LastFmTrackSchema = z.object({
+  name: z.string(),
+  mbid: z.string().nullish(),
+  url: z.string().url(),
+  duration: z.string(),
+  listeners: z.string(),
+  playcount: z.string(),
+  artist: z.object({
+    name: z.string(),
+    mbid: z.string(),
+    url: z.string().url(),
+  }).partial().nullish(),
+  album: z.object({
+    position: z.string(),
+    artist: z.string(),
+    title: z.string(),
+    mbid: z.string(),
+    url: z.string().url(),
+    image: z.array(LastFmImage),
+  }).partial().nullish(),
+  toptags: z.object({
+    tag: z.array(z.object({
+      name: z.string(),
+      url: z.string().url(),
+    })),
+  }),
+  wiki: z.object({
+    published: z.string(),
+    summary: z.string(),
+    content: z.string(),
+  }).nullish(),
+})
+
+const LastFmTrackMinSchema = z.object({
   name: z.string(),
   duration: z.number().nullable(),
   artist: z.object({
@@ -12,11 +50,6 @@ export const LastFmTrackSchema = z.object({
   url: z.string().url(),
 })
 
-
-export const LastFmImage = z.object({
-  "#text": z.string(),
-  size: z.union([z.literal('small'), z.literal('medium'), z.literal('large'), z.literal('extralarge'), z.literal('mega'), z.literal("")]),
-})
 
 export const LastFmAlbumSchema = z.object({
   name: z.string(),
@@ -34,7 +67,7 @@ export const LastFmAlbumSchema = z.object({
       })),
     })]).nullish(),
   tracks: z.object({
-    track: z.union([z.array(LastFmTrackSchema), LastFmTrackSchema]).nullish(),
+    track: z.union([z.array(LastFmTrackMinSchema), LastFmTrackMinSchema]).nullish(),
   }).nullish()
 })
 
@@ -141,4 +174,34 @@ export const SpotifyArtistSchema = z.object({
   popularity: z.number(),
   type: z.string(),
   uri: z.string().url(),
+})
+
+export const SpotifyAlbumSchema = z.object({
+  album_type: z.string(),
+  href: z.string().url(),
+  id: z.string(),
+  name: z.string(),
+  release_date: z.string(),
+  total_tracks: z.number(),
+  type: z.string(),
+  images: z.array(z.object({
+    height: z.number(),
+    url: z.string().url(),
+    width: z.number(),
+  })),
+})
+
+export const SpotifyTrackSchema = z.object({
+  album: SpotifyAlbumSchema,
+  disc_number: z.number(),
+  duration_ms: z.number(),
+  explicit: z.boolean(),
+  external_urls: z.object({
+    spotify: z.string().url(),
+  }),
+  id: z.string(),
+  name: z.string(),
+  popularity: z.number(),
+  track_number: z.number(),
+  type: z.string(),
 })

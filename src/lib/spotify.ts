@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { environment } from "./zod/environment";
-import { SpotifyArtistSchema } from "./zod/schemas";
+import { SpotifyArtistSchema, SpotifyTrackSchema } from "./zod/schemas";
 
 const getSpotifyAccessToken = async () => {
   const response = await fetch('https://accounts.spotify.com/api/token', {
@@ -65,4 +65,24 @@ export const getArtistProfilePicture = async (artistID: string): Promise<string>
 export const searchArtistProfilePicture = async (artistName: string): Promise<string> => {
   const artistID = await getSpotifyArtistID(artistName);
   return getArtistProfilePicture(artistID);
+}
+
+
+export const searchSpotifyTrack = async (name: string, artist: string): Promise<z.infer<typeof SpotifyTrackSchema>> => {
+  const accessToken = await getSpotifyAccessToken();
+  const args = {
+    q: `track:${name} artist:${artist}`,
+    type: 'track',
+    limit: '1'
+  }
+
+  const url = `https://api.spotify.com/v1/search/?${new URLSearchParams(args)}`;
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+  const json = await response.json();
+  const data = SpotifyTrackSchema.parse(json.tracks.items[0]);
+  return data;
 }
