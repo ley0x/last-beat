@@ -45,7 +45,7 @@ export const TopTracks = ({ username, viewMore }: Props) => {
   const [page, setPage] = useState(1);
   const [limit] = useState(viewMore ? 10 : 50);
 
-  const { data: tracks, isPending, isError, error } = useQuery({ queryKey: ['top-tracks', username, timeframe], queryFn: () => fetchUserTopTracks(username, timeframe) });
+  const { data: tracks, isPending, isError, error } = useQuery({ queryKey: ['top-tracks', username, timeframe, limit, page], queryFn: () => fetchUserTopTracks(username, timeframe, limit, page) });
 
   if (isPending) {
     return (
