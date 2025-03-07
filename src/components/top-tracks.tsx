@@ -1,18 +1,18 @@
 "use client";
 
-import React from 'react'
-import Header from './_common/header';
-import { LastFmTopTracks } from '@/lib/zod/schemas';
-import { Track } from './_common/track';
-import { useTimeframe } from '@/hooks/useTimeframe';
-import { Button } from './ui/button';
-import { Ellipsis } from 'lucide-react';
+import React, { useState } from 'react'
 
-import { useRouter } from 'next/navigation'
-import { useParams } from 'next/navigation'
+import { StatsContainer } from '@/components/music/stats-container';
+import { AlbumSkeleton } from '@/components/music/album-skeleton';
+import { ErrorStatus } from '@/components/_common/error-status';
+import { Track } from '@/components/_common/track';
+
+import { LastFmTopTracks } from '@/lib/zod/schemas';
 import { Timeframe } from '@/lib/types';
-import { useAtom } from 'jotai';
+
 import { timeframeAtom } from '@/lib/store';
+
+import { useAtom } from 'jotai';
 import {
   useQuery
 } from '@tanstack/react-query'
@@ -41,28 +41,31 @@ const fetchUserTopTracks = async (username: string, timeframe: Timeframe, limit:
 }
 
 export const TopTracks = ({ username, viewMore }: Props) => {
-  const router = useRouter();
-  const params = useParams<{ username: string; }>()
-  const time = useTimeframe();
   const [timeframe] = useAtom(timeframeAtom);
+  const [page, setPage] = useState(1);
+  const [limit] = useState(viewMore ? 10 : 50);
 
   const { data: tracks, isPending, isError, error } = useQuery({ queryKey: ['top-tracks', username, timeframe], queryFn: () => fetchUserTopTracks(username, timeframe) });
-  return (
-    <section className="flex flex-col gap-5 justify-center">
-      <div>
-        <Header as="h2">Top Tracks</Header>
-        <Header as="h4" className="text-gray-400 font-normal">Your top albums from the {time}.</Header>
-      </div>
-      <div className="flex flex-wrap gap-2 justify-around items-center">
-        {tracks && tracks.map((track, index) => (
-          <Track track={track} key={index} />
+
+  if (isPending) {
+    return (
+      <StatsContainer page={page} setPage={setPage} type="tracks" viewMore={!!viewMore}>
+        {Array(limit).fill(0).map((_, index) => (
+          <AlbumSkeleton key={index} />
         ))}
-      </div>
-      {!!viewMore && (
-        <div className="flex justify-end">
-          <Button variant="outline" className="hover:cursor-pointer" onClick={() => router.push(`/stats/${params.username}/tracks`)}><span>View more</span><Ellipsis /> </Button>
-        </div>
-      )}
-    </section>
+      </StatsContainer >
+    )
+  }
+
+  if (isError) {
+    return <ErrorStatus message={error.message} />
+  }
+
+  return (
+    <StatsContainer page={page} setPage={setPage} type="tracks" viewMore={!!viewMore}>
+      {tracks && tracks.map((track, index) => (
+        <Track track={track} key={index} />
+      ))}
+    </StatsContainer>
   )
 }

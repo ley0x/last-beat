@@ -12,7 +12,7 @@ import { TopAlbums } from "@/components/top-albums"
 import { TopTracks } from "@/components/top-tracks"
 import { TopArtists } from "@/components/top-artists"
 
-import { lastFmUserGetInfo } from "@/lib/lastfm"
+import { lastFmUserGetInfo, lastFmUserGetTopTags } from "@/lib/lastfm"
 import { ReactQueryProvider } from "@/components/_common/react-query-provider"
 
 
@@ -22,7 +22,8 @@ export default async function Page({
   params: Promise<{ username: string }>
 }) {
   const { username } = await params;
-  const profile = await lastFmUserGetInfo(username)
+  const profile = await lastFmUserGetInfo(username);
+  const tags = await lastFmUserGetTopTags(username, "1month");
   return (
     <Main className="flex-col">
       <Profile data={profile} />
@@ -38,8 +39,8 @@ export default async function Page({
           <TopArtists username={username} viewMore />
           <Divider />
           <TopTracks username={username} viewMore />
-          {/* <TopTags tags={tags} /> */}
-          {/* <Divider /> */}
+          <TopTags tags={tags} />
+          <Divider />
         </ReactQueryProvider>
       </Wrapper>
     </Main>
