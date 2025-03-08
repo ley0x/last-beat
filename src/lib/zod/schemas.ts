@@ -155,6 +155,27 @@ export const LastFmTopTags = z.object({
   url: z.string().url(),
 })
 
+
+export const LastFmUserFriends = z.object({
+  name: z.string(),
+  image: z.array(LastFmImage),
+  url: z.string().url(),
+  subscriber: z.string(),
+  playcount: z.string(),
+  // id: z.string(),
+  // age: z.string(),
+  // gender: z.string(),
+  // realname: z.string(),
+  // country: z.string(),
+  // playlists: z.string(),
+  // bootstrap: z.string(),
+  // registered: z.object({
+  //   unixtime: z.string(),
+  //   "#text": z.number(),
+  // }),
+  // type: z.string(),
+})
+
 export const SpotifyArtistSchema = z.object({
   external_urls: z.object({
     spotify: z.string().url(),

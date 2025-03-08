@@ -16,6 +16,8 @@ type Props = {
 
 export const Profile = ({ data }: Props) => {
 
+  const image = findLargestImage(data.image);
+
   function beautify(number: number): string {
     const formatter = new Intl.NumberFormat('en-US', {
       useGrouping: true,
@@ -32,7 +34,7 @@ export const Profile = ({ data }: Props) => {
       <Wrapper className="flex-wrap gap-5 justify-center">
         <Link href={data.url ?? "#"} rel="noopener noreferrer" target="_blank">
           <Avatar>
-            <AvatarImage className="h-24 w-24 rounded-full shadow" src={findLargestImage(data.image)} />
+            <AvatarImage className="h-24 w-24 rounded-full shadow" src={image === "#" ? "/placeholder.webp" : image} />
             <AvatarFallback>{data.name}</AvatarFallback>
           </Avatar>
         </Link>

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { environment } from "./zod/environment";
-import { LastFmAlbumSchema, LastFmSearchAlbumSchema, LastFmTopAlbums, LastFmTopArtists, LastFmTopTags, LastFmTopTracks, LastFmTrackSchema, LastFmUserInfo } from "./zod/schemas";
+import { LastFmAlbumSchema, LastFmSearchAlbumSchema, LastFmTopAlbums, LastFmTopArtists, LastFmTopTags, LastFmTopTracks, LastFmTrackSchema, LastFmUserFriends, LastFmUserInfo } from "./zod/schemas";
 import { Timeframe } from "./types";
 
 export const lastFmAlbumSearch = async (q: string): Promise<z.infer<typeof LastFmSearchAlbumSchema>[]> => {
@@ -151,3 +151,17 @@ export const lastFmUserGetTopTags = async (username: string, timeframe: Timefram
   return LastFmTopTags.array().parse(data.toptags.tag);
 }
 
+export const lastFmUserGetFriends = async (username: string, limit: number = 10, page: number = 1): Promise<z.infer<typeof LastFmUserFriends>[]> => {
+  const args = {
+    user: username,
+    api_key: environment.LASTFM_API_KEY,
+    format: 'json',
+    method: 'user.getFriends',
+    limit: limit.toString(),
+    page: page.toString(),
+  }
+  const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return LastFmUserFriends.array().parse(data.friends?.user ?? []);
+}

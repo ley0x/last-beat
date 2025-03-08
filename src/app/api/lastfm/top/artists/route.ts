@@ -7,7 +7,6 @@ export const dynamic = 'force-dynamic' // defaults to force-static
 
 export async function GET(request: NextRequest): Promise<void | Response> {
   try {
-    console.log("[DEBUG] top-artists")
     const { searchParams } = new URL(request.url);
     const q = decodeURIComponent(z.string().min(2).max(200).trim().parse(searchParams.get('q')));
     const timeframe = TimeframeSchema.parse(searchParams.get('timeframe') ?? "1month");
