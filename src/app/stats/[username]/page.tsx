@@ -34,13 +34,6 @@ export default async function Page({
           <Header as="h1">Your <span className="text-red-400">Last.fm</span> statistics</Header>
           <SelectTimeframe />
         </div>
-        <Divider />
-        {friends.length > 0 && (
-          <>
-            <Friends username={username} friends={friends} />
-            <Divider />
-          </>
-        )}
         <ReactQueryProvider>
           <TopAlbums username={username} viewMore />
           <Divider />
@@ -49,6 +42,9 @@ export default async function Page({
           <TopTracks username={username} viewMore />
           <TopTags tags={tags} />
           <Divider />
+          {friends.length > 0 && (
+            <Friends username={username} friends={friends} />
+          )}
         </ReactQueryProvider>
       </Wrapper>
     </Main>
