@@ -13,12 +13,13 @@ type Props = {
 }
 
 export const Album = ({ album }: Props) => {
+  const image = findLargestImage(album.image);
 
   return (
     <div className="w-42 flex flex-col justify-start items-center h-50">
       <Link href={album.url ?? "#"} rel="noopener noreferrer" target="_blank">
         <Avatar>
-          <AvatarImage className="h-32 w-32 rounded-sm shadow" src={findLargestImage(album.image)} />
+          <AvatarImage className="h-32 w-32 rounded-sm shadow" src={image === "#" ? "/placeholder.webp" : image} />
           <AvatarFallback>{album.name}</AvatarFallback>
         </Avatar>
       </Link>

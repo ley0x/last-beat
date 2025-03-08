@@ -53,7 +53,7 @@ export const Artist = ({ artist }: Props) => {
     <div className="w-42 flex flex-col justify-center items-center">
       <Link href={artist.url ?? "#"} rel="noopener noreferrer" target="_blank">
         <Avatar>
-          <AvatarImage className="h-32 w-32 rounded-full shadow" src={profilePicture} />
+          <AvatarImage className="h-32 w-32 rounded-full shadow" src={profilePicture === "#" ? "/placeholder.webp" : profilePicture} />
           <AvatarFallback>{artist.name}</AvatarFallback>
         </Avatar>
       </Link>
