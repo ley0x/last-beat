@@ -7,7 +7,6 @@ import { z } from 'zod'
 import Header from './_common/header';
 import { Wrapper } from './_common/wrapper';
 import Link from 'next/link'
-import { ToggleTheme } from './_common/toggle-theme';
 import { findLargestImage } from '@/lib/utils';
 
 type Props = {
@@ -39,10 +38,7 @@ export const Profile = ({ data }: Props) => {
           </Avatar>
         </Link>
         <div className="flex flex-col grow">
-          <div className="flex flex-wrap-reverse gap-2 justify-between items-center">
-            <Header as="h1">{data.name}</Header>
-            <ToggleTheme />
-          </div>
+          <Header as="h1">{data.name}</Header>
           <Header as="h3">Hey there! 👋 I&apos;m using <strong className="text-red-400">LastBeat</strong> to track my Last.fm scrobbles.</Header>
           <ul className="list-disc list-inside">
             <li>Playcount: <strong className="text-red-400">{beautify(parseInt(data.playcount ?? "0", 10))}</strong></li>
