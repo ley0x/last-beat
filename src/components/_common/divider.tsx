@@ -1,4 +1,4 @@
-import { cx } from 'class-variance-authority';
+import { cn } from "@/lib/utils";
 
 type Props = {
   className?: string;
@@ -6,7 +6,7 @@ type Props = {
 
 const Divider = ({ className }: Props) => {
   return (
-    <div className={cx("h-[2px] my-5 w-full bg-card-foreground/5", className)}></div>
+    <div className={cn("h-[2px] my-5 w-full bg-card-foreground/5", className)}></div>
   )
 }
 
