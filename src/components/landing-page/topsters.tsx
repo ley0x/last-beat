@@ -4,7 +4,7 @@ import { Wrapper } from "../_common/wrapper";
 
 export const Topsters = () => {
   return (
-    <Wrapper className="flex-wrap justify-between items-center gap-y-5 gap-x-2 pt-5">
+    <Wrapper className="flex-wrap-reverse justify-around md:justify-between  items-center gap-y-5 gap-x-2">
       <div className="">
         <div className="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
           <h2 className="text-2xl font-bold md:text-3xl">

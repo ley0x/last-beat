@@ -11,10 +11,12 @@ export default function Home() {
   return (
     <Main className="relative h-full">
       <Hero />
-      <Stats />
-      <Charts />
-      <Topsters />
-      <LyricsCards />
+      <div className="flex flex-col gap-5">
+        <Stats />
+        <Charts />
+        <Topsters />
+        <LyricsCards />
+      </div>
       <Footer />
     </Main>
   );

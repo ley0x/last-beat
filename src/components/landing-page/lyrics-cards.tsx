@@ -4,7 +4,7 @@ import { Wrapper } from "../_common/wrapper";
 
 export const LyricsCards = () => {
   return (
-    <section className="pt-5">
+    <section>
       <Wrapper>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 w-full">
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-1 lg:grid-cols-2">
