@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
   title: "LastBeat - User Stats",
@@ -16,9 +17,10 @@ export default async function RootLayout({
   return (<>
     <SidebarProvider>
       <AppSidebar />
-      <div className="w-full">
+      <div className="w-full flex flex-col">
         <Navbar />
         {children}
+        <Footer />
       </div>
     </SidebarProvider>
   </>);

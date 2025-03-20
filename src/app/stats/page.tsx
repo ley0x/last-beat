@@ -7,7 +7,7 @@ import { Logo } from "@/components/_common/logo";
 
 export default function Home() {
   return (
-    <Main className="h-full">
+    <Main>
       <Wrapper className="flex-col justify-start items-center h-full">
         <div>
           <Header as="h1" className="flex flew-wrap gap-2 items-center justify-center"><Logo withText /></Header>

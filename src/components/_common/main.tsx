@@ -8,7 +8,7 @@ type Props = {
 
 export const Main = ({ children, className }: Props) => {
   return (
-    <main className={cn("flex flex-col w-full", className)}>{children}</main>
+    <main className={cn("flex flex-col w-full flex-grow", className)}>{children}</main>
   )
 }
 

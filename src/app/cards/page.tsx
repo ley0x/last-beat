@@ -8,7 +8,7 @@ import { CommingSoon } from "@/components/_common/comming-soon"
 
 export default async function Page() {
   return (
-    <Main className="flex-col">
+    <Main className="h-max flex-col">
       <Wrapper className="flex-col gap-5 py-5">
         <Header as="h1">Make your own <span className="text-red-400">lyrics cards</span> and share it.</Header>
         <ReactQueryProvider>

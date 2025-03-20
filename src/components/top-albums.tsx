@@ -42,7 +42,7 @@ export const TopAlbums = ({ username, viewMore }: Props) => {
   const [timeframe] = useAtom(timeframeAtom);
 
   const [page, setPage] = useState(1);
-  const [limit] = useState(viewMore ? 12 : 50);
+  const [limit] = useState(viewMore ? 10 : 50);
   const { data: albums, isPending, isError, error } = useQuery({ queryKey: ['top-albums', username, timeframe, limit, page], queryFn: () => fetchUserTopAlbums(username, timeframe, limit, page) });
 
   if (isPending) {

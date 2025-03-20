@@ -15,10 +15,10 @@ export const Footer = () => {
             <Logo withText className="ml-2 font-bold" />
           </div>
           <div className="flex gap-2 flex-wrap items-center">
-            <ToggleTheme />
             <p className="mt-4 text-center text-sm text-primary/80 lg:mt-0 lg:text-right">
               Copyright &copy; {getYear()} ley0x. All rights reserved.
             </p>
+            <ToggleTheme />
           </div>
         </div>
       </div>
