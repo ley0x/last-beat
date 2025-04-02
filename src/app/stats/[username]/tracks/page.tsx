@@ -5,9 +5,9 @@ import { ReactQueryProvider } from "@/components/_common/react-query-provider"
 import { Wrapper } from "@/components/_common/wrapper"
 
 import { Profile } from "@/components/profile"
-import { SelectTimeframe } from "@/components/select-timeframe"
 
-import { TopTracks } from "@/components/top-tracks"
+import { SelectTimeframe } from "@/components/top/select-timeframe"
+import { TopTracks } from "@/components/top/tracks/top-tracks"
 
 import { lastFmUserGetInfo } from "@/lib/lastfm"
 

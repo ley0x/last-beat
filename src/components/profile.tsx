@@ -39,11 +39,11 @@ export const Profile = ({ data }: Props) => {
         </Link>
         <div className="flex flex-col grow">
           <Header as="h1">{data.name}</Header>
-          <Header as="h3">Hey there! 👋 I&apos;m using <strong className="text-red-400">LastBeat</strong> to track my Last.fm scrobbles.</Header>
+          <Header as="h3">Hey there! 👋 I&apos;m using <strong className="text-red-600">LastBeat</strong> to track my Last.fm scrobbles.</Header>
           <ul className="list-disc list-inside">
-            <li>Playcount: <strong className="text-red-400">{beautify(parseInt(data.playcount ?? "0", 10))}</strong></li>
-            <li>Albums: <strong className="text-red-400">{beautify(parseInt(data.album_count ?? "0", 10))}</strong></li>
-            <li>Tracks: <strong className="text-red-400">{beautify(parseInt(data.track_count ?? "0", 10))}</strong></li>
+            <li>Playcount: <strong className="text-red-600">{beautify(parseInt(data.playcount ?? "0", 10))}</strong></li>
+            <li>Albums: <strong className="text-red-600">{beautify(parseInt(data.album_count ?? "0", 10))}</strong></li>
+            <li>Tracks: <strong className="text-red-600">{beautify(parseInt(data.track_count ?? "0", 10))}</strong></li>
           </ul>
         </div>
       </Wrapper>

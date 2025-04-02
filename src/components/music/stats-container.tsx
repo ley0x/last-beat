@@ -5,17 +5,19 @@ import { useTimeframe } from '@/hooks/useTimeframe';
 
 import { useRouter } from 'next/navigation'
 import { useParams } from 'next/navigation'
-import { Controls } from '@/components/controls';
+import { Controls } from '@/components/top/controls';
 
 type Props = {
   children: React.ReactNode;
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   viewMore?: boolean;
+  setMode: React.Dispatch<React.SetStateAction<"grid" | "list">>;
+  mode: "grid" | "list";
   type: "albums" | "artists" | "tags" | "tracks";
 }
 
-export const StatsContainer = ({ children, page, setPage, type, viewMore }: Props) => {
+export const StatsContainer = ({ children, page, setPage, type, viewMore, setMode, mode }: Props) => {
   const router = useRouter();
   const params = useParams<{ username: string; }>()
   const time = useTimeframe();
@@ -48,7 +50,7 @@ export const StatsContainer = ({ children, page, setPage, type, viewMore }: Prop
       <div>
         <div className="w-full flex flew-wrap gap-2 items-center justify-between">
           <Header as="h2">{data[type].title}</Header>
-          <Controls setPage={setPage} page={page} />
+          <Controls setPage={setPage} page={page} setMode={setMode} mode={mode} />
         </div>
         <Header as="h4" className="text-gray-400 font-normal">{data[type].subtitle}</Header>
       </div>

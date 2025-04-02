@@ -5,8 +5,8 @@ import { ReactQueryProvider } from "@/components/_common/react-query-provider"
 import { Wrapper } from "@/components/_common/wrapper"
 
 import { Profile } from "@/components/profile"
-import { SelectTimeframe } from "@/components/select-timeframe"
-import { TopAlbums } from "@/components/top-albums"
+import { SelectTimeframe } from "@/components/top/select-timeframe"
+import { TopAlbums } from "@/components/top/albums/top-albums"
 
 import { lastFmUserGetInfo } from "@/lib/lastfm"
 
@@ -22,7 +22,7 @@ export default async function Page({
     <Profile data={data} />
     <Wrapper className="flex-col gap-5 py-5">
       <div className="flex items-center justify-between">
-        <Header as="h1">Your <span className="text-red-400">Last.fm</span> statistics</Header>
+        <Header as="h1">Your <span className="text-red-600">Last.fm</span> statistics</Header>
         <SelectTimeframe />
       </div>
       <Divider />

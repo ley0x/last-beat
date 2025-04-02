@@ -9,7 +9,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-import { Home, Flame, ChartPie, MicVocal, Trophy } from "lucide-react"
+import { Image, AudioLines, Home, ChartPie, MicVocal, Trophy, Download } from "lucide-react"
 
 const items = [
   {
@@ -20,7 +20,7 @@ const items = [
   {
     title: "Stats",
     url: "/stats",
-    icon: Flame,
+    icon: AudioLines,
   },
   {
     title: "Charts",
@@ -36,6 +36,16 @@ const items = [
     title: "Lyrics cards",
     url: "/cards",
     icon: MicVocal,
+  },
+  {
+    title: "Cover downloads",
+    url: "/cover-downloads",
+    icon: Download,
+  },
+  {
+    title: "Image generator",
+    url: "/image-generator",
+    icon: Image,
   },
 ]
 

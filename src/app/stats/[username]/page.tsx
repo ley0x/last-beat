@@ -5,12 +5,12 @@ import { Wrapper } from "@/components/_common/wrapper"
 
 import { Profile } from "@/components/profile"
 
-import { SelectTimeframe } from "@/components/select-timeframe"
-import { TopTags } from "@/components/top-tags"
+import { SelectTimeframe } from "@/components/top/select-timeframe"
 
-import { TopAlbums } from "@/components/top-albums"
-import { TopTracks } from "@/components/top-tracks"
-import { TopArtists } from "@/components/top-artists"
+import { TopTags } from "@/components/top/tags/top-tags"
+import { TopAlbums } from "@/components/top/albums/top-albums"
+import { TopTracks } from "@/components/top/tracks/top-tracks"
+import { TopArtists } from "@/components/top/artists/top-artists"
 
 import { lastFmUserGetFriends, lastFmUserGetInfo, lastFmUserGetTopTags } from "@/lib/lastfm"
 import { ReactQueryProvider } from "@/components/_common/react-query-provider"
@@ -31,7 +31,7 @@ export default async function Page({
       <Profile data={profile} />
       <Wrapper className="flex-col gap-5 py-5">
         <div className="flex items-center justify-between">
-          <Header as="h1">Your <span className="text-red-400">Last.fm</span> statistics</Header>
+          <Header as="h1">Your <span className="text-red-600">Last.fm</span> statistics</Header>
           <SelectTimeframe />
         </div>
         <ReactQueryProvider>

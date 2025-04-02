@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react"
+import { useAtom } from "jotai/react";
 
 import {
   Select,
@@ -10,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { useAtom } from "jotai/react";
+
 import { timeframeAtom } from "@/lib/store";
 import { Timeframe } from "@/lib/types";
 
