@@ -16,14 +16,17 @@ export const Album = ({ album }: Props) => {
   const image = findLargestImage(album.image);
 
   return (
-    <div className="w-42 flex flex-col justify-start items-center h-50">
+    <div className="shrink-0 w-34 flex flex-col justify-start items-center h-50">
       <Link href={album.url ?? "#"} rel="noopener noreferrer" target="_blank">
         <Avatar>
-          <AvatarImage className="h-32 w-32 rounded-sm shadow" src={image === "#" ? "/placeholder.webp" : image} />
+          <AvatarImage className="h-34 w-34 object-cover rounded-sm shadow" src={image === "#" ? "/placeholder.webp" : image} />
           <AvatarFallback>{album.name}</AvatarFallback>
         </Avatar>
       </Link>
-      <Header className="text-center line-clamp-2" as="h4">{album['@attr'].rank}. {album.name}</Header>
+      <div className="w-full">
+        <Header className="text-xs mb-0 truncate" as="h3"><span className="text-primary/80">{album['@attr'].rank}.</span> {album.name}</Header>
+        <Header className="text-xs mt-0 mb-0 line-clamp-2 text-primary/80 font-normal" as="h4">{album.playcount} plays • {album.artist.name}</Header>
+      </div>
     </div>
   )
 }

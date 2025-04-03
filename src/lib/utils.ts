@@ -3,6 +3,18 @@ import { twMerge } from "tailwind-merge"
 import { LastFmImage } from "./zod/schemas";
 import { z } from "zod";
 
+export function beautifyNumber(number: number): string {
+  const formatter = new Intl.NumberFormat('en-US', {
+    useGrouping: true,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  });
+
+  const formattedNumber = formatter.format(number).replace(/,/g, ' ');
+
+  return formattedNumber;
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }

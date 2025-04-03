@@ -47,20 +47,20 @@ export const Artist = ({ artist, className }: Props) => {
   }
 
   if (isError) {
-    return (<ErrorStatus message={"Artist not found"} />)
+    return (<ErrorStatus className="w-34" message={"Artist not found"} />)
   }
 
   return (
-    <div className={cn("shrink-0 flex flex-col justify-between items-center", className)}>
+    <div className={cn("shrink-0 w-34 flex flex-col justify-between items-center", className)}>
       <Link href={artist.url ?? "#"} rel="noopener noreferrer" target="_blank">
         <Avatar>
-          <AvatarImage className="h-32 w-32 rounded-full shadow" src={profilePicture === "#" ? "/placeholder.webp" : profilePicture} />
+          <AvatarImage className="h-34 w-34 object-cover rounded-full shadow" src={profilePicture === "#" ? "/placeholder.webp" : profilePicture} />
           <AvatarFallback>{artist.name}</AvatarFallback>
         </Avatar>
       </Link>
       <div className="w-full">
-        <Header className="text-sm mb-0" as="h3"><span className="text-primary/80">{artist['@attr'].rank}.</span> {artist.name}</Header>
-        <Header className="text-sm mt-0 mb-0 text-primary/80" as="h4">{artist.playcount} plays</Header>
+        <Header className="text-xs mb-0 truncate" as="h3"><span className="text-primary/80">{artist['@attr'].rank}.</span> {artist.name}</Header>
+        <Header className="text-xs mt-0 mb-0 text-primary/80 font-normal" as="h4">{artist.playcount} plays</Header>
       </div>
     </div>
   )

@@ -42,6 +42,8 @@ export const AlbumsColumns: ColumnDef<AlbumsTable>[] = [
             height={50}
             alt="cover"
             className="cursor-pointer"
+            unoptimized
+            loading="lazy"
           />
         </div>
       )

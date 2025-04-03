@@ -17,13 +17,14 @@ import {
 } from '@tanstack/react-query'
 import { DataTable } from '@/components/table/data-table';
 import { ArtistsColumns } from './columns';
+import { MAX, MIN } from '@/lib/constances';
 
 type Props = {
   username: string
   viewMore?: boolean
 }
 
-const fetchUserTopArtists = async (username: string, timeframe: Timeframe, limit: number = 10, page: number = 1) => {
+const fetchUserTopArtists = async (username: string, timeframe: Timeframe, limit: number = MIN, page: number = 1) => {
   const url = new URL('/api/lastfm/top/artists', window.location.origin);
   url.searchParams.set('q', encodeURIComponent(username));
   url.searchParams.set('timeframe', encodeURIComponent(timeframe));
@@ -45,7 +46,7 @@ export const TopArtists = ({ username, viewMore }: Props) => {
 
   const [mode, setMode] = useState<"grid" | "list">("list");
   const [page, setPage] = useState(1);
-  const [limit] = useState(viewMore ? 8 : 50);
+  const [limit] = useState(viewMore ? MIN : MAX);
   const { data: artists, isPending, isError, error } = useQuery({ queryKey: ['top-artists', username, timeframe, limit, page], queryFn: () => fetchUserTopArtists(username, timeframe, limit, page) });
 
   if (isPending) {
@@ -68,7 +69,7 @@ export const TopArtists = ({ username, viewMore }: Props) => {
         <DataTable columns={ArtistsColumns} data={artists} />
       )}
       {mode === "list" && (
-        <div className="flex flex-wrap gap-x-4 gap-y-8 justify-evenly items-center">
+        <div className="flex flex-wrap gap-x-2 gap-y-4 justify-evenly items-center">
           {artists && artists.map((artist, index) => (
             <Artist artist={artist} key={index} />
           ))}

@@ -46,14 +46,17 @@ export const Track = ({ track }: Props) => {
   }
 
   return (
-    <div className="w-42 flex flex-col justify-start items-center h-50">
+    <div className="w-34 flex flex-col justify-start items-center h-50">
       <Link href={track.url ?? "#"} rel="noopener noreferrer" target="_blank">
         <Avatar>
-          <AvatarImage className="h-32 w-32 rounded-sm shadow" src={image} />
+          <AvatarImage className="h-34 w-34 rounded-sm shadow" src={image} />
           <AvatarFallback>{track.name}</AvatarFallback>
         </Avatar>
       </Link>
-      <Header className="text-center line-clamp-2" as="h4">{track['@attr'].rank}. {track.name}</Header>
+      <div className="w-full">
+        <Header className="text-xs mb-0 truncate" as="h3"><span className="text-primary/80">{track['@attr'].rank}.</span> {track.name}</Header>
+        <Header className="text-xs mt-0 mb-0 text-primary/80 font-normal" as="h4">{track.playcount} plays • {track.artist.name}</Header>
+      </div>
     </div>
   )
 }

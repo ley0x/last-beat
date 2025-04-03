@@ -7,7 +7,7 @@ import { z } from 'zod'
 import Header from './_common/header';
 import { Wrapper } from './_common/wrapper';
 import Link from 'next/link'
-import { findLargestImage } from '@/lib/utils';
+import { beautifyNumber, findLargestImage } from '@/lib/utils';
 
 type Props = {
   data: z.infer<typeof LastFmUserInfo>
@@ -17,17 +17,6 @@ export const Profile = ({ data }: Props) => {
 
   const image = findLargestImage(data.image);
 
-  function beautify(number: number): string {
-    const formatter = new Intl.NumberFormat('en-US', {
-      useGrouping: true,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    });
-
-    const formattedNumber = formatter.format(number).replace(/,/g, ' ');
-
-    return formattedNumber;
-  }
   return (
     <section className="py-5 bg-primary-foreground">
       <Wrapper className="flex-wrap gap-5 justify-center">
@@ -41,9 +30,9 @@ export const Profile = ({ data }: Props) => {
           <Header as="h1">{data.name}</Header>
           <Header as="h3">Hey there! 👋 I&apos;m using <strong className="text-red-600">LastBeat</strong> to track my Last.fm scrobbles.</Header>
           <ul className="list-disc list-inside">
-            <li>Playcount: <strong className="text-red-600">{beautify(parseInt(data.playcount ?? "0", 10))}</strong></li>
-            <li>Albums: <strong className="text-red-600">{beautify(parseInt(data.album_count ?? "0", 10))}</strong></li>
-            <li>Tracks: <strong className="text-red-600">{beautify(parseInt(data.track_count ?? "0", 10))}</strong></li>
+            <li>Playcount: <strong className="text-red-600">{beautifyNumber(parseInt(data.playcount ?? "0", 10))}</strong></li>
+            <li>Albums: <strong className="text-red-600">{beautifyNumber(parseInt(data.album_count ?? "0", 10))}</strong></li>
+            <li>Tracks: <strong className="text-red-600">{beautifyNumber(parseInt(data.track_count ?? "0", 10))}</strong></li>
           </ul>
         </div>
       </Wrapper>
