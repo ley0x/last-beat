@@ -7,40 +7,23 @@ import { AlbumSkeleton } from '@/components/music/album-skeleton';
 import { ErrorStatus } from '@/components/_common/error-status';
 import { Track } from '@/components/_common/track';
 
-import { LastFmTopTracks } from '@/lib/zod/schemas';
-import { Timeframe } from '@/lib/types';
 
 import { timeframeAtom } from '@/lib/store';
 
 import { useAtom } from 'jotai';
 import {
-  useQuery
+  useQuery,
 } from '@tanstack/react-query'
+
 import { MAX, MIN } from '@/lib/constances';
 import { DataTable } from '@/components/table/data-table';
 import { TrackColumns } from './columns';
+import { fetchUserTopTracks } from '@/lib/utils';
 
 
 type Props = {
   username: string
   viewMore?: boolean
-}
-
-const fetchUserTopTracks = async (username: string, timeframe: Timeframe, limit: number = MIN, page: number = 1) => {
-  const url = new URL('/api/lastfm/top/tracks', window.location.origin);
-  url.searchParams.set('q', encodeURIComponent(username));
-  url.searchParams.set('timeframe', encodeURIComponent(timeframe));
-  url.searchParams.set('limit', encodeURIComponent(limit.toString()));
-  url.searchParams.set('page', encodeURIComponent(page.toString()));
-  const res = await fetch(url.toString());
-
-  if (!res.ok) {
-    throw new Error(res.statusText);
-  }
-
-  const json = await res.json()
-  const data = LastFmTopTracks.array().parse(json.data);
-  return data;
 }
 
 export const TopTracks = ({ username, viewMore }: Props) => {
@@ -50,6 +33,7 @@ export const TopTracks = ({ username, viewMore }: Props) => {
 
   const [limit] = useState(viewMore ? MIN : MAX);
   const { data: tracks, isPending, isError, error } = useQuery({ queryKey: ['top-tracks', username, timeframe, limit, page], queryFn: () => fetchUserTopTracks(username, timeframe, limit, page) });
+
 
   if (isPending) {
     return (
@@ -68,11 +52,11 @@ export const TopTracks = ({ username, viewMore }: Props) => {
   return (
     <StatsContainer page={page} setPage={setPage} type="tracks" viewMore={!!viewMore} setMode={setMode} mode={mode}>
       {mode === "grid" && (
-        <DataTable columns={TrackColumns} data={tracks} />
+        <DataTable columns={TrackColumns} data={tracks.data} />
       )}
       {mode === "list" && (
         <div className="flex flex-wrap gap-x-2 gap-y-4 justify-evenly items-center">
-          {tracks && tracks.map((track, index) => (
+          {tracks && tracks.data.map((track, index) => (
             <Track track={track} key={index} />
           ))}
         </div>

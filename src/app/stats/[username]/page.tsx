@@ -1,4 +1,3 @@
-import Divider from "@/components/_common/divider"
 import Header from "@/components/_common/header"
 import { Main } from "@/components/_common/main"
 import { Wrapper } from "@/components/_common/wrapper"
@@ -7,15 +6,10 @@ import { Profile } from "@/components/profile"
 
 import { SelectTimeframe } from "@/components/top/select-timeframe"
 
-import { TopTags } from "@/components/top/tags/top-tags"
-import { TopAlbums } from "@/components/top/albums/top-albums"
-import { TopTracks } from "@/components/top/tracks/top-tracks"
-import { TopArtists } from "@/components/top/artists/top-artists"
-
 import { lastFmUserGetFriends, lastFmUserGetInfo, lastFmUserGetTopTags } from "@/lib/lastfm"
-import { ReactQueryProvider } from "@/components/_common/react-query-provider"
-import { Friends } from "@/components/music/friends"
+import { TopContainer } from "@/components/top/top-container"
 
+import { ReactQueryProvider } from "@/components/_common/react-query-provider"
 
 export default async function Page({
   params,
@@ -26,6 +20,8 @@ export default async function Page({
   const profile = await lastFmUserGetInfo(username);
   const friends = await lastFmUserGetFriends(username, 20);
   const tags = await lastFmUserGetTopTags(username, "1month");
+
+
   return (
     <Main className="flex-col">
       <Profile data={profile} />
@@ -35,16 +31,7 @@ export default async function Page({
           <SelectTimeframe />
         </div>
         <ReactQueryProvider>
-          <TopAlbums username={username} viewMore />
-          <Divider />
-          <TopArtists username={username} viewMore />
-          <Divider />
-          <TopTracks username={username} viewMore />
-          <TopTags tags={tags} />
-          <Divider />
-          {friends.length > 0 && (
-            <Friends username={username} friends={friends} />
-          )}
+          <TopContainer username={username} tags={tags} friends={friends} />
         </ReactQueryProvider>
       </Wrapper>
     </Main>

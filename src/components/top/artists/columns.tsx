@@ -158,4 +158,35 @@ export const ArtistsColumns: ColumnDef<AlbumsTable>[] = [
     enableSorting: true,
     enableHiding: true,
   },
+  // {
+  //   accessorKey: "playtime",
+  //   sortingFn: (a, b) => Number(a.original.playcount) - Number(b.original.playcount),
+  //   header: ({ column }) => {
+  //     const sorted = column.getIsSorted();
+  //     return (
+  //       <Button variant="ghost" className="flex justify-around w-full rounded-none cursor-pointer" onClick={() => column.toggleSorting()}>
+  //         <span>Playcount</span>
+  //         {sorted === false ? (
+  //           <ArrowDownUp />
+  //         ) : (sorted === "asc" ? <ArrowDown /> : <ArrowUp />)}
+  //       </Button>
+  //     )
+  //   },
+  //   cell: ({ row }) => {
+
+  //     const [tracks] = useAtom(allTracksAtom);
+
+  //     const artist = row.original.name;
+  //     const filteredTracks = tracks?.filter((track) => track.artist.name === artist) ?? [];
+  //     const { minutes } = useFetchTracksPlaytime({tracks: filteredTracks});
+
+  //     if (!tracks) return (<p className="text-center text-lg">-</p>);
+  //     return (
+  //       <p className="text-center text-lg">{beautifyNumber(minutes)} minutes</p>
+  //     )
+  //   }
+  //   ,
+  //   enableSorting: true,
+  //   enableHiding: true,
+  // },
 ]

@@ -14,6 +14,7 @@ import { beautifyNumber, cn, findLargestImage } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { CoverCard } from "@/components/top/cover-card"
 import { useQuery } from "@tanstack/react-query"
+import { useFetchTracksPlaytime } from "@/hooks/use-track-playtime"
 
 export type TracksTable = z.infer<typeof LastFmTopTracks>
 
@@ -190,14 +191,38 @@ export const TrackColumns: ColumnDef<TracksTable>[] = [
       )
     },
     cell: ({ row }) => {
-      const minutes = Math.floor(Number(row.original.playcount) * Number(row.original.duration) / 60);
+
+      const track = row.original;
+      const { data } = useQuery({ queryKey: ['search-track', track.name, track.artist], queryFn: () => search(track.name, track.artist.name) });
+
+      const duration = data?.duration_ms;
+      const minutes = duration ? (Number(row.original.playcount) * (duration / 60000)) : Math.floor(Number(row.original.playcount) * Number(row.original.duration) / 60);
       if (minutes < 1) return (<p className="text-center text-lg">-</p>);
       return (
-        <p className="text-center text-lg">{beautifyNumber(minutes)} minutes</p>
+        <p className="text-center">{beautifyNumber(minutes)} minutes</p>
       )
     }
     ,
     enableSorting: true,
+    enableHiding: true,
+  },
+  {
+    accessorKey: "duration",
+    header: () => {
+      return (
+        <span>Duration</span>
+      )
+    },
+    cell: ({ row }) => {
+      const track = row.original;
+      const { minutes } = useFetchTracksPlaytime({ tracks: [track] });
+      if (minutes < 1) return (<p className="text-center text-lg">-</p>);
+      return (
+        <p className="text-center">{beautifyNumber(minutes)} minutes</p>
+      )
+    }
+    ,
+    enableSorting: false,
     enableHiding: true,
   },
 ]

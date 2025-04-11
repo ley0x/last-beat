@@ -14,7 +14,7 @@ export async function GET(request: NextRequest): Promise<void | Response> {
     const page = z.number().parse(Number(searchParams.get('page') ?? "1"));
     const topTracks = await lastFmUserGetTopTracks(q, timeframe, limit, page);
 
-    return Response.json({ success: true, data: topTracks });
+    return Response.json({ success: true, data: topTracks, page, limit });
   } catch (e: Error | unknown) {
     if (e instanceof Error) return Response.json({ success: false, error: e.message });
     return Response.json({ success: false, error: e });
