@@ -79,7 +79,7 @@ export const Navbar = () => {
   const subpage = parsedPathname[2] || null;
 
   return (
-    <nav className="sticky top-0 flex gap-5 items-center z-30 bg-primary-foreground px-5 py-2 w-full border-b border-sidebar-border">
+    <nav className="sticky top-0 flex gap-5 items-center z-30 bg-base px-5 py-2 w-full border-b border-sidebar-border">
       <SidebarTrigger />
       <Breadcrumb>
         <BreadcrumbList>

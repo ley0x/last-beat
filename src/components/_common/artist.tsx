@@ -59,8 +59,8 @@ export const Artist = ({ artist, className }: Props) => {
         </Avatar>
       </Link>
       <div className="w-full">
-        <Header className="text-xs mb-0 truncate" as="h3"><span className="text-primary/80">{artist['@attr'].rank}.</span> {artist.name}</Header>
-        <Header className="text-xs mt-0 mb-0 text-primary/80 font-normal" as="h4">{artist.playcount} plays</Header>
+        <Header className="text-xs mb-0 truncate" as="h3"><span className="text-muted-foreground">{artist['@attr'].rank}.</span> {artist.name}</Header>
+        <Header className="text-xs mt-0 mb-0 text-muted-foreground font-normal" as="h4">{artist.playcount} plays</Header>
       </div>
     </div>
   )

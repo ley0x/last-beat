@@ -54,8 +54,8 @@ export const Track = ({ track }: Props) => {
         </Avatar>
       </Link>
       <div className="w-full">
-        <Header className="text-xs mb-0 truncate" as="h3"><span className="text-primary/80">{track['@attr'].rank}.</span> {track.name}</Header>
-        <Header className="text-xs mt-0 mb-0 text-primary/80 font-normal" as="h4">{track.playcount} plays • {track.artist.name}</Header>
+        <Header className="text-xs mb-0 truncate" as="h3"><span className="text-muted-foreground">{track['@attr'].rank}.</span> {track.name}</Header>
+        <Header className="text-xs mt-0 mb-0 text-muted-foreground font-normal" as="h4">{track.playcount} plays • {track.artist.name}</Header>
       </div>
     </div>
   )

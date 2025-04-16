@@ -18,7 +18,7 @@ export const Profile = ({ data }: Props) => {
   const image = findLargestImage(data.image);
 
   return (
-    <section className="py-5 bg-primary-foreground">
+    <section className="py-5 bg-secondary/20">
       <Wrapper className="flex-wrap gap-5 justify-center">
         <Link href={data.url ?? "#"} rel="noopener noreferrer" target="_blank">
           <Avatar>
@@ -28,11 +28,11 @@ export const Profile = ({ data }: Props) => {
         </Link>
         <div className="flex flex-col grow">
           <Header as="h1">{data.name}</Header>
-          <Header as="h3">Hey there! 👋 I&apos;m using <strong className="text-red-600">LastBeat</strong> to track my Last.fm scrobbles.</Header>
+          <Header as="h3">Hey there! 👋 I&apos;m using <strong className="text-primary">LastBeat</strong> to track my Last.fm scrobbles.</Header>
           <ul className="list-disc list-inside">
-            <li>Playcount: <strong className="text-red-600">{beautifyNumber(parseInt(data.playcount ?? "0", 10))}</strong></li>
-            <li>Albums: <strong className="text-red-600">{beautifyNumber(parseInt(data.album_count ?? "0", 10))}</strong></li>
-            <li>Tracks: <strong className="text-red-600">{beautifyNumber(parseInt(data.track_count ?? "0", 10))}</strong></li>
+            <li>Playcount: <strong className="text-primary">{beautifyNumber(parseInt(data.playcount ?? "0", 10))}</strong></li>
+            <li>Albums: <strong className="text-primary">{beautifyNumber(parseInt(data.album_count ?? "0", 10))}</strong></li>
+            <li>Tracks: <strong className="text-primary">{beautifyNumber(parseInt(data.track_count ?? "0", 10))}</strong></li>
           </ul>
         </div>
       </Wrapper>
