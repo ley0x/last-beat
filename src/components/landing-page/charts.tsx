@@ -16,13 +16,13 @@ export const Charts = () => {
           <h2 className="text-2xl font-bold md:text-3xl">
             Explore interactive charts to see your music taste evolution
           </h2>
-          <p className="hidden text-primary/60 md:mt-4 md:block">
+          <p className="hidden text-muted-foreground md:mt-4 md:block">
             We retrieve all your Last.fm scrobbles and generates charts for you. Explore your music taste through years and genres.
           </p>
           <div className="mt-4 md:mt-8">
             <Link
               href="#"
-              className="inline-block rounded-sm bg-red-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus:ring-3 focus:outline-hidden ring-red-400"
+              className="inline-block rounded-sm bg-primary px-12 py-3 text-sm font-medium text-white transition hover:bg-red-500 focus:ring-3 focus:outline-hidden ring-red-400"
             >
               Explore charts
             </Link>

@@ -52,7 +52,7 @@ const items = [
 export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
-      <SidebarContent>
+      <SidebarContent className="bg-background">
         <SidebarGroup>
           <SidebarGroupLabel>Last Beat</SidebarGroupLabel>
           <SidebarGroupContent>

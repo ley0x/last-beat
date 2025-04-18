@@ -18,7 +18,7 @@ export const Profile = ({ data }: Props) => {
   const image = findLargestImage(data.image);
 
   return (
-    <section className="py-5 bg-secondary/20">
+    <section className="py-5 bg-card-foreground/5">
       <Wrapper className="flex-wrap gap-5 justify-center">
         <Link href={data.url ?? "#"} rel="noopener noreferrer" target="_blank">
           <Avatar>

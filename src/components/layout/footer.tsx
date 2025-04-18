@@ -1,28 +1,20 @@
 import { Logo } from "@/components/_common/logo";
-import { ToggleTheme } from "../_common/toggle-theme";
+import { Wrapper } from "../_common/wrapper";
 
 export const Footer = () => {
 
-  const getYear = () => {
-    return new Date().getFullYear()
-  }
-
   return (
-    <footer className="border-t border-primary-foreground/10 mt-5">
-      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <div className="flex justify-center sm:justify-start">
+    <footer className="bg-sidebar border border-t mt-5 py-5">
+      <Wrapper className="flex-col">
+        <div className="flex w-full justify-between">
+          <div className="flex">
             <Logo withText className="ml-2 font-bold" />
           </div>
-          <div className="flex gap-2 flex-wrap items-center">
-            <p className="mt-4 text-center text-sm text-base-foreground lg:mt-0 lg:text-right">
-              Copyright &copy; {getYear()} ley0x. All rights reserved.
-            </p>
-            <ToggleTheme />
-          </div>
+          <p className="text-center text-sm text-base-foreground">
+            Made with ❤️ by ley0x.
+          </p>
         </div>
-      </div>
+      </Wrapper>
     </footer>
-
-  )
-}
+  );
+};

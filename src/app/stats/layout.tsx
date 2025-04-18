@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { SidebarProvider } from "@/components/ui/sidebar"
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { CustomBackground } from "@/components/layout/custom-background";
 
 export const metadata: Metadata = {
   title: "LastBeat - User Stats",
@@ -15,18 +14,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (<>
-
-     <SidebarProvider>
-       <AppSidebar /> 
-       <div className="h-screen overflow-y-scroll relative w-full flex flex-col">
-    <Navbar />
-    {children}
-    <Footer />
-         <CustomBackground>
-           {children}
-         </CustomBackground>
-    </div>
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <div className="min-h-screen relative w-full h-full flex flex-col">
+        <Navbar />
+        {children}
+        <Footer />
+      </div>
     </SidebarProvider>
-  </>);
+  );
 }

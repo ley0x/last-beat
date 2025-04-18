@@ -1,5 +1,6 @@
 import { Music2 } from 'lucide-react'
 import React from 'react'
+import Link from "next/link"
 
 type Props = {
   withText?: boolean;
@@ -7,8 +8,8 @@ type Props = {
 }
 export const Logo = ({ className, withText }: Props) => {
   return (
-    <>
-      <Music2 className="text-red-600 text-8xl" />{withText && <span className={className}>Last Beat</span>}
-    </>
+    <Link href="/" className="flex">
+      <Music2 className="text-primary text-8xl" />{withText && <span className={className}>Last Beat</span>}
+    </Link>
   )
 }
