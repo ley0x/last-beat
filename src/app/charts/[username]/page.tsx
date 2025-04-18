@@ -4,10 +4,10 @@ import { Wrapper } from "@/components/_common/wrapper"
 
 import { Profile } from "@/components/profile"
 
-import { SelectTimeframe } from "@/components/select-timeframe"
 import { lastFmUserGetInfo } from "@/lib/lastfm"
 import { ReactQueryProvider } from "@/components/_common/react-query-provider"
 import { CommingSoon } from "@/components/_common/comming-soon"
+import { SelectTimeframe } from "@/components/top/select-timeframe"
 
 
 export default async function Page({
