@@ -1,15 +1,21 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
 import { Button } from '../ui/button';
 
 const BackToTop = () => {
 
-  const element = document && document.getElementById("main-layout");
+  const [elt, setElt] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    const element = document && document.getElementById("main-layout");
+    if (element) {
+      setElt(element);
+    }
+  })
   const scrollToTop = () => {
-    if (!element) return;
-    element.scrollTo({
+    if (!elt) return;
+    elt.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
