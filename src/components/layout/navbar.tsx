@@ -12,6 +12,7 @@ import {
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 import { ToggleTheme } from "../_common/toggle-theme";
+import { ToggleBg } from "./toggle-background";
 
 type BreadcrumbProps = {
   page: string;
@@ -105,7 +106,10 @@ export const Navbar = () => {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <ToggleTheme />
+      <div className="flex items-center gap-x-2">
+        <ToggleBg />
+        <ToggleTheme />
+      </div>
     </nav>
   );
 };

@@ -27,8 +27,8 @@ export const Profile = ({ data }: Props) => {
           </Avatar>
         </Link>
         <div className="flex flex-col grow">
-          <Header as="h1">{data.name}</Header>
-          <Header as="h3">Hey there! 👋 I&apos;m using <strong className="text-primary">LastBeat</strong> to track my Last.fm scrobbles.</Header>
+          <Header as="h1">👋 {data.name}</Header>
+          <Header as="h3" className="text-md">Check out your recently <span className="underline decoration-primary underline-2 underline-offset-2">top-played</span> albums, tracks, and artists!</Header>
           <ul className="list-disc list-inside">
             <li>Playcount: <strong className="text-primary">{beautifyNumber(parseInt(data.playcount ?? "0", 10))}</strong></li>
             <li>Albums: <strong className="text-primary">{beautifyNumber(parseInt(data.album_count ?? "0", 10))}</strong></li>
