@@ -24,8 +24,8 @@ export const Album = ({ album }: Props) => {
         </Avatar>
       </Link>
       <div className="w-full">
-        <Header className="text-xs mb-0 truncate" as="h3"><span className="text-primary/80">{album['@attr'].rank}.</span> {album.name}</Header>
-        <Header className="text-xs mt-0 mb-0 line-clamp-2 text-primary/80 font-normal" as="h4">{album.playcount} plays • {album.artist.name}</Header>
+        <Header className="text-xs mb-0 truncate" as="h3"><span className="text-muted-foreground">{album['@attr'].rank}.</span> {album.name}</Header>
+        <Header className="text-xs mt-0 mb-0 line-clamp-2 text-muted-foreground font-normal" as="h4">{album.playcount} plays • {album.artist.name}</Header>
       </div>
     </div>
   )

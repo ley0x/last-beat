@@ -27,7 +27,7 @@ export default async function Page({
       <Profile data={profile} />
       <Wrapper className="flex-col gap-5 py-5">
         <div className="flex items-center justify-between">
-          <Header as="h1">Your <span className="text-red-600">Last.fm</span> statistics</Header>
+          <Header as="h1">Your <span className="text-primary">Last.fm</span> statistics</Header>
           <SelectTimeframe />
         </div>
         <ReactQueryProvider>

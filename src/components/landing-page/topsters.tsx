@@ -10,14 +10,14 @@ export const Topsters = () => {
           <h2 className="text-2xl font-bold md:text-3xl">
             Make posters of your top albums or artists
           </h2>
-          <p className="hidden text-primary/60 md:mt-4 md:block">
+          <p className="hidden text-muted-foreground md:mt-4 md:block">
             Create stunning posters featuring your top albums and artists.
             Whether it&apos;s a collage of album covers or a tribute to your favorite musicians, Topsters helps you celebrate your music journey in style.
           </p>
           <div className="mt-4 md:mt-8">
             <Link
               href="/topsters"
-              className="inline-block rounded-sm bg-red-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus:ring-3 focus:outline-hidden ring-red-400"
+              className="inline-block rounded-sm bg-primary px-12 py-3 text-sm font-medium text-white transition hover:bg-red-500 focus:ring-3 focus:outline-hidden ring-red-400"
             >
               Generate topsters
             </Link>

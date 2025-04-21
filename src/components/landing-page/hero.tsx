@@ -26,7 +26,7 @@ export const Hero = () => {
       >
         <div className="max-w-4xl text-center ltr:sm:text-left rtl:sm:text-right">
           <h1 className="text-3xl font-extrabold text-white sm:text-5xl">
-            <strong className="text-6xl block font-extrabold text-red-600">
+            <strong className="text-6xl block font-extrabold text-primary">
               Last Beat
             </strong>
             The Rhythm of Your Life, Quantified
@@ -41,14 +41,14 @@ export const Hero = () => {
           <div className="mt-8 flex flex-wrap gap-4 text-center">
             <Link
               href="/stats"
-              className="block w-full rounded-sm bg-red-600 px-12 py-3 text-sm font-medium text-white shadow-sm hover:bg-red-700 sm:w-auto focus:ring-3 focus:outline-hidden ring-red-400"
+              className="inline-block rounded-sm bg-primary px-12 py-3 text-sm font-medium text-white transition hover:bg-red-500 focus:ring-3 focus:outline-hidden ring-red-400"
             >
               See your stats
             </Link>
 
             <Link
               href="/charts"
-              className="block w-full rounded-sm bg-white px-12 py-3 text-sm font-medium text-red-600 shadow-sm hover:text-red-700 focus:ring-3 focus:outline-hidden sm:w-auto"
+              className="block w-full rounded-sm bg-white px-12 py-3 text-sm font-medium text-muted shadow-sm focus:ring-3 focus:ring-muted-foreground focus:outline-hidden sm:w-auto"
             >
               Explore charts
             </Link>

@@ -1,6 +1,6 @@
 import Header from '@/components/_common/header';
 import { Button } from '@/components/ui/button';
-import { Ellipsis } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useTimeframe } from '@/hooks/useTimeframe';
 
 import { useRouter } from 'next/navigation'
@@ -59,7 +59,7 @@ export const StatsContainer = ({ children, page, setPage, type, viewMore, setMod
       </div>
       {!!viewMore && (
         <div className="flex justify-end">
-          <Button onClick={() => router.push(data[type].href)} variant="outline" className="hover:cursor-pointer"><span>View more</span><Ellipsis /> </Button>
+          <Button onClick={() => router.push(data[type].href)} variant="outline" className="hover:cursor-pointer"><span>View more</span><Plus /> </Button>
         </div>
       )}
     </div>

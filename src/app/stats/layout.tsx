@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SidebarProvider } from "@/components/ui/sidebar"
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -14,14 +14,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (<>
+  return (
     <SidebarProvider>
       <AppSidebar />
-      <div className="h-screen overflow-y-scroll relative w-full flex flex-col">
+      <div className="min-h-screen relative w-full h-full flex flex-col">
         <Navbar />
         {children}
         <Footer />
       </div>
     </SidebarProvider>
-  </>);
+  );
 }

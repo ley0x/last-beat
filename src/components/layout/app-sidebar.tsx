@@ -8,15 +8,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import Divider from "@/components/_common/divider"
 
-import { Image, AudioLines, Home, ChartPie, MicVocal, Trophy, Download } from "lucide-react"
+import { Image, AudioLines, ChartPie, MicVocal, Trophy, Download } from "lucide-react"
 
 const items = [
-  {
-    title: "Home",
-    url: "/",
-    icon: Home,
-  },
   {
     title: "Stats",
     url: "/stats",
@@ -33,14 +29,14 @@ const items = [
     icon: Trophy,
   },
   {
-    title: "Lyrics cards",
-    url: "/cards",
-    icon: MicVocal,
-  },
-  {
     title: "Cover downloads",
     url: "/cover-downloads",
     icon: Download,
+  },
+  {
+    title: "Lyrics cards",
+    url: "/cards",
+    icon: MicVocal,
   },
   {
     title: "Image generator",
@@ -52,9 +48,10 @@ const items = [
 export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
-      <SidebarContent>
+      <SidebarContent className="bg-background">
         <SidebarGroup>
           <SidebarGroupLabel>Last Beat</SidebarGroupLabel>
+          <Divider className="my-1" />
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
