@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/sidebar"
 import Divider from "@/components/_common/divider"
 
-import { Image, AudioLines, ChartPie, MicVocal, Trophy, Download } from "lucide-react"
+import { Image, AudioLines, ChartPie, MicVocal, Trophy, Download, Calendar } from "lucide-react"
 
 const items = [
   {
@@ -24,6 +24,11 @@ const items = [
     icon: ChartPie,
   },
   {
+    title: "AOTY",
+    url: "/aoty",
+    icon: Calendar,
+  },
+  {
     title: "Topsters",
     url: "/topsters",
     icon: Trophy,
@@ -35,7 +40,7 @@ const items = [
   },
   {
     title: "Lyrics cards",
-    url: "/cards",
+    url: "/lyrics-cards",
     icon: MicVocal,
   },
   {
