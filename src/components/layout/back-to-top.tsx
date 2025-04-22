@@ -12,7 +12,8 @@ const BackToTop = () => {
     if (element) {
       setElt(element);
     }
-  })
+  }, [setElt])
+
   const scrollToTop = () => {
     if (!elt) return;
     elt.scrollTo({
