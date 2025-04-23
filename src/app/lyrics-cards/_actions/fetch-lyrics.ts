@@ -41,7 +41,7 @@ const getLyrics = async (url: string) => {
     lyrics = '';
     $('div[class^="Lyrics__Container"]').each((_, elem) => {
       if ($(elem).text().length !== 0) {
-        let snippet = $(elem).html()
+        const snippet = $(elem).html()
           ?.replace(/<br>/g, '\n')
           ?.replace(/<(?!\s*br\s*\/?)[^>]+>/gi, '');
         if (snippet) {
@@ -75,7 +75,7 @@ export async function getLyricsAction(query: string): Promise<LyricsResponse> {
         lyrics,
       }
     });
-  } catch (e: any) {
+  } catch (e) {
     console.error('Error in getLyricsAction:', e);
     return {
       success: false,

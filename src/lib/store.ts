@@ -13,7 +13,7 @@ export const lyricsBackground = atom<string | null>(null);
 
 // lc for lyrics cards
 export const lcLyricsBackground = atom<string | null>(null);
-export const lcSelectedLyrics = atom<string>("À ceux qui prônent la dureté pénale, c'est tout ce que je souhaite :\n Qu'il se retrouvent devant le tribunal, qu'enfin ils regrettent");
+export const lcSelectedLyrics = atom<string>("");
 export const lcTrackLyrics = atom<string>("");
 export const lcTrackName = atom<string>("");
 export const lcTrackArtist = atom<string>("");

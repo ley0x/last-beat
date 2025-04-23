@@ -9,7 +9,7 @@ import { SearchBar } from './searchbar';
 import { lcSelectedLyrics, lcTrackLyrics } from '@/lib/store';
 
 export const TrackLyrics = () => {
-  const [_, setSelectedText] = useAtom(lcSelectedLyrics);
+  const [, setSelectedText] = useAtom(lcSelectedLyrics);
   const [lyrics] = useAtom(lcTrackLyrics);
 
   const handleSelection = () => {

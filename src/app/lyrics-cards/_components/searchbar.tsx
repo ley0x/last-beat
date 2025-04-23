@@ -9,7 +9,6 @@ import { Search } from 'lucide-react';
 import { z } from 'zod';
 import { useAtom } from 'jotai';
 
-import { GetLyricsApi } from '@/lib/zod/schemas';
 import { lcTrackArtist, lcTrackLyrics, lcTrackName, lcTrackUrl } from '@/lib/store';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -24,10 +23,10 @@ const schema = z.object({
 });
 
 export const SearchBar = () => {
-  const [_, setLyrics] = useAtom(lcTrackLyrics);
-  const [__, setArtist] = useAtom(lcTrackArtist);
-  const [___, setTrack] = useAtom(lcTrackName);
-  const [____, setTrackUrl] = useAtom(lcTrackUrl);
+  const [, setLyrics] = useAtom(lcTrackLyrics);
+  const [, setArtist] = useAtom(lcTrackArtist);
+  const [, setTrack] = useAtom(lcTrackName);
+  const [, setTrackUrl] = useAtom(lcTrackUrl);
 
   const {
     register,
@@ -36,6 +35,7 @@ export const SearchBar = () => {
   } = useForm<Inputs>({
     resolver: zodResolver(schema),
   });
+
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -70,6 +70,9 @@ export const SearchBar = () => {
         />
         <Button variant="secondary" size="icon" type="submit" className="cursor-pointer"><Search /></Button>
       </div>
+      {errors && (
+        <p className="text-sm text-destructive">{errors.search?.message}</p>
+      )}
     </form>
   );
 };

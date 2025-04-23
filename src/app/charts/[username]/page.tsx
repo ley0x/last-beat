@@ -6,7 +6,7 @@ import { Profile } from "@/components/profile"
 
 import { lastFmUserGetInfo } from "@/lib/lastfm"
 import { ReactQueryProvider } from "@/components/_common/react-query-provider"
-import { CommingSoon } from "@/components/_common/comming-soon"
+import { ComingSoon } from "@/components/_common/comming-soon"
 import { SelectTimeframe } from "@/components/top/select-timeframe"
 
 
@@ -26,7 +26,7 @@ export default async function Page({
           <SelectTimeframe />
         </div>
         <ReactQueryProvider>
-          <CommingSoon />
+          <ComingSoon />
         </ReactQueryProvider>
       </Wrapper>
     </Main>
