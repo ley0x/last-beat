@@ -62,7 +62,7 @@ export const SearchBar = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex w-full max-w-sm items-center gap-2">
+      <div className="flex w-full items-center gap-2">
         <Input
           type="text"
           placeholder="Search for a song"

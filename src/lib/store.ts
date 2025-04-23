@@ -1,5 +1,7 @@
 import { atom } from 'jotai';
-import { Alltracks, Timeframe } from './types';
+import { atomWithStorage } from 'jotai/utils'
+
+import { Alltracks, AvailableColors, AvailableShapes, AvailableTxtSizes, Timeframe } from './types';
 
 
 export const timeframeAtom = atom<Timeframe>("1month");
@@ -13,8 +15,12 @@ export const lyricsBackground = atom<string | null>(null);
 
 // lc for lyrics cards
 export const lcLyricsBackground = atom<string | null>(null);
-export const lcSelectedLyrics = atom<string>("");
 export const lcTrackLyrics = atom<string>("");
 export const lcTrackName = atom<string>("");
 export const lcTrackArtist = atom<string>("");
 export const lcTrackUrl = atom<string>("");
+export const lcSelectedLyrics = atomWithStorage<string>("lc-selected-lyrics", "");
+export const lcBgColor = atomWithStorage<AvailableColors>("lc-bg-color", "red");
+export const lcTxtColor = atomWithStorage<AvailableColors>("lc-txt-color", "red");
+export const lcTxtSize = atomWithStorage<AvailableTxtSizes>("lc-txt-size", "md");
+export const lcShape = atomWithStorage<AvailableShapes>("lc-shape", "horizontal");

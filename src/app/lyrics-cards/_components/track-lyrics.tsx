@@ -22,14 +22,14 @@ export const TrackLyrics = () => {
   };
 
   return (
-    <section className="overflow-x-auto">
+    <section className="flex flex-col h-full">
       <SearchBar />
-      <div className="prose max-w-none">
-        <pre>
-          <div onMouseUp={handleSelection}>
+      <div className="max-h-full overflow-y-scroll max-w-full prose">
+        <div onMouseUp={handleSelection}>
+          <pre className="font-sans w-96 max-w-fit">
             <ReactMarkdown>{lyrics}</ReactMarkdown>
-          </div>
-        </pre>
+          </pre>
+        </div>
       </div>
     </section>
   );
