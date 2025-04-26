@@ -1,21 +1,22 @@
 'use client';
 
 import React, { useRef, useState, ChangeEventHandler } from 'react';
-import { arrayBufferToString } from '@/lib/utils';
-import { useAtom } from 'jotai';
-import { z } from 'zod';
-import { lcLyricsBackground } from '@/lib/store';
-
 import { File } from 'lucide-react';
+
+import Header from "@/components/_common/header"
+
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import Header from "@/components/_common/header"
 
 const MAX_SIZE = 50 * 1024 * 1024; // 50 MB
 
-export const ImageUploader = () => {
+
+type Props = {
+  handleLoad: ((this: FileReader, ev: ProgressEvent<FileReader>) => any);
+}
+
+export const ImageUploader = ({ handleLoad }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [, setSelectedImage] = useAtom(lcLyricsBackground);
   const [invalid, setInvalid] = useState(false);
   const [error, setError] = useState('');
 
@@ -36,24 +37,16 @@ export const ImageUploader = () => {
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (!reader.result) {
-        setInvalid(true);
-        setError("Can't read image.");
-        return;
-      }
-      const result = z.string().safeParse(reader.result);
+    try {
+      const reader = new FileReader();
+      reader.onload = handleLoad;
       setFileName(file.name);
-      if (result.success) {
-        setSelectedImage(result.data);
-      } else {
-        const arrayBuffer = reader.result as ArrayBuffer;
-        const string = arrayBufferToString(arrayBuffer);
-        setSelectedImage(string);
-      }
-    };
-    reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
+    } catch (e) {
+      setInvalid(true);
+      setError("Can't read image.");
+      return;
+    }
   };
 
 

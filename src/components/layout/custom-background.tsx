@@ -22,7 +22,7 @@ export const CustomBackground = ({ children }: Readonly<{ children: React.ReactN
         </div>
       )}
       {/* Content */}
-      <div id="main-layout" className="relative z-20 h-screen overflow-y-scroll w-full flex flex-col">
+      <div id="main-layout" className="relative z-20 overflow-y-scroll w-full flex flex-col">
         {children}
       </div>
     </div>

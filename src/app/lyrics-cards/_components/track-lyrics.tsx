@@ -4,8 +4,6 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useAtom } from 'jotai';
 
-import { SearchBar } from './searchbar';
-
 import { lcSelectedLyrics, lcTrackLyrics } from '@/lib/store';
 
 export const TrackLyrics = () => {
@@ -22,15 +20,18 @@ export const TrackLyrics = () => {
   };
 
   return (
-    <section className="flex flex-col h-full">
-      <SearchBar />
-      <div className="max-h-full overflow-y-scroll max-w-full prose">
-        <div onMouseUp={handleSelection}>
-          <pre className="font-sans w-96 max-w-fit">
-            <ReactMarkdown>{lyrics}</ReactMarkdown>
-          </pre>
+    <section className="flex flex-col">
+      {lyrics ? (
+        <div className="max-w-full prose">
+          <div onMouseUp={handleSelection}>
+            <pre className="font-sans max-w-full">
+              <ReactMarkdown>{lyrics}</ReactMarkdown>
+            </pre>
+          </div>
         </div>
-      </div>
+      ) : (
+        <p className="text-card-foreground/80 text-center mt-5">No lyrics found.</p>
+      )}
     </section>
   );
 };

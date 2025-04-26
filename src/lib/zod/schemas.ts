@@ -79,6 +79,14 @@ export const LastFmSearchAlbumSchema = z.object({
   image: z.array(LastFmImage),
 })
 
+export const LastFmSearchTrackSchema = z.object({
+  name: z.string(),
+  artist: z.string(),
+  url: z.string().url(),
+  image: z.array(LastFmImage),
+  listeners: z.string().nullish(),
+})
+
 export const LastFmUserInfo = z.object({
   name: z.string(),
   age: z.string(),

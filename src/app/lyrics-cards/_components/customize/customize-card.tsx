@@ -1,21 +1,19 @@
 'use client';
 
-import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { ImageUploader } from "./image-uploader"
 import { ToggleBgColor } from "./toggle-bg-color";
 import { ToggleShape } from "./toggle-shape"
 import { ToggleTxtColor } from "./toggle-txt-color";
 import { ToggleTxtSize } from "./toggle-txt-size";
+import { UploadBgImage } from "./upload-bg-image";
 
 export const CustomizeCard = () => {
-
   return (
-    <ScrollArea className="flex flex-col h-full overflow-y-auto">
+    <div>
       <ToggleShape />
       <ToggleTxtSize />
-      <ImageUploader />
+      <UploadBgImage />
       <ToggleBgColor />
       <ToggleTxtColor />
-    </ ScrollArea>
+    </ div>
   )
 }

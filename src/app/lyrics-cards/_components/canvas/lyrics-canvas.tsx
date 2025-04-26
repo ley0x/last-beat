@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
-import { lcSelectedLyrics, lcTrackArtist, lcTrackName, lcTxtColor, lcTxtSize } from '@/lib/store';
+import { lcSelectedLyrics, lcSelectedTrack, lcTxtColor, lcTxtSize } from '@/lib/store';
 import { Quote } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AvailableColors } from '@/lib/types';
+import { LyricsCanvasAuthor } from './lyrics-canvas-author';
 
 type Props = {
   size: 'sm' | 'md' | 'lg';
@@ -58,13 +59,11 @@ const bgColorMap: Record<AvailableColors, string> = {
   black: "bg-neutral-950",
 }
 
-export const Lyrics = () => {
+export const LyricsCanvas = () => {
   const [size] = useAtom(lcTxtSize);
 
   const [txtColor] = useAtom(lcTxtColor);
   const [lyrics] = useAtom(lcSelectedLyrics);
-  const [artist] = useAtom(lcTrackArtist);
-  const [track] = useAtom(lcTrackName);
 
   return (
     <div className="flex flex-col absolute bottom-2 left-0 pr-6 pl-6 z-50 gap-2">
@@ -82,11 +81,7 @@ export const Lyrics = () => {
           <Quote className={cn("-scale-100", quoteMap[size], txtColorMap[txtColor])} />
         </span>
       </div>
-      <p
-        className={cn('font-semibold leading-tight px-2 truncate', sizeMap[size], txtColorMap[txtColor])}
-      >
-        {artist || 'Artist'} - {track || 'Track'}
-      </p>
+      <LyricsCanvasAuthor className={cn(sizeMap[size], txtColorMap[txtColor])} />
     </div>
   );
 };

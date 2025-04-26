@@ -2,7 +2,7 @@ import { z } from "zod";
 import { environment } from "./zod/environment";
 import { SpotifyArtistSchema, SpotifyTrackSchema } from "./zod/schemas";
 
-const getSpotifyAccessToken = async () => {
+export const getSpotifyAccessToken = async () => {
   const response = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     headers: {
@@ -86,3 +86,4 @@ export const searchSpotifyTrack = async (name: string, artist: string): Promise<
   const data = SpotifyTrackSchema.parse(json.tracks.items[0]);
   return data;
 }
+
