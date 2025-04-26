@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useAtom } from 'jotai';
-import { lcSelectedLyrics, lcSelectedTrack, lcTxtColor, lcTxtSize } from '@/lib/store';
-import { Quote } from 'lucide-react';
+import { lcSelectedLyrics, lcTxtColor, lcTxtSize } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { AvailableColors } from '@/lib/types';
 import { LyricsCanvasAuthor } from './lyrics-canvas-author';
+
+import { Quote } from '@/components/_common/quote'
 
 type Props = {
   size: 'sm' | 'md' | 'lg';
@@ -66,22 +67,25 @@ export const LyricsCanvas = () => {
   const [lyrics] = useAtom(lcSelectedLyrics);
 
   return (
-    <div className="flex flex-col absolute bottom-2 left-0 pr-6 pl-6 z-50 gap-2">
+    <div className="flex flex-col absolute bottom-2 left-0 right-0 pr-6 pl-6 z-50 gap-2">
       <div className="flex gap-2">
         <span className="flex">
-          <Quote className={cn(quoteMap[size], txtColorMap[txtColor])} />
+          <Quote color={txtColor} className={cn(quoteMap[size])} />
         </span>
-        <p className={cn(`font-semibold leading-tight bg-white px-2 `, {
+        <p className={cn(`font-medium leading-tight bg-white px-2 `, {
           "text-white": txtColor !== "white",
           "text-neutral-950": txtColor === "white",
         }, sizeMap[size], bgColorMap[txtColor])}>
           {lyrics}
         </p>
         <span className="flex items-end">
-          <Quote className={cn("-scale-100", quoteMap[size], txtColorMap[txtColor])} />
+          <Quote color={txtColor} className={cn("-scale-100", quoteMap[size])} />
         </span>
       </div>
-      <LyricsCanvasAuthor className={cn(sizeMap[size], txtColorMap[txtColor])} />
+      <LyricsCanvasAuthor className={cn(bgColorMap[txtColor], sizeMap[size], {
+        "text-white": txtColor !== "white",
+        "text-neutral-950": txtColor === "white",
+      })} />
     </div>
   );
 };

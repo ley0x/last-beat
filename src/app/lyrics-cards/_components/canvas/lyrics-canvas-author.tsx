@@ -20,9 +20,14 @@ export const LyricsCanvasAuthor = ({ className }: Props) => {
   }, [selectedTrack]);
   return (
     <p
-      className={cn('max-w-full bg-white shadow-sm rounded-xs font-bold px-2 truncate', className)}
+      className={cn('text-xs max-w-full bg-white/90 text-gray-950 shadow-sm rounded-xs px-2 line-clamp-2', className)}
     >
-      {artistName || 'Artist'} - {trackName || 'Track'}
+      <span className="opacity-80 font-semibold">
+        {artistName || 'Artist'}
+      </span>
+      <span className="ml-2">
+        "{trackName || 'Track'}"
+      </span>
     </p>
   )
 }
