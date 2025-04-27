@@ -13,7 +13,7 @@ export function ToggleShape() {
   const [shape, setShape] = useAtom(lcShape);
   return (
     <div>
-      <Header as="h3">Choose your shape</Header>
+      <Header as="h5">Choose your shape</Header>
       <ToggleGroup type="single" variant="outline" defaultValue={shape}>
         <ToggleGroupItem value="horizontal" aria-label="Toggle horizontal" onClick={() => setShape("horizontal")}>
           <RectangleHorizontal />

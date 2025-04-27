@@ -17,7 +17,7 @@ export const LyricsCanvas = () => {
 
   return (
     <div className={cn("flex flex-col absolute bottom-2 left-0 right-0 pr-6 pl-6 z-50 gap-2", {
-      "top-2 border border-primary flex flex-col justify-center": center,
+      "top-2 flex flex-col justify-center": center,
     })}>
       <div className="flex gap-2">
         {quotes && (

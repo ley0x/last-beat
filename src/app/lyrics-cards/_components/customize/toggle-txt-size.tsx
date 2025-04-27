@@ -13,7 +13,7 @@ export function ToggleTxtSize() {
   const [size, setSize] = useAtom(lcTxtSize);
   return (
     <div>
-      <Header as="h3">Change text size</Header>
+      <Header as="h5">Change text size</Header>
       <ToggleGroup type="single" variant="outline" defaultValue={size}>
         <ToggleGroupItem value="sm" aria-label="Toggle small" onClick={() => setSize("sm")}>
           <AArrowDown />

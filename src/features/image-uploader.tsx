@@ -52,7 +52,7 @@ export const ImageUploader = ({ handleLoad }: Props) => {
 
   return (
     <div className="w-full max-w-xs">
-      <Header as="h3">Upload a background image</Header>
+      <Header as="h5">Upload a background image</Header>
       <div className="space-y-2 w-full">
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="image-upload" className="border p-2 rounded-lg"><File className="text-xl" /> {fileName ? fileName : "Select your background image"}</Label>

@@ -7,25 +7,15 @@ import slugify from 'slugify';
 import { toPng } from 'html-to-image';
 import download from 'downloadjs';
 
-import { lcBgColor, lcBlur, lcBrightness, lcCenterText, lcGrayscale, lcOpacity, lcSelectedTrack, lcShape, lcShowBgImage, lcShowCredits, lcShowQuotes, lcShowWatermark, lcTxtColor, lcTxtSize } from '@/lib/store';
+import { lcBgColor, lcSelectedTrack, lcShape } from '@/lib/store';
 
 import { cn } from '@/lib/utils';
 
 import { CanvasBackground } from './canvas-background';
 import { LyricsCanvas } from './lyrics-canvas';
-import { CustomizeCard } from '../customize/customize-card';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
-import { Button } from '@/components/ui/button';
 import { Watermark } from './watermark';
-import { LyricsCanvasAuthor } from './lyrics-canvas-author';
 import { bgColorMap, shapeStyle } from '@/lib/constances';
-
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 
 export const LyricsCanvasContainer = () => {
 
@@ -35,37 +25,6 @@ export const LyricsCanvasContainer = () => {
   const [selectedTrack] = useAtom(lcSelectedTrack);
   const ref = useRef<HTMLDivElement>(null);
 
-  const [, setBgColor] = useAtom(lcBgColor);
-  const [, setTxtColor] = useAtom(lcTxtColor);
-  const [, setTxtSize] = useAtom(lcTxtSize);
-  const [, setShape] = useAtom(lcShape);
-
-  const [, setBgImage] = useAtom(lcShowBgImage);
-  const [, setWatermark] = useAtom(lcShowWatermark);
-  const [, setGrayscale] = useAtom(lcGrayscale);
-  const [, setBlur] = useAtom(lcBlur);
-  const [, setBrightness] = useAtom(lcBrightness);
-  const [, setOpacity] = useAtom(lcOpacity);
-
-  const [, setShowQuotes] = useAtom(lcShowQuotes);
-  const [, setShowCredits] = useAtom(lcShowCredits);
-  const [, setCenter] = useAtom(lcCenterText);
-
-  const handleReset = () => {
-    setBgColor("black");
-    setTxtColor("white");
-    setTxtSize("md");
-    setShape("horizontal");
-    setBgImage(true);
-    setWatermark(true);
-    setGrayscale(false);
-    setBlur(false);
-    setBrightness(false);
-    setOpacity(false);
-    setShowQuotes(true);
-    setShowCredits(true);
-    setCenter(false);
-  }
 
   const handleExport = useCallback(() => {
     const getTrackName = () => {
@@ -113,29 +72,6 @@ export const LyricsCanvasContainer = () => {
           </div>
         </div>
       </li>
-      <div className="w-full flex flew-wrap gap-2 items-center">
-        <CustomizeCard />
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button size="icon" variant="outline" className="text-lg cursor-pointer" onClick={handleReset}>🔄</Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Reset appearance</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button size="icon" variant="outline" className="text-lg cursor-pointer" onClick={handleExport}>📸</Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Download as PNG</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </div>
     </div >
   );
 };
