@@ -23,10 +23,8 @@ export const TrackLyrics = () => {
     <section className="flex flex-col">
       {lyrics ? (
         <div className="max-w-full prose">
-          <div onMouseUp={handleSelection}>
-            <pre className="font-sans max-w-full">
-              <ReactMarkdown>{lyrics}</ReactMarkdown>
-            </pre>
+          <div className="whitespace-pre-line font-sans max-w-full" onMouseUp={handleSelection}>
+            <ReactMarkdown>{lyrics}</ReactMarkdown>
           </div>
         </div>
       ) : (

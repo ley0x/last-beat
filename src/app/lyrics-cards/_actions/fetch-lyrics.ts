@@ -26,7 +26,6 @@ const searchTrack = async (query: string) => {
   });
 
   const track = schema.parse(data?.response?.hits?.[0]?.result);
-  console.log(track);
   return track;
 };
 

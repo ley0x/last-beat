@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { LastFmTrackSchema } from '@/lib/zod/schemas';
 import { lcSelectedLyrics, lcSelectedTrack, lcTrackLyrics } from "@/lib/store";
+import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
 
 type Inputs = {
   search: string;
@@ -37,11 +38,16 @@ export const SearchBar = ({ setLoading, setFoundTracks }: Props) => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<Inputs>({
     resolver: zodResolver(schema),
   });
 
+  const handleClick = () => {
+    const formData = getValues();
+    onSubmit(formData);
+  }
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -51,7 +57,6 @@ export const SearchBar = ({ setLoading, setFoundTracks }: Props) => {
       setLyrics("");
       setSelectedLyrics("");
       const tracks = await searchLastFmTrack(data.search);
-      console.log(tracks);
 
 
       if (!tracks.success) {
@@ -64,8 +69,6 @@ export const SearchBar = ({ setLoading, setFoundTracks }: Props) => {
         return;
       }
 
-      console.info("Tracks founds:", tracks.data)
-      console.log(tracks.data)
       setFoundTracks(tracks.data);
 
     } catch (e) {
@@ -85,7 +88,14 @@ export const SearchBar = ({ setLoading, setFoundTracks }: Props) => {
             placeholder="Search for a song"
             {...register('search')}
           />
-          <Button variant="secondary" size="icon" type="submit" className="cursor-pointer"><Search /></Button>
+          <HoverBorderGradient
+            containerClassName="rounded-sm"
+            as="button"
+            onClick={handleClick}
+            className="cursor-pointer size-9 p-0 text-center dark:bg-card bg-white text-black dark:text-white flex items-center justify-center"
+          >
+            <Search className="size-5" />
+          </HoverBorderGradient>
         </div>
         {errors && (
           <p className="text-sm text-destructive">{errors.search?.message}</p>

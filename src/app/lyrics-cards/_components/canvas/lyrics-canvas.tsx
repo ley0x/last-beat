@@ -1,88 +1,43 @@
 import React from 'react';
 import { useAtom } from 'jotai';
-import { lcSelectedLyrics, lcTxtColor, lcTxtSize } from '@/lib/store';
+import { lcCenterText, lcSelectedLyrics, lcShowQuotes, lcTxtColor, lcTxtSize } from '@/lib/store';
 import { cn } from '@/lib/utils';
-import { AvailableColors } from '@/lib/types';
-import { LyricsCanvasAuthor } from './lyrics-canvas-author';
 
 import { Quote } from '@/components/_common/quote'
-
-type Props = {
-  size: 'sm' | 'md' | 'lg';
-  noOfLines?: number;
-};
-
-const sizeMap: Record<Props['size'], string> = {
-  sm: 'text-sm',
-  md: 'text-lg',
-  lg: 'text-2xl',
-};
-
-const quoteMap: Record<Props['size'], string> = {
-  sm: 'size-6',
-  md: 'size-10',
-  lg: 'size-12',
-};
-
-const txtColorMap: Record<AvailableColors, string> = {
-  red: "text-red-500",
-  orange: "text-orange-500",
-  amber: "text-amber-500",
-  yellow: "text-yellow-500",
-  green: "text-green-500",
-  emerald: "text-emerald-500",
-  cyan: "text-cyan-500",
-  sky: "text-sky-500",
-  blue: "text-blue-500",
-  indigo: "text-indigo-500",
-  purple: "text-purple-500",
-  pink: "text-pink-500",
-  rose: "text-rose-500",
-  white: "text-neutral-50",
-  black: "text-neutral-950",
-}
-
-const bgColorMap: Record<AvailableColors, string> = {
-  red: "bg-red-500",
-  orange: "bg-orange-500",
-  amber: "bg-amber-500",
-  yellow: "bg-yellow-500",
-  green: "bg-green-500",
-  emerald: "bg-emerald-500",
-  cyan: "bg-cyan-500",
-  sky: "bg-sky-500",
-  blue: "bg-blue-500",
-  indigo: "bg-indigo-500",
-  purple: "bg-purple-500",
-  pink: "bg-pink-500",
-  rose: "bg-rose-500",
-  white: "bg-neutral-50",
-  black: "bg-neutral-950",
-}
+import { bgColorMap, quoteMap, sizeMap } from '@/lib/constances';
+import { LyricsCanvasAuthor } from './lyrics-canvas-author';
 
 export const LyricsCanvas = () => {
   const [size] = useAtom(lcTxtSize);
 
   const [txtColor] = useAtom(lcTxtColor);
   const [lyrics] = useAtom(lcSelectedLyrics);
+  const [quotes] = useAtom(lcShowQuotes);
+  const [center] = useAtom(lcCenterText);
 
   return (
-    <div className="flex flex-col absolute bottom-2 left-0 right-0 pr-6 pl-6 z-50 gap-2">
+    <div className={cn("flex flex-col absolute bottom-2 left-0 right-0 pr-6 pl-6 z-50 gap-2", {
+      "top-2 border border-primary flex flex-col justify-center": center,
+    })}>
       <div className="flex gap-2">
-        <span className="flex">
-          <Quote color={txtColor} className={cn(quoteMap[size])} />
-        </span>
-        <p className={cn(`font-medium leading-tight bg-white px-2 `, {
+        {quotes && (
+          <span className="flex">
+            <Quote color={txtColor} className={cn(quoteMap[size])} />
+          </span>
+        )}
+        <p className={cn('text-left font-medium leading-tight bg-white px-2 whitespace-pre-line', {
           "text-white": txtColor !== "white",
           "text-neutral-950": txtColor === "white",
         }, sizeMap[size], bgColorMap[txtColor])}>
           {lyrics}
         </p>
-        <span className="flex items-end">
-          <Quote color={txtColor} className={cn("-scale-100", quoteMap[size])} />
-        </span>
+        {quotes && (
+          <span className="flex items-end">
+            <Quote color={txtColor} className={cn("-scale-100", quoteMap[size])} />
+          </span>
+        )}
       </div>
-      <LyricsCanvasAuthor className={cn(bgColorMap[txtColor], sizeMap[size], {
+      <LyricsCanvasAuthor className={cn(bgColorMap[txtColor], {
         "text-white": txtColor !== "white",
         "text-neutral-950": txtColor === "white",
       })} />
