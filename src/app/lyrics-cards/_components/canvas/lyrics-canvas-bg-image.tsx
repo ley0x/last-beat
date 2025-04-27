@@ -18,20 +18,24 @@ export const LyricsCanvasBgImage = () => {
 
   return (
     <div className="absolute inset-0 w-full h-full">
-      <Image
-        src={findLargestImage(selectedTrack?.album?.image ?? [])}
-        alt=""
-        width={100}
-        height={100}
-        className={cn("object-cover w-full h-full", {
-          "grayscale": grayscale,
-          "opacity-50": opacity,
-          "blur-xs": blur,
-          "brightness-50": brightness,
-        })}
-        unoptimized
-        loading="lazy"
-      />
+      {
+        findLargestImage(selectedTrack?.album?.image ?? []) === "#" ? null : (
+          <Image
+            src={findLargestImage(selectedTrack?.album?.image ?? [])}
+            alt=""
+            width={100}
+            height={100}
+            className={cn("object-cover w-full h-full", {
+              "grayscale": grayscale,
+              "opacity-50": opacity,
+              "blur-xs": blur,
+              "brightness-50": brightness,
+            })}
+            unoptimized
+            loading="lazy"
+          />
+        )
+      }
     </div>
   )
 }
