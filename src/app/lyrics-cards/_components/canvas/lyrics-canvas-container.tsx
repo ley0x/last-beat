@@ -38,7 +38,7 @@ export const LyricsCanvasContainer = () => {
     }
 
     if (!ref.current) return;
-    toPng(ref.current, { cacheBust: true, pixelRatio: 1.5 })
+    toPng(ref.current, { cacheBust: true, pixelRatio: 2, skipFonts: true })
       .then((dataUrl) => {
         const name = `${slugify(getTrackArtist(), { lower: true }) || 'artist'}-${slugify(getTrackName(), { lower: true }) || 'song'}-card.png`;
         download(dataUrl, name);

@@ -16,7 +16,6 @@ export const LyricsCanvasAuthor = ({ className }: Props) => {
 
   const [credits] = useAtom(lcShowCredits);
 
-
   useEffect(() => {
     setArtistName(selectedTrack?.artist?.name ?? "");
     setTrackName(selectedTrack?.name ?? "");
@@ -31,7 +30,9 @@ export const LyricsCanvasAuthor = ({ className }: Props) => {
         {artistName || 'Artist'}
       </span>
       <span className="ml-2">
-        "{trackName || 'Track'}"
+        &quot;
+        {trackName || 'Track'}
+        &quot;
       </span>
     </p>
   )

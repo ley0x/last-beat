@@ -3,17 +3,16 @@
 import React from 'react';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-
 import { Search } from 'lucide-react';
 import { z } from 'zod';
 import { useAtom } from "jotai";
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { LastFmTrackSchema } from '@/lib/zod/schemas';
+import { lcSelectedLyrics, lcSelectedTrack, lcTrackLyrics } from "@/lib/store";
 
 import { searchLastFmTrack } from '../../_actions/search-tracks';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { LastFmTrackSchema } from '@/lib/zod/schemas';
-import { lcSelectedLyrics, lcSelectedTrack, lcTrackLyrics } from "@/lib/store";
 import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
 
 type Inputs = {

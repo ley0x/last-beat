@@ -44,6 +44,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const findLargestImage = (images: z.infer<typeof LastFmImage>[]) => {
+  if (images.length === 0) return "#";
   let largestImage = images[0]['#text'];
   for (let i = 1; i < images.length; i++) {
     if (images[i]['#text'].length > largestImage.length) {

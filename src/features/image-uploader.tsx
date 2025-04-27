@@ -12,7 +12,7 @@ const MAX_SIZE = 50 * 1024 * 1024; // 50 MB
 
 
 type Props = {
-  handleLoad: ((this: FileReader, ev: ProgressEvent<FileReader>) => any);
+  handleLoad: ((this: FileReader, ev: ProgressEvent<FileReader>) => void);
 }
 
 export const ImageUploader = ({ handleLoad }: Props) => {
@@ -44,6 +44,7 @@ export const ImageUploader = ({ handleLoad }: Props) => {
       reader.readAsDataURL(file);
     } catch (e) {
       setInvalid(true);
+      console.error(e);
       setError("Can't read image.");
       return;
     }

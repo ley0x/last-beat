@@ -20,7 +20,7 @@ export const LyricsCanvasBgImage = () => {
     <div className="absolute inset-0 w-full h-full">
       <Image
         src={findLargestImage(selectedTrack?.album?.image ?? [])}
-        alt="Background"
+        alt=""
         width={100}
         height={100}
         className={cn("object-cover w-full h-full", {

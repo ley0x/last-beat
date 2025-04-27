@@ -6,7 +6,8 @@ import { ImageUploader } from "@/features/image-uploader";
 
 export const UploadBgImage = () => {
   const [, setSelectedImage] = useAtom(lcLyricsBackground);
-  const handleLoad: (this: FileReader, ev: ProgressEvent<FileReader>) => void = function(this: FileReader, _: ProgressEvent<FileReader>) {
+  type FileReaderLoadHandler = (this: FileReader, ev: ProgressEvent<FileReader>) => void;
+  const handleLoad: FileReaderLoadHandler = function(this) {
     if (!this.result) {
       throw new Error('No result');
     }
