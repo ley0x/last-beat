@@ -25,21 +25,16 @@ export const LyricsCanvas = () => {
             <Quote color={txtColor} className={cn(quoteMap[size])} />
           </span>
         )}
-        <p className={cn('text-left font-medium leading-tight bg-white px-2 whitespace-pre-line', {
+        <p className={cn('grow text-left font-medium leading-tight bg-white px-2 whitespace-pre-line', {
           "text-white": txtColor !== "white",
           "text-neutral-950": txtColor === "white",
         }, sizeMap[size], bgColorMap[txtColor])}>
           {lyrics}
         </p>
-        {quotes && (
-          <span className="flex items-end">
-            <Quote color={txtColor} className={cn("-scale-100", quoteMap[size])} />
-          </span>
-        )}
       </div>
-      <LyricsCanvasAuthor className={cn(bgColorMap[txtColor], {
-        "text-white": txtColor !== "white",
-        "text-neutral-950": txtColor === "white",
+      <LyricsCanvasAuthor className={cn({
+        "text-white": txtColor === "white",
+        "text-neutral-950": txtColor !== "white",
       })} />
     </div>
   );

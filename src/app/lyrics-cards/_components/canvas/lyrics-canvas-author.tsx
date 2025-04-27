@@ -24,7 +24,7 @@ export const LyricsCanvasAuthor = ({ className }: Props) => {
   if (!credits) return null;
   return (
     <p
-      className={cn('text-left text-xs max-w-full bg-white/90 text-gray-950 shadow-sm rounded-xs sm:px-1 line-clamp-2', className)}
+      className={cn('text-left text-xs max-w-full line-clamp-2', className)}
     >
       <span className="opacity-80 font-semibold">
         {artistName || 'Artist'}
