@@ -11,7 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { LastFmTrackSchema } from '@/lib/zod/schemas';
 import { lcSelectedLyrics, lcSelectedTrack, lcTrackLyrics } from "@/lib/store";
 
-import { searchLastFmTrack } from '../../_actions/search-tracks';
+import { searchLastFmTrack } from '../../_actions/search-tracks.action';
 import { Input } from '@/components/ui/input';
 import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
 

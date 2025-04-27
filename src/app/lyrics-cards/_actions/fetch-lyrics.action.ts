@@ -31,6 +31,7 @@ const searchTrack = async (query: string) => {
 
 const getLyrics = async (url: string) => {
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
   const data = await res.text();
   const $ = load(data);
 

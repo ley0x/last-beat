@@ -4,7 +4,7 @@ import { useAtom } from "jotai";
 import { z } from "zod";
 import { ArrowRight } from "lucide-react";
 
-import { getLyricsAction } from "../../_actions/fetch-lyrics";
+import { getLyricsAction } from "../../_actions/fetch-lyrics.action";
 
 import { lcSelectedTrack, lcTrackLyrics } from "@/lib/store";
 import { LastFmTrackSchema } from "@/lib/zod/schemas";
