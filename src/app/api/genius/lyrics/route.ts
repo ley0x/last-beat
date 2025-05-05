@@ -1,5 +1,4 @@
 import { NextRequest } from 'next/server';
-import { z } from 'zod';
 import { load } from 'cheerio';
 
 export const dynamic = 'force-dynamic' // defaults to force-static
@@ -8,7 +7,7 @@ export async function GET(request: NextRequest): Promise<void | Response> {
   try {
     const { searchParams } = new URL(request.url);
     const url = searchParams.get('url');
-    
+
     if (!url) {
       return Response.json({ success: false, error: 'URL parameter is required' }, { status: 400 });
     }
