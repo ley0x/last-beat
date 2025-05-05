@@ -16,7 +16,7 @@ export async function getLyricsAction(query: string): Promise<LyricsResponse> {
     // Search for the track
     const searchRes = await fetch(`${baseUrl}/api/genius/search?q=${encodeURIComponent(query)}`);
     console.log(searchRes.status + ' - ' + searchRes.statusText);
-    console.log(await searchRes.text());
+    // console.log(await searchRes.text());
     const searchData = await searchRes.json();
 
     if (!searchData.success) {
