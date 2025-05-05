@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 export const environment = z
   .object({
+    HOST: z.string(),
     LASTFM_BASE_URL: z.string(),
     LASTFM_API_KEY: z.string(),
     LASTFM_SHARED_SECRET: z.string(),

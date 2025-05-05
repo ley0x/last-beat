@@ -2,65 +2,7 @@
 
 import { environment } from '@/lib/zod/environment';
 import { GetLyricsApi } from '@/lib/zod/schemas';
-import { load } from 'cheerio';
 import { z } from 'zod';
-
-const searchTrack = async (query: string) => {
-  const res = await fetch(`https://api.genius.com/search?q=${encodeURIComponent(query)}`, {
-    headers: {
-      Authorization: `Bearer ${environment.GENIUS_CLIENT_ACCESS_TOKEN}`,
-    },
-  });
-
-  if (!res.ok) throw new Error("Error while fetching");
-
-  const data = await res.json();
-  if (!data.response.hits.length) throw new Error('No results found');
-
-  const schema = z.object({
-    url: z.string().url(),
-    title: z.string(),
-    primary_artist: z.object({
-      name: z.string(),
-    }),
-  });
-
-  const track = schema.parse(data?.response?.hits?.[0]?.result);
-  return track;
-};
-
-const getLyrics = async (url: string) => {
-  const res = await fetch(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-      'Accept-Language': 'en-US,en;q=0.5',
-      'Referer': 'https://www.google.com/'
-    },
-  });
-  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
-  const data = await res.text();
-  const $ = load(data);
-
-  let lyrics = $('div[class="lyrics"]').text().trim();
-
-  if (!lyrics) {
-    lyrics = '';
-    $('div[class^="Lyrics__Container"]').each((_, elem) => {
-      if ($(elem).text().length !== 0) {
-        const snippet = $(elem).html()
-          ?.replace(/<br>/g, '\n')
-          ?.replace(/<(?!\s*br\s*\/?)[^>]+>/gi, '');
-        if (snippet) {
-          lyrics += $('<textarea/>').html(snippet).text().trim() + '\n\n';
-        }
-      }
-    });
-  }
-
-  if (!lyrics) throw new Error('Could not find lyrics');
-  return lyrics.trim();
-};
 
 type LyricsResponse = z.infer<typeof GetLyricsApi>;
 
@@ -70,16 +12,32 @@ export async function getLyricsAction(query: string): Promise<LyricsResponse> {
       return { success: false, error: 'Query parameter is required' };
     }
 
-    const { url, title, primary_artist: { name } } = await searchTrack(query);
-    const lyrics = await getLyrics(url);
+    const baseUrl = environment.HOST;
+    // Search for the track
+    const searchRes = await fetch(`${baseUrl}/api/genius/search?q=${encodeURIComponent(query)}`);
+    const searchData = await searchRes.json();
+
+    if (!searchData.success) {
+      return { success: false, error: searchData.error || 'Failed to search for track' };
+    }
+
+    const track = searchData.data;
+
+    // Get the lyrics
+    const lyricsRes = await fetch(`${baseUrl}/api/genius/lyrics?url=${encodeURIComponent(track.url)}`);
+    const lyricsData = await lyricsRes.json();
+
+    if (!lyricsData.success) {
+      return { success: false, error: lyricsData.error || 'Failed to get lyrics' };
+    }
 
     return GetLyricsApi.parse({
       success: true,
       data: {
-        url,
-        title,
-        artist: name,
-        lyrics,
+        url: track.url,
+        title: track.title,
+        artist: track.primary_artist.name,
+        lyrics: lyricsData.data.lyrics,
       }
     });
   } catch (e) {
