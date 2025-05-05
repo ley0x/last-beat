@@ -8,7 +8,7 @@ export async function GET(request: NextRequest): Promise<void | Response> {
   try {
     const { searchParams } = new URL(request.url);
     const query = searchParams.get('q');
-    
+
     if (!query) {
       return Response.json({ success: false, error: 'Query parameter is required' }, { status: 400 });
     }
@@ -27,6 +27,7 @@ export async function GET(request: NextRequest): Promise<void | Response> {
     if (!data.response.hits.length) {
       return Response.json({ success: false, error: 'No results found' }, { status: 404 });
     }
+    console.log(data);
 
     const schema = z.object({
       url: z.string().url(),
@@ -37,7 +38,8 @@ export async function GET(request: NextRequest): Promise<void | Response> {
     });
 
     const track = schema.parse(data?.response?.hits?.[0]?.result);
-    
+    console.log(track);
+
     return Response.json({ success: true, data: track });
   } catch (e: Error | unknown) {
     if (e instanceof Error) return Response.json({ success: false, error: e.message }, { status: 500 });

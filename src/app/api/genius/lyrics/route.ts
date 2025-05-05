@@ -21,6 +21,9 @@ export async function GET(request: NextRequest): Promise<void | Response> {
       },
     });
 
+    console.log(res.status + ' - ' + res.statusText);
+    console.log(await res.text());
+
     if (!res.ok) {
       return Response.json({ success: false, error: `Error while fetching: ${res.status} - ${res.statusText}` }, { status: res.status });
     }
