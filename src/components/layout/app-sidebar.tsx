@@ -34,8 +34,8 @@ const items = [
     icon: Trophy,
   },
   {
-    title: "Cover downloads",
-    url: "/cover-downloads",
+    title: "Cover download",
+    url: "/cover-download",
     icon: Download,
   },
   {
