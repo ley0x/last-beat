@@ -236,15 +236,13 @@ export const SpotifyTrackSchema = z.object({
 })
 
 
-export const GetLyricsApi = z.object({
-  success: z.boolean(),
-  error: z.string().optional(),
-  data: z
-    .object({
-      url: z.string().url(),
-      lyrics: z.string(),
-      artist: z.string(),
-      title: z.string(),
-    })
-    .optional(),
-});
+export const GeniusSearchTrackSchema = z
+  .object({
+    title: z.string(),
+    url: z.string().url(),
+    artist_names: z.string(),
+    primary_artist_names: z.string(),
+    header_image_url: z.string().url(),
+    header_image_thumbnail_url: z.string().url(),
+    title_with_featured: z.string(),
+  })

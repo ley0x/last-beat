@@ -1,52 +1,54 @@
 'use server';
 
-import { environment } from '@/lib/zod/environment';
-import { GetLyricsApi } from '@/lib/zod/schemas';
-import { z } from 'zod';
+import { load } from 'cheerio';
 
-type LyricsResponse = z.infer<typeof GetLyricsApi>;
+export async function getLyricsAction(url: string): Promise<string> {
 
-export async function getLyricsAction(query: string): Promise<LyricsResponse> {
   try {
-    if (!query) {
-      return { success: false, error: 'Query parameter is required' };
+
+    if (!url) {
+      throw new Error('URL parameter is required');
     }
 
-    const baseUrl = environment.HOST;
-    // Search for the track
-    const searchRes = await fetch(`${baseUrl}/api/genius/search?q=${encodeURIComponent(query)}`);
-    console.log(searchRes.status + ' - ' + searchRes.statusText);
-    // console.log(await searchRes.text());
-    const searchData = await searchRes.json();
-
-    if (!searchData.success) {
-      return { success: false, error: searchData.error || 'Failed to search for track' };
-    }
-
-    const track = searchData.data;
-
-    // Get the lyrics
-    const lyricsRes = await fetch(`${baseUrl}/api/genius/lyrics?url=${encodeURIComponent(track.url)}`);
-    const lyricsData = await lyricsRes.json();
-
-    if (!lyricsData.success) {
-      return { success: false, error: lyricsData.error || 'Failed to get lyrics' };
-    }
-
-    return GetLyricsApi.parse({
-      success: true,
-      data: {
-        url: track.url,
-        title: track.title,
-        artist: track.primary_artist.name,
-        lyrics: lyricsData.data.lyrics,
-      }
+    const res = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Referer': 'https://www.google.com/'
+      },
     });
-  } catch (e) {
+
+    if (!res.ok) {
+      throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
+    }
+
+    const data = await res.text();
+    const $ = load(data);
+
+    let lyrics = $('div[class="lyrics"]').text().trim();
+
+    if (!lyrics) {
+      lyrics = '';
+      $('div[class^="Lyrics__Container"]').each((_, elem) => {
+        if ($(elem).text().length !== 0) {
+          const snippet = $(elem).html()
+            ?.replace(/<br>/g, '\n')
+            ?.replace(/<(?!\s*br\s*\/?)[^>]+>/gi, '');
+          if (snippet) {
+            lyrics += $('<textarea/>').html(snippet).text().trim() + '\n\n';
+          }
+        }
+      });
+    }
+
+    if (!lyrics) {
+      throw new Error('Could not find lyrics');
+    }
+
+    return lyrics.trim();
+  } catch (e: Error | unknown) {
     console.error('Error in getLyricsAction:', e);
-    return {
-      success: false,
-      error: e instanceof Error ? e.message : 'Unknown error occurred'
-    };
+    return ""
   }
 }

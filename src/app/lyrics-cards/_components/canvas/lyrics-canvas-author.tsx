@@ -17,8 +17,8 @@ export const LyricsCanvasAuthor = ({ className }: Props) => {
   const [credits] = useAtom(lcShowCredits);
 
   useEffect(() => {
-    setArtistName(selectedTrack?.artist?.name ?? "");
-    setTrackName(selectedTrack?.name ?? "");
+    setArtistName(selectedTrack?.artist_names ?? "");
+    setTrackName(selectedTrack?.title ?? "");
   }, [selectedTrack]);
 
   if (!credits) return null;

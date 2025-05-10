@@ -3,7 +3,7 @@ import { atomWithStorage } from 'jotai/utils'
 
 import { Alltracks, AvailableColors, AvailableShapes, AvailableTxtSizes, Timeframe } from './types';
 import { z } from 'zod';
-import { LastFmTrackSchema } from './zod/schemas';
+import { GeniusSearchTrackSchema } from './zod/schemas';
 
 
 export const timeframeAtom = atom<Timeframe>("1month");
@@ -14,7 +14,7 @@ export const showGlowyBackgroundAtom = atom<boolean>(true);
 export const lyricsBackground = atom<string | null>(null);
 
 // lc for lyrics cards
-type TTrack = z.infer<typeof LastFmTrackSchema> | null;
+type TTrack = z.infer<typeof GeniusSearchTrackSchema> | null;
 
 export const lcTrackLyrics = atom<string>("");
 export const lcSelectedTrack = atomWithStorage<TTrack>("lc-selected-track", null);

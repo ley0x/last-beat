@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { SearchResults } from "./search-results"
 import { SearchBar } from "./searchbar"
-import { LastFmTrackSchema } from "@/lib/zod/schemas";
+import { GeniusSearchTrackSchema } from "@/lib/zod/schemas";
 import { z } from "zod";
 
 export const Search = () => {
-  const [foundTracks, setFoundTracks] = useState<z.infer<typeof LastFmTrackSchema>[]>([]);
+  const [foundTracks, setFoundTracks] = useState<z.infer<typeof GeniusSearchTrackSchema>[]>([]);
   const [loading, setLoading] = useState(false);
 
   return (

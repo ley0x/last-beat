@@ -8,10 +8,10 @@ import { z } from 'zod';
 import { useAtom } from "jotai";
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { LastFmTrackSchema } from '@/lib/zod/schemas';
+import { GeniusSearchTrackSchema } from '@/lib/zod/schemas';
 import { lcSelectedLyrics, lcSelectedTrack, lcTrackLyrics } from "@/lib/store";
 
-import { searchLastFmTrack } from '../../_actions/search-tracks.action';
+import { searchTracks } from '../../_actions/search-tracks.action';
 import { Input } from '@/components/ui/input';
 import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
 
@@ -25,7 +25,7 @@ const schema = z.object({
 
 type Props = {
   setLoading: (loading: boolean) => void;
-  setFoundTracks: (foundTracks: z.infer<typeof LastFmTrackSchema>[]) => void;
+  setFoundTracks: (foundTracks: z.infer<typeof GeniusSearchTrackSchema>[]) => void;
 }
 
 export const SearchBar = ({ setLoading, setFoundTracks }: Props) => {
@@ -55,20 +55,9 @@ export const SearchBar = ({ setLoading, setFoundTracks }: Props) => {
       setSelectedTrack(null);
       setLyrics("");
       setSelectedLyrics("");
-      const tracks = await searchLastFmTrack(data.search);
+      const tracks = await searchTracks(data.search);
 
-
-      if (!tracks.success) {
-        console.error(tracks);
-        return;
-      }
-
-      if (!tracks.data) {
-        console.error(tracks);
-        return;
-      }
-
-      setFoundTracks(tracks.data);
+      setFoundTracks(tracks);
 
     } catch (e) {
       console.error(e);

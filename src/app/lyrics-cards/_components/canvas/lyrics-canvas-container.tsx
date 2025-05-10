@@ -29,12 +29,12 @@ export const LyricsCanvasContainer = () => {
   const handleExport = useCallback(() => {
     const getTrackName = () => {
       if (!selectedTrack) return "-";
-      return selectedTrack.name;
+      return selectedTrack.title;
     }
 
     const getTrackArtist = () => {
       if (!selectedTrack) return "-";
-      return selectedTrack.artist?.name ?? "-";
+      return selectedTrack.artist_names ?? "-";
     }
 
     if (!ref.current) return;
