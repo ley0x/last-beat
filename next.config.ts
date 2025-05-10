@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 // lastfm.freetls.fastly.net
 const nextConfig: NextConfig = {
+  output: 'standalone',
   images: {
     remotePatterns: [
       {
