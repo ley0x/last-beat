@@ -20,11 +20,11 @@ export const TopTags = ({ tags }: Props) => {
         <Header as="h2">Top Genres</Header>
         <Header as="h4" className="text-gray-400 font-normal">Your top albums from the {timeframe}.</Header>
       </div>
-      <div className="flex flex-wrap gap-2 justify-around items-center">
+      <div className="flex flex-wrap gap-1 justify-around items-center">
         {tags.length === 0 && <Header as="h5" className="text-gray-400 font-normal">No genres found.</Header>}
-        {tags.map((tag, i) => (<>
+        {tags.map((tag, i) => (
           <Badge variant="outline" key={i}>{tag.name}</Badge>
-        </>))}
+        ))}
       </div>
     </section>
   )
