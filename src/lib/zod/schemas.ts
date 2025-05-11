@@ -246,3 +246,30 @@ export const GeniusSearchTrackSchema = z
     header_image_thumbnail_url: z.string().url(),
     title_with_featured: z.string(),
   })
+
+
+export const DeezerArtistSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  link: z.string().url(),
+  picture_small: z.string().url(),
+  picture_medium: z.string().url(),
+  picture_big: z.string().url(),
+  picture_xl: z.string().url(),
+  picture: z.string().url(),
+  tracklist: z.string().url(),
+  type: z.string(),
+});
+
+export const DeezerAlbumSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  link: z.string(),
+  cover_medium: z.string(),
+  cover_big: z.string(),
+  cover_xl: z.string(),
+  nb_tracks: z.number(),
+  type: z.string(),
+  tracklist: z.string().url(),
+  artist: DeezerArtistSchema,
+});
