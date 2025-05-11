@@ -12,6 +12,7 @@ export const lastFmAlbumSearch = async (q: string): Promise<z.infer<typeof LastF
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
   const data = await res.json();
   if (!data.results.albummatches.album) {
     return [];
@@ -30,6 +31,7 @@ export const lastFmAlbumGetInfo = async (album: z.infer<typeof LastFmSearchAlbum
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
   const data = await res.json();
   return LastFmAlbumSchema.parse(data.album);
 }
@@ -43,6 +45,7 @@ export const lastFmAlbumGetInfoByMbid = async (mbid: string): Promise<z.infer<ty
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
   const data = await res.json();
   return LastFmAlbumSchema.parse(data.album);
 }
@@ -57,6 +60,7 @@ export const lastFmTrackGetInfo = async (track: string, artist: string): Promise
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
   const data = await res.json();
   return LastFmTrackSchema.parse(data.track);
 }
@@ -70,6 +74,7 @@ export const lastFmTrackGetInfoByMbid = async (trackMbid: string): Promise<z.inf
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
   const data = await res.json();
   return LastFmTrackSchema.parse(data.track);
 }
@@ -83,6 +88,7 @@ export const lastFmUserGetInfo = async (username: string): Promise<z.infer<typeo
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
   const data = await res.json();
   return LastFmUserInfo.parse(data.user);
 }
@@ -99,6 +105,7 @@ export const lastFmUserGetTopArtists = async (username: string, timeframe: Timef
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
   const data = await res.json();
   return LastFmTopArtists.array().parse(data.topartists.artist);
 }
@@ -115,6 +122,7 @@ export const lastFmUserGetTopAlbums = async (username: string, timeframe: Timefr
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
   const data = await res.json();
   return LastFmTopAlbums.array().parse(data.topalbums.album);
 }
@@ -131,6 +139,7 @@ export const lastFmUserGetTopTracks = async (username: string, timeframe: Timefr
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
   const data = await res.json();
   return LastFmTopTracks.array().parse(data.toptracks.track);
 }
@@ -147,6 +156,7 @@ export const lastFmUserGetTopTags = async (username: string, timeframe: Timefram
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
   const data = await res.json();
   return LastFmTopTags.array().parse(data.toptags.tag);
 }
@@ -162,6 +172,7 @@ export const lastFmUserGetFriends = async (username: string, limit: number = 10,
   }
   const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
   const res = await fetch(url);
+  if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
   const data = await res.json();
   return LastFmUserFriends.array().parse(data.friends?.user ?? []);
 }

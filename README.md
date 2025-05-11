@@ -13,7 +13,7 @@ Unlock the power of your music habits with Last Beat. Gain insights into how mus
 - 🏆 **Topsters**: Create stunning posters of your top albums or artists to celebrate your music journey.
 - ✏️ **Lyrics Cards**: Turn your favorite song lyrics into customizable, shareable cards.
 - 🗓️ **AOTY** : Showcase your most memorable albums per year. 
-- 📸 **Covers download** : Download your favorite artists' covers.
+- 📸 **Covers download** : Download your favorite album covers from Spotify, Last.fm, and Deezer.
 - 🖼️ **Image generator** : Generate beautiful images for your music tierlists.
 
 > Spotify, Deezer, and Apple Music will be supported soon.

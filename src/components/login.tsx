@@ -65,7 +65,7 @@ export function Login() {
         />
         <Button type="submit" variant="outline" className="hover:cursor-pointer">
           <span>Search on Last.fm</span>
-          <Image src="/lastfm.png" width={20} height={20} alt="Last.fm logo" />
+          <Image src="/providers/lastfm.png" width={20} height={20} alt="Last.fm logo" />
         </Button>
       </form>
     </Form>
