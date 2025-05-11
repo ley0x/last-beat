@@ -9,18 +9,14 @@ Unlock the power of your music habits with Last Beat. Gain insights into how mus
 ## Features
 
 - 🎵 **Personalized Music Stats**: Visualize your top albums, artists, and tracks over time with beautiful, interactive charts.
-- 📈 **Music Taste Evolution**: Explore your listening history and trends using data from [Last.fm](https://www.last.fm/api#getting-started). Spotify, Deezer, and Apple Music will be supported soon.
-- 🖼️ **Topsters**: Create stunning posters of your top albums or artists to celebrate your music journey.
-- 📝 **Lyrics Cards**: Turn your favorite song lyrics into customizable, shareable cards.
-- **AOTY** : Showcase your most memorable albums per year. 
-- **Covers download** : Download your favorite artists' covers.
-- **Image generator** : Generate beautiful images for your music tierlists.
+- 📈 **Music Taste Evolution**: Explore your listening history and trends using data from [Last.fm](https://www.last.fm/api#getting-started). 
+- 🏆 **Topsters**: Create stunning posters of your top albums or artists to celebrate your music journey.
+- ✏️ **Lyrics Cards**: Turn your favorite song lyrics into customizable, shareable cards.
+- 🗓️ **AOTY** : Showcase your most memorable albums per year. 
+- 📸 **Covers download** : Download your favorite artists' covers.
+- 🖼️ **Image generator** : Generate beautiful images for your music tierlists.
 
----
-
-## Demo
-
-Coming soon!
+> Spotify, Deezer, and Apple Music will be supported soon.
 
 ---
 
@@ -63,13 +59,14 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 
 ---
 
-## Docker
+## Containerization
 
-To run with Docker:
+To run with Docker or Podman:
 
 ```bash
-docker build -t last-beat .
-docker run --env-file .env -p 3000:3000 last-beat
+docker compose up -d
+# or
+podman compose up -d
 ```
 
 ---
