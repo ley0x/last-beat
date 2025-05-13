@@ -17,9 +17,11 @@ export default async function RootLayout({
   return (<>
     <SidebarProvider>
       <AppSidebar />
-      <div className="w-full flex flex-col">
+      <div className="w-full flex max-h-screen h-screen flex-col">
         <Navbar />
-        {children}
+        <div className="flex flex-col grow overflow-hidden">
+          {children}
+        </div>
         <Footer />
       </div>
     </SidebarProvider>
