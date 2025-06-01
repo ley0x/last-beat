@@ -17,11 +17,11 @@ export function TopsterAlbumSearch() {
   const [topsterAlbums] = useAtom(gridAlbumsAtom);
 
   return (
-    <div className="w-96 flex flex-col gap-2 max-h-full p-3 border border-red-500">
+    <div className="w-96 flex flex-col gap-2 max-h-full p-3">
       <SearchBar setAlbums={setAlbums} />
       <Divider />
       {albums && albums.length > 0 && (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-1 overflow-y-scroll">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-1 overflow-y-clip">
           {albums.filter(album => !topsterAlbums.some(topsterAlbum => topsterAlbum?.url === album.url)).map((album, index) => (
             <DraggableAlbum album={album} id={getCellId(album, index)} key={getCellId(album, index)} />
           ))}

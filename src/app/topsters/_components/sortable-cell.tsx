@@ -36,7 +36,7 @@ export const SortableCell = ({ id, album }: SortableCellProps) => {
   return (
     <div ref={setNodeRef}
       className={cn("cursor-pointer flex items-center justify-center overflow-hidden relative h-[120px] w-[120px]", {
-        "z-10 opacity-80 cursor-grab": isDragging,
+        "z-10 opacity-0 cursor-grab": isDragging,
         "z-1": !isDragging,
         "bg-card": !album,
       })}

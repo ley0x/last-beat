@@ -4,6 +4,7 @@ import { CSS } from '@dnd-kit/utilities';
 import { z } from 'zod';
 
 import { Album } from "./album";
+import { cn } from '@/lib/utils';
 
 type Props = {
   album: z.infer<typeof LastFmSearchAlbumSchema>;
@@ -11,7 +12,7 @@ type Props = {
 }
 
 export const DraggableAlbum = ({ album, id }: Props) => {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id,
     data: {
       album: album,
@@ -19,9 +20,13 @@ export const DraggableAlbum = ({ album, id }: Props) => {
   });
   const style = {
     transform: CSS.Translate.toString(transform),
+    opacity: isDragging ? 0 : 1,
   };
   return (
-    <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
+    <div ref={setNodeRef} className={cn({
+      // "cursor-grab": isDragging,
+      // "cursor-pointer": !isDragging,
+    })} style={style} {...listeners} {...attributes}>
       <Album album={album} />
     </div>
   );

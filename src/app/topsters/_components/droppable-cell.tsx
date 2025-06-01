@@ -1,20 +1,17 @@
 "use client";
 import React from 'react'
 import { useDroppable } from '@dnd-kit/core';
+import { cn } from '@/lib/utils';
 type Props = {
   id: string;
 }
 
 export const DroppableCell = ({ id }: Props) => {
-  const { isOver, setNodeRef } = useDroppable({
+  const { setNodeRef, isOver } = useDroppable({
     id: id,
   });
 
-  const style = {
-    color: isOver ? 'green' : undefined,
-  };
-
   return (
-    <span ref={setNodeRef} style={style} className="text-neutral-700 text-xs">Drop here</span>
+    <div className={cn("bg-accent-foreground/10 rounded h-full w-full")} ref={setNodeRef}></div>
   )
 }
