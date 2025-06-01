@@ -1,7 +1,7 @@
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils'
 
-import { Alltracks, AvailableColors, AvailableShapes, AvailableTxtSizes, Timeframe } from './types';
+import { Alltracks, AvailableColors, AvailableShapes, AvailableTxtSizes, Timeframe, TopsterGridAlbum } from './types';
 import { z } from 'zod';
 import { GeniusSearchTrackSchema } from './zod/schemas';
 
@@ -38,3 +38,6 @@ export const lcShowBgImage = atomWithStorage<boolean>("lc-show-bg-image", true);
 export const lcShowCredits = atomWithStorage<boolean>("lc-show-credits", true);
 export const lcLyricsBackground = atom<string | null>(null);
 
+
+export const gridSizeAtom = atomWithStorage<number>("grid-size", 5);
+export const gridAlbumsAtom = atomWithStorage<TopsterGridAlbum[]>("grid-albums", []);

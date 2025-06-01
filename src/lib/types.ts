@@ -16,3 +16,6 @@ export type SearchAlbumsResponse = {
   "deezer"?: z.infer<typeof DeezerAlbumSchema>[],
   "lastfm"?: z.infer<typeof LastFmSearchAlbumSchema>[],
 }
+
+
+export type TopsterGridAlbum = z.infer<typeof LastFmSearchAlbumSchema> | null;

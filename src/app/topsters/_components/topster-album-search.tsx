@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { findLargestImage } from "@/lib/utils";
-import Image from "next/image";
 import { z } from "zod";
 import { LastFmSearchAlbumSchema } from "@/lib/zod/schemas";
-import { SearchBar } from "./searchbar";
+
 import Divider from "@/components/_common/divider";
+
+import { Album } from "./album";
+import { SearchBar } from "./searchbar";
 
 export function TopsterAlbumSearch() {
   const [albums, setAlbums] = useState<z.infer<typeof LastFmSearchAlbumSchema>[]>([]);
@@ -18,16 +19,7 @@ export function TopsterAlbumSearch() {
       {albums && albums.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-1 overflow-y-scroll">
           {albums.map((album, index) => (
-            <Image
-              src={findLargestImage(album.image)}
-              key={index}
-              alt={`Cover of the album ${album.name}`}
-              height={120}
-              width={120}
-              loading="lazy"
-              unoptimized
-              className="aspect-square"
-            />
+            <Album album={album} key={index} />
           ))}
         </div>
       )

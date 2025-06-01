@@ -1,12 +1,11 @@
-import React from "react";
-import Image from "next/image";
+import React, { useState } from "react";
 
-import { cn, findLargestImage } from "@/lib/utils";
-import { TopsterGridAlbum } from "./topster-grid";
+import { cn } from "@/lib/utils";
+import { Album } from "./album";
 
 interface SortableCellProps {
   id: string;
-  album: TopsterGridAlbum;
+  album: z.infer<typeof LastFmSearchAlbumSchema> | null;
 }
 
 import { CSS } from "@dnd-kit/utilities";
@@ -14,6 +13,11 @@ import { CSS } from "@dnd-kit/utilities";
 import {
   useSortable,
 } from "@dnd-kit/sortable";
+
+import { z } from "zod";
+import { LastFmSearchAlbumSchema } from "@/lib/zod/schemas";
+import { DroppableCell } from "./droppable-cell";
+import { useDndMonitor } from "@dnd-kit/core";
 
 export const SortableCell = ({ id, album }: SortableCellProps) => {
   const {
@@ -25,15 +29,30 @@ export const SortableCell = ({ id, album }: SortableCellProps) => {
     isDragging,
   } = useSortable({ id });
 
+  const [dragging, setDragging] = useState(false);
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
   };
 
+  useDndMonitor({
+    onDragStart(event) {
+      console.log('onDragStart', event);
+      setDragging(true);
+    },
+    onDragEnd(event) {
+      console.log('onDragEnd', event);
+      setDragging(false);
+    },
+    onDragCancel(event) {
+      console.log('onDragCancel', event);
+      setDragging(false);
+    },
+  });
   return (
     <div ref={setNodeRef}
       className={cn("cursor-pointer flex items-center justify-center overflow-hidden relative h-[120px] w-[120px]", {
-        "z-10 border cursor-grab": isDragging,
+        "z-10 opacity-80 cursor-grab": isDragging,
         "z-1": !isDragging,
         "bg-card": !album,
       })}
@@ -41,16 +60,11 @@ export const SortableCell = ({ id, album }: SortableCellProps) => {
       {...attributes}
       {...listeners}>
       {album ? (
-        <Image
-          src={findLargestImage(album.image)}
-          alt={album.name}
-          width={120}
-          height={120}
-          className="object-cover w-full h-full"
-          unoptimized
-        />
+        <Album album={album} />
       ) : (
-        <span className="text-neutral-700 text-xs">Empty {id}</span>
+        <>
+          {dragging ? <span>Empty {id}</span> : <DroppableCell id={id} />}
+        </>
       )}
     </div>
   );

@@ -1,94 +1,168 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  DragEndEvent,
-} from "@dnd-kit/core";
-
-import {
-  arrayMove,
-  SortableContext,
-  rectSortingStrategy,
-} from "@dnd-kit/sortable";
-
-import { restrictToParentElement, restrictToWindowEdges } from "@dnd-kit/modifiers";
+import React, { useEffect } from "react";
 import { z } from "zod";
+import { useAtom } from "jotai";
+
+import { cn, getCellId } from "@/lib/utils";
 import { LastFmSearchAlbumSchema } from "@/lib/zod/schemas";
-import { cn } from "@/lib/utils";
+import { gridAlbumsAtom, gridSizeAtom } from "@/lib/store";
 import { SortableCell } from "./sortable-cell";
 
-export type TopsterGridAlbum = z.infer<typeof LastFmSearchAlbumSchema> | null;
+type TopsterGridAlbum = z.infer<typeof LastFmSearchAlbumSchema> | null;
 
-interface TopsterGridProps {
-  albums: TopsterGridAlbum[]; // length should be gridSize*gridSize
-  gridSize?: number;
-  onChange?: (albums: TopsterGridAlbum[]) => void;
-}
+const TEMP_DATA: TopsterGridAlbum[] = [
+  {
+    name: 'QALF infinity',
+    artist: 'Damso',
+    url: 'https://www.last.fm/music/Damso/QALF+infinity',
+    image: [
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/34s/d4587ce82b4a1106cdea7cefa3f93377.png',
+        size: 'small'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/64s/d4587ce82b4a1106cdea7cefa3f93377.png',
+        size: 'medium'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/174s/d4587ce82b4a1106cdea7cefa3f93377.png',
+        size: 'large'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/300x300/d4587ce82b4a1106cdea7cefa3f93377.png',
+        size: 'extralarge'
+      }
+    ]
+  },
+  {
+    name: 'Ipséité',
+    artist: 'Damso',
+    url: 'https://www.last.fm/music/Damso/Ips%C3%A9it%C3%A9',
+    image: [
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/34s/2f9701a77896ea4b01bac64b25c584a7.png',
+        size: 'small'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/64s/2f9701a77896ea4b01bac64b25c584a7.png',
+        size: 'medium'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/174s/2f9701a77896ea4b01bac64b25c584a7.png',
+        size: 'large'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/300x300/2f9701a77896ea4b01bac64b25c584a7.png',
+        size: 'extralarge'
+      }
+    ]
+  },
+  {
+    name: 'Lithopédion',
+    artist: 'Damso',
+    url: 'https://www.last.fm/music/Damso/Lithop%C3%A9dion',
+    image: [
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/34s/c5c694d3e96dbe60ef085bd42f9efa2b.png',
+        size: 'small'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/64s/c5c694d3e96dbe60ef085bd42f9efa2b.png',
+        size: 'medium'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/174s/c5c694d3e96dbe60ef085bd42f9efa2b.png',
+        size: 'large'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/300x300/c5c694d3e96dbe60ef085bd42f9efa2b.png',
+        size: 'extralarge'
+      }
+    ]
+  },
+  {
+    name: 'Batterie Faible',
+    artist: 'Damso',
+    url: 'https://www.last.fm/music/Damso/Batterie+Faible',
+    image: [
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/34s/630b2243ee46c108381c4f03e1da1644.png',
+        size: 'small'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/64s/630b2243ee46c108381c4f03e1da1644.png',
+        size: 'medium'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/174s/630b2243ee46c108381c4f03e1da1644.png',
+        size: 'large'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/300x300/630b2243ee46c108381c4f03e1da1644.png',
+        size: 'extralarge'
+      }
+    ]
+  },
+  {
+    name: 'QALF',
+    artist: 'Damso',
+    url: 'https://www.last.fm/music/Damso/QALF',
+    image: [
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/34s/83edbc1b3c6c5ef25c2debcdd551127d.png',
+        size: 'small'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/64s/83edbc1b3c6c5ef25c2debcdd551127d.png',
+        size: 'medium'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/174s/83edbc1b3c6c5ef25c2debcdd551127d.png',
+        size: 'large'
+      },
+      {
+        '#text': 'https://lastfm.freetls.fastly.net/i/u/300x300/83edbc1b3c6c5ef25c2debcdd551127d.png',
+        size: 'extralarge'
+      }
+    ]
+  },
+  null, null, null, null, null,
+  null, null, null, null, null,
+  null, null, null, null, null,
+  null, null, null, null, null,
+  null, null, null, null, null,
+]
 
-export function TopsterGrid({ albums, gridSize = 5, onChange }: TopsterGridProps) {
-  // Internal state for drag-and-drop
-  const [items, setItems] = useState<TopsterGridAlbum[]>(albums.slice(0, gridSize * gridSize));
+export const TopsterGrid = () => {
+  const [albums, setAlbums] = useAtom(gridAlbumsAtom);
+  const [gridSize] = useAtom(gridSizeAtom);
+
 
   useEffect(() => {
-    setItems(albums.slice(0, gridSize * gridSize));
-  }, [albums]);
+    setAlbums(TEMP_DATA.slice(0, gridSize * gridSize));
+  }, []);
 
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor)
-  );
-
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
-    if (over && active.id !== over.id) {
-      const oldIndex = items.findIndex((item, i) => (item ? item.url : `empty-${i}`) === active.id);
-      const newIndex = items.findIndex((item, i) => (item ? item.url : `empty-${i}`) === over.id);
-      const newItems = arrayMove(items, oldIndex, newIndex);
-      setItems(newItems);
-      onChange?.(newItems);
-    }
-  }
-
-  // Helper to get a unique id for each cell (album url or empty)
-  function getCellId(item: TopsterGridAlbum, idx: number) {
-    return item ? item.url : `empty-${idx}`;
-  }
 
   return (
-    <DndContext
-      sensors={sensors}
-      collisionDetection={closestCenter}
-      onDragEnd={handleDragEnd}
-      modifiers={[restrictToParentElement, restrictToWindowEdges]}
-    >
-      <SortableContext
-        items={items.map((item, idx) => getCellId(item, idx))}
-        strategy={rectSortingStrategy}
-      >
-        <div
-          className={cn("grid gap-1 bg-sidebar rounded-lg p-2 h-min max-w-full mx-auto my-auto", {
+    <div className="grow border border-red-500 flex overflow-y-scroll">
+      <div
+        className={cn("grid gap-1 bg-sidebar rounded-lg p-2 h-min max-w-full mx-auto my-auto", {
 
-          })}
-          style={{
-            gridTemplateColumns: `repeat(${gridSize}, minmax(0, 1fr))`,
-            gridTemplateRows: `repeat(${gridSize}, minmax(0, 1fr))`,
-          }}
-        >
-          {items.map((item, idx) => (
-            <SortableCell
-              key={getCellId(item, idx)}
-              id={getCellId(item, idx)}
-              album={item}
-            />
-          ))}
-        </div>
-      </SortableContext>
-    </DndContext>
+        })}
+        style={{
+          gridTemplateColumns: `repeat(${gridSize}, minmax(0, 1fr))`,
+          gridTemplateRows: `repeat(${gridSize}, minmax(0, 1fr))`,
+        }}
+      >
+        {albums.map((album, idx) => (
+          <SortableCell
+            key={getCellId(album, idx)}
+            id={getCellId(album, idx)}
+            album={album}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

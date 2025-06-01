@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge"
 import { LastFmImage } from "./zod/schemas";
 import { z } from "zod";
 
-import { Timeframe } from '@/lib/types';
+import { Timeframe, TopsterGridAlbum } from '@/lib/types';
 import { LastFmTopTracks } from '@/lib/zod/schemas';
 import { MIN } from "./constances";
 
@@ -101,3 +101,9 @@ export const copyImageToClipboard = async (link: string) => {
     console.error('Error copying image to clipboard:', error);
   }
 };
+
+
+// Helper to get a unique id for each cell (album url or empty)
+export function getCellId(item: TopsterGridAlbum, idx: number) {
+  return item ? item.url : `empty-${idx}`;
+}
