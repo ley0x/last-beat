@@ -7,7 +7,7 @@ type Props = {
 
 export const DroppableCell = ({ id }: Props) => {
   const { isOver, setNodeRef } = useDroppable({
-    id: 'droppable',
+    id: id,
   });
 
   const style = {
@@ -15,6 +15,6 @@ export const DroppableCell = ({ id }: Props) => {
   };
 
   return (
-    <span ref={setNodeRef} style={style} className="text-neutral-700 text-xs">Droppable {id}</span>
+    <span ref={setNodeRef} style={style} className="text-neutral-700 text-xs">Drop here</span>
   )
 }
