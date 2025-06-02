@@ -7,7 +7,7 @@ type Props = {
 }
 
 export const DroppableCell = ({ id }: Props) => {
-  const { setNodeRef, isOver } = useDroppable({
+  const { setNodeRef } = useDroppable({
     id: id,
   });
 
