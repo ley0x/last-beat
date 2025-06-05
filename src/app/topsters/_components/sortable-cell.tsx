@@ -17,6 +17,8 @@ import {
 import { z } from "zod";
 import { LastFmSearchAlbumSchema } from "@/lib/zod/schemas";
 import { DroppableCell } from "./droppable-cell";
+import { topsterHeightAtom, topsterWidthAtom } from "@/lib/store";
+import { useAtom } from "jotai";
 
 export const SortableCell = ({ id, album }: SortableCellProps) => {
   const {
@@ -32,13 +34,25 @@ export const SortableCell = ({ id, album }: SortableCellProps) => {
     transform: CSS.Transform.toString(transform),
     transition,
   };
-  
+
+  const [topsterWidth] = useAtom(topsterWidthAtom);
+  const [topsterHeight] = useAtom(topsterHeightAtom);
+
+  const max = Math.max(topsterWidth, topsterHeight);
+
   return (
     <div ref={setNodeRef}
-      className={cn("cursor-pointer flex items-center justify-center overflow-hidden relative h-[120px] w-[120px]", {
+      className={cn("cursor-pointer flex items-center justify-center overflow-hidden relative ", {
         "z-10 opacity-0 cursor-grab": isDragging,
         "z-1": !isDragging,
         "bg-card": !album,
+
+      }, {
+        "size-[60px]": [9, 10].includes(max),
+        "size-[80px]": [7, 8].includes(max),
+        "size-[100px]": [6, 7].includes(max),
+        "size-[120px]": [5, 4].includes(max),
+        "size-[140px]": [3, 2].includes(max)
       })}
       style={style}
       {...attributes}

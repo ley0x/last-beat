@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
   title: "LastBeat - Topsters",
@@ -17,12 +16,11 @@ export default async function RootLayout({
   return (<>
     <SidebarProvider>
       <AppSidebar />
-      <div className="w-full flex max-h-screen h-screen flex-col">
+      <div className="w-full flex max-h-svh h-svh flex-col">
         <Navbar />
-        <div className="flex flex-col grow overflow-hidden">
+        <div className="flex flex-col grow">
           {children}
         </div>
-        <Footer />
       </div>
     </SidebarProvider>
   </>);

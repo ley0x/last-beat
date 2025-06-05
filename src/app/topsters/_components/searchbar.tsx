@@ -41,7 +41,7 @@ export const SearchBar = ({ setAlbums }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex-shrink-0 w-full max-w-lg">
       <div className="flex rounded-md shadow-xs relative">
         <Input
           className="peer pe-9 -ms-px shadow-none focus-visible:z-10"

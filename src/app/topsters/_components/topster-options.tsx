@@ -1,0 +1,83 @@
+"use client";
+
+import { useEffect } from "react";
+
+import { Label } from "@/components/ui/label"
+import { Switch } from "@/components/ui/switch"
+import { useAtom } from "jotai";
+import { cn } from "@/lib/utils"
+import { Slider } from "@/components/ui/slider"
+import Divider from "@/components/_common/divider";
+import { gridAlbumsAtom, topsterHeightAtom, topsterRoundCornersAtom, topsterShowTitlesAtom, topsterTitleAtom, topsterWidthAtom } from "@/lib/store";
+
+import { Input } from "@/components/ui/input"
+
+export const TopsterOptions = () => {
+  const [showTitles, setShowTitles] = useAtom(topsterShowTitlesAtom);
+  const [roundCorners, setRoundCorners] = useAtom(topsterRoundCornersAtom);
+  const [topsterWidth, setTopsterWidth] = useAtom(topsterWidthAtom);
+  const [topsterHeight, setTopsterHeight] = useAtom(topsterHeightAtom);
+  const [topsterTitle, setTopsterTitle] = useAtom(topsterTitleAtom);
+  const [albums, setAlbums] = useAtom(gridAlbumsAtom);
+
+  useEffect(() => {
+    setAlbums([...albums, ...Array(topsterWidth * topsterHeight).fill(null)].slice(0, topsterWidth * topsterHeight));
+  }, [topsterWidth, topsterHeight]);
+
+  return (
+    <>
+      <div className="flex justify-between w-full flex-wrap gap-1">
+        <Label htmlFor="show-titles">Title</Label>
+        <Input className="w-min" type="title" value={topsterTitle} onChange={(e) => setTopsterTitle(e.target.value)} />
+      </div>
+      <Divider className="my-1" />
+      <div className="flex justify-between w-full flex-wrap gap-1">
+        <Label htmlFor="show-titles">Show titles</Label>
+        <Switch
+          id="show-titles"
+          onCheckedChange={() => setShowTitles(showTitles => !showTitles)}
+          checked={showTitles}
+        />
+      </div>
+      <Divider className="my-1" />
+      <div className="flex justify-between w-full flex-wrap gap-1">
+        <Label htmlFor="round-corners">Round corners</Label>
+        <Switch
+          id="round-corners"
+          onCheckedChange={() => setRoundCorners(roundCorners => !roundCorners)}
+          checked={roundCorners}
+        />
+      </div>
+      <Divider className="my-1" />
+      <div className="flex justify-between w-full flex-wrap gap-1">
+        <Label htmlFor="width">Width</Label>
+        <Slider
+          defaultValue={[5]}
+          value={[topsterWidth]}
+          id="width"
+          max={10}
+          min={2}
+          step={1}
+          className={cn("w-[60%]")}
+          onValueChange={(value) => setTopsterWidth(value[0])}
+        />
+        <span>{topsterWidth}</span>
+      </div>
+      <Divider className="my-1" />
+      <div className="flex justify-between w-full flex-wrap gap-1">
+        <Label htmlFor="height">Height</Label>
+        <Slider
+          defaultValue={[5]}
+          value={[topsterHeight]}
+          id="height"
+          max={10}
+          min={2}
+          step={1}
+          className={cn("w-[60%]")}
+          onValueChange={(value) => setTopsterHeight(value[0])}
+        />
+        <span>{topsterHeight}</span>
+      </div>
+    </>
+  );
+}

@@ -1,7 +1,17 @@
 "use client";
-import React, { useState } from 'react'
+
+import React, { useRef, useState } from 'react'
 import { useAtom } from 'jotai';
 import { z } from 'zod';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 import {
   DndContext,
@@ -16,22 +26,37 @@ import {
 } from "@dnd-kit/core";
 
 import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+import {
   arrayMove,
   SortableContext,
   rectSortingStrategy,
 } from "@dnd-kit/sortable";
 
-import { gridAlbumsAtom } from '@/lib/store';
+import { gridAlbumsAtom, topsterTitleAtom } from '@/lib/store';
 import { getCellId } from '@/lib/utils';
 import { LastFmSearchAlbumSchema } from '@/lib/zod/schemas';
 
-import { TopsterAlbumSearch } from './topster-album-search';
 import { TopsterGrid } from './topster-grid';
 import { Album } from './album';
+import { Titles } from './titles';
+import { TopsterSidebar } from './topster-sidebar';
+import Divider from '@/components/_common/divider';
+import { Button } from '@/components/ui/button';
+import { PlusIcon, Trash2 } from 'lucide-react';
+import { DownloadTopster } from './download-topster';
 
 export const TopsterDndContext = () => {
   const [albums, setAlbums] = useAtom(gridAlbumsAtom);
   const [activeItem, setActiveItem] = useState<z.infer<typeof LastFmSearchAlbumSchema> | null>(null);
+
+  const ref = useRef<HTMLDivElement>(null);
+  const [topsterTitle] = useAtom(topsterTitleAtom);
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor)
@@ -73,7 +98,6 @@ export const TopsterDndContext = () => {
       const albumData = active.data.current?.album;
       // check if mouse is really hovering over the grid
       const isHoveringOverGrid = over.id?.toString().startsWith("empty-");
-      console.log("hovering over grid", over.id);
       if (!isHoveringOverGrid) {
         return;
       }
@@ -98,8 +122,45 @@ export const TopsterDndContext = () => {
         items={albums.map((item, idx) => getCellId(item, idx))}
         strategy={rectSortingStrategy}
       >
-        <TopsterAlbumSearch />
-        <TopsterGrid />
+        <TopsterSidebar />
+        <section className="grow flex flex-col gap-2">
+          <header className="flex gap-2 flex-wrap">
+            <Button size="sm" variant="destructive" className="shrink-0 w-min">
+              <Trash2 />
+            </Button>
+            <Button size="sm" variant="ghost" className="shrink-0 w-min bg-input/30 border">
+              <PlusIcon />
+            </Button>
+            <Select>
+              <SelectTrigger className="grow">
+                <SelectValue placeholder="🔝 Select your topster" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Topsters</SelectLabel>
+                  <SelectItem value="apple">Topster 1</SelectItem>
+                  <SelectItem value="banana">Topster 2</SelectItem>
+                  <SelectItem value="blueberry">Topster 3</SelectItem>
+                  <SelectItem value="grapes">Topster 4</SelectItem>
+                  <SelectItem value="pineapple">Topster 5</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            <DownloadTopster elementRef={ref} />
+          </header>
+          <Card className="py-0 overflow-hidden" >
+            <section ref={ref} className=" bg-card py-2">
+              <CardHeader>
+                <CardTitle className="mx-auto">{topsterTitle}</CardTitle>
+                <Divider className="my-1" />
+              </CardHeader>
+              <CardContent className="flex items-start w-full gap-x-4 h-full">
+                <TopsterGrid />
+                <Titles />
+              </CardContent>
+            </section>
+          </Card>
+        </section>
       </SortableContext>
       <DragOverlay>
         {activeItem ? (
