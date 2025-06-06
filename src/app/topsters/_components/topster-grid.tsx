@@ -16,7 +16,7 @@ export const TopsterGrid = () => {
 
   return (
     <div
-      className={cn("relative grid gap-1 shadow h-min max-w-full")}
+      className={cn("grow relative grid gap-1 shadow h-min")}
       style={{
         gridTemplateColumns: `repeat(${topsterWidth}, minmax(0, 1fr))`,
         gridTemplateRows: `repeat(${topsterHeight}, minmax(0, 1fr))`,

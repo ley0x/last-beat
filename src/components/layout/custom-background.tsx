@@ -7,7 +7,7 @@ import { useAtom } from "jotai";
 export const CustomBackground = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   const [showGlowyBg] = useAtom(showGlowyBackgroundAtom);
   return (
-    <div className="relative min-h-screen w-full">
+    <div className="relative min-h-screen w-full h-screen overflow-x-hidden">
       {/* Noise overlay */}
       <div className="absolute inset-0 z-10 isolate pointer-events-none bg-background/70" />
       <div className="absolute inset-0 z-10 mix-blend-overlay opacity-30" style={{ backgroundImage: 'url("/noise.png")' }} />
@@ -22,7 +22,7 @@ export const CustomBackground = ({ children }: Readonly<{ children: React.ReactN
         </div>
       )}
       {/* Content */}
-      <div id="main-layout" className="relative z-20 overflow-y-scroll w-full flex flex-col">
+      <div id="main-layout" className="relative z-20 w-full h-full overflow-y-scroll overflow-x-hidden flex flex-col">
         {children}
       </div>
     </div>

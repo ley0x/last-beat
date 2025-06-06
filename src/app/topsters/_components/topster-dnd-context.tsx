@@ -1,18 +1,8 @@
 "use client";
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useAtom } from 'jotai';
 import { z } from 'zod';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-
 import {
   DndContext,
   closestCenter,
@@ -47,10 +37,40 @@ import { Album } from './album';
 import { Titles } from './titles';
 import { TopsterSidebar } from './topster-sidebar';
 import Divider from '@/components/_common/divider';
-import { Button } from '@/components/ui/button';
-import { PlusIcon, Trash2 } from 'lucide-react';
-import { DownloadTopster } from './download-topster';
+import { TopsterGridHeader } from './topster-grid-header';
 
+const AspectRatioDiv = ({ children }: { children: React.ReactNode }) => {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!divRef) return;
+    if (!divRef.current) return;
+    const aspectRatio = 16 / 9;
+    const updateHeight = () => {
+      const width = divRef?.current?.offsetWidth || 500;
+      const height = width / aspectRatio;
+      if (divRef?.current?.style?.height) {
+        divRef.current.style.height = `${height}px`;
+      }
+    };
+
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateHeight);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={divRef}
+      className="bg-red-500/20 w-full flex flex-col sm:flex-row aspect-w-16 aspect-h-9 overflow-hidden"
+    >
+      {children}
+    </div>
+  );
+};
 export const TopsterDndContext = () => {
   const [albums, setAlbums] = useAtom(gridAlbumsAtom);
   const [activeItem, setActiveItem] = useState<z.infer<typeof LastFmSearchAlbumSchema> | null>(null);
@@ -122,45 +142,26 @@ export const TopsterDndContext = () => {
         items={albums.map((item, idx) => getCellId(item, idx))}
         strategy={rectSortingStrategy}
       >
-        <TopsterSidebar />
-        <section className="grow flex flex-col gap-2">
-          <header className="flex gap-2 flex-wrap">
-            <Button size="sm" variant="destructive" className="shrink-0 w-min">
-              <Trash2 />
-            </Button>
-            <Button size="sm" variant="ghost" className="shrink-0 w-min bg-input/30 border">
-              <PlusIcon />
-            </Button>
-            <Select>
-              <SelectTrigger className="grow">
-                <SelectValue placeholder="🔝 Select your topster" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Topsters</SelectLabel>
-                  <SelectItem value="apple">Topster 1</SelectItem>
-                  <SelectItem value="banana">Topster 2</SelectItem>
-                  <SelectItem value="blueberry">Topster 3</SelectItem>
-                  <SelectItem value="grapes">Topster 4</SelectItem>
-                  <SelectItem value="pineapple">Topster 5</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-            <DownloadTopster elementRef={ref} />
-          </header>
-          <Card className="py-0 overflow-hidden" >
-            <section ref={ref} className=" bg-card py-2">
+        {/* topster  */}
+        <section className="grow border border-red-500 flex flex-col gap-2">
+          <TopsterGridHeader elementRef={ref} />
+          <Card className="py-0 overflow-hidden mx-auto w-full max-w-full" >
+            <section ref={ref} className="bg-card py-2">
               <CardHeader>
                 <CardTitle className="mx-auto">{topsterTitle}</CardTitle>
                 <Divider className="my-1" />
               </CardHeader>
-              <CardContent className="flex items-start w-full gap-x-4 h-full">
-                <TopsterGrid />
-                <Titles />
+              <CardContent className="flex justify-evenly w-full h-full">
+                <AspectRatioDiv>
+                  <TopsterGrid />
+                  <Titles />
+                </AspectRatioDiv>
               </CardContent>
             </section>
           </Card>
         </section>
+        {/* sidebar */}
+        <TopsterSidebar />
       </SortableContext>
       <DragOverlay>
         {activeItem ? (

@@ -18,13 +18,15 @@ export const DownloadTopster = ({ elementRef }: Props) => {
     setLoading(true);
 
     if (!elementRef.current) return;
-    toPng(elementRef.current, { cacheBust: true, pixelRatio: 2, skipFonts: true })
+    console.log(elementRef.current);
+    toPng(elementRef.current, { cacheBust: false, pixelRatio: 1, skipFonts: false })
       .then((dataUrl) => {
+        console.log(dataUrl);
         const name = `${slugify("topster", { lower: true })}-card.png`;
         download(dataUrl, name);
         setLoading(false);
       })
-      .catch(() => {
+      .catch((e) => {
         console.error("Error generating image");
         setLoading(false);
       });

@@ -1,0 +1,100 @@
+"use client";
+import Image from "next/image"
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
+
+import { Timeframe } from "@/lib/types";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import Divider from "@/components/_common/divider";
+import { LastFmTopAlbums } from "@/lib/zod/schemas";
+import { gridAlbumsAtom, topsterHeightAtom, topsterWidthAtom } from "@/lib/store";
+import { useAtom } from "jotai";
+import { useQuery } from "@tanstack/react-query";
+
+const fetchUserTopAlbums = async (username: string, timeframe: Timeframe, limit: number) => {
+  const url = new URL('/api/lastfm/top/albums', window.location.origin);
+  url.searchParams.set('q', encodeURIComponent(username));
+  url.searchParams.set('timeframe', encodeURIComponent(timeframe));
+  url.searchParams.set('limit', encodeURIComponent(limit.toString()));
+  url.searchParams.set('page', "1");
+  const res = await fetch(url.toString());
+
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+
+  const json = await res.json()
+  const data = LastFmTopAlbums.array().parse(json.data);
+  return data;
+}
+
+export const ImportLastfm = () => {
+  const [timeframe, setTimeframe] = useState<Timeframe>("1month");
+  const [height] = useAtom(topsterHeightAtom)
+  const [width] = useAtom(topsterWidthAtom)
+  const [, setAlbums] = useAtom(gridAlbumsAtom);
+  const username = "ley0x";
+
+  const { data: albums, refetch } = useQuery({
+    queryKey: ['top-albums', username, timeframe, height * width],
+    queryFn: () => fetchUserTopAlbums(username, timeframe, height * width),
+    enabled: false
+  });
+
+  const handleValueChange = (value: Timeframe) => {
+    setTimeframe(value);
+  }
+
+  useEffect(() => {
+    if (albums) {
+      setAlbums(albums.map((album) => ({ artist: album.artist.name, url: album.url, name: album.name, image: album.image })));
+    }
+  }, [albums]);
+
+  const handleImport = async () => {
+    await refetch();
+    if (albums === undefined) return;
+  }
+
+  return (
+    <Card className="gap-4">
+      <CardHeader>
+        <CardTitle>Import</CardTitle>
+        <CardDescription>
+          Import your last.fm most played albums.
+        </CardDescription>
+      </CardHeader>
+      <Divider className="my-0" />
+      <CardContent className="flex gap-2 min-h-[550px]">
+        <Select defaultValue={timeframe} onValueChange={handleValueChange}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Select a timeframe" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Select a timeframe</SelectLabel>
+              <SelectItem value="7day">7 days</SelectItem>
+              <SelectItem value="1month">1 month</SelectItem>
+              <SelectItem value="3month">3 months</SelectItem>
+              <SelectItem value="6month">6 months</SelectItem>
+              <SelectItem value="12month">12 months</SelectItem>
+              <SelectItem value="overall">Overall</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        <Button onClick={handleImport} size="sm" variant="secondary" className="hover:cursor-pointer">
+          <span>Import Last.fm</span>
+          <Image src="/providers/lastfm.png" width={20} height={20} alt="Last.fm logo" />
+        </Button>
+      </CardContent>
+    </Card>
+  )
+}

@@ -18,11 +18,11 @@ export const TopsterOptions = () => {
   const [topsterWidth, setTopsterWidth] = useAtom(topsterWidthAtom);
   const [topsterHeight, setTopsterHeight] = useAtom(topsterHeightAtom);
   const [topsterTitle, setTopsterTitle] = useAtom(topsterTitleAtom);
-  const [albums, setAlbums] = useAtom(gridAlbumsAtom);
+  const [, setAlbums] = useAtom(gridAlbumsAtom);
 
   useEffect(() => {
-    setAlbums([...albums, ...Array(topsterWidth * topsterHeight).fill(null)].slice(0, topsterWidth * topsterHeight));
-  }, [topsterWidth, topsterHeight]);
+    setAlbums((albums) => ([...albums, ...Array(topsterWidth * topsterHeight).fill(null)].slice(0, topsterWidth * topsterHeight)));
+  }, [topsterWidth, topsterHeight, setAlbums]);
 
   return (
     <>

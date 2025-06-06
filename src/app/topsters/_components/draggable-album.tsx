@@ -23,7 +23,7 @@ export const DraggableAlbum = ({ album, id }: Props) => {
     opacity: isDragging ? 0 : 1,
   };
   return (
-    <div ref={setNodeRef} className={cn({
+    <div ref={setNodeRef} className={cn("size-18", {
       // "cursor-grab": isDragging,
       // "cursor-pointer": !isDragging,
     })} style={style} {...listeners} {...attributes}>

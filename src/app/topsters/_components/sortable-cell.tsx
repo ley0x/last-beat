@@ -42,17 +42,17 @@ export const SortableCell = ({ id, album }: SortableCellProps) => {
 
   return (
     <div ref={setNodeRef}
-      className={cn("cursor-pointer flex items-center justify-center overflow-hidden relative ", {
+      className={cn("aspect-square cursor-pointer flex items-center justify-center overflow-hidden relative ", {
         "z-10 opacity-0 cursor-grab": isDragging,
         "z-1": !isDragging,
         "bg-card": !album,
 
       }, {
-        "size-[60px]": [9, 10].includes(max),
-        "size-[80px]": [7, 8].includes(max),
-        "size-[100px]": [6, 7].includes(max),
-        "size-[120px]": [5, 4].includes(max),
-        "size-[140px]": [3, 2].includes(max)
+        "size-[80px]": [9, 10].includes(max),
+        "size-[100px]": [7, 8].includes(max),
+        "size-[120px]": [6].includes(max),
+        "size-[140px]": [5, 4].includes(max),
+        "size-[160px]": [3, 2].includes(max)
       })}
       style={style}
       {...attributes}

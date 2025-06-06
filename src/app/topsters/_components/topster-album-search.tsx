@@ -22,7 +22,7 @@ export function TopsterAlbumSearch() {
       <Divider />
       <div className="flex-1 overflow-y-scroll overflow-x-clip">
         {albums && albums.length > 0 && (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
+          <div className="flex flex-wrap gap-1">
             {albums.filter(album => !topsterAlbums.some(topsterAlbum => topsterAlbum?.url === album.url)).map((album, index) => (
               <DraggableAlbum album={album} id={getCellId(album, index)} key={getCellId(album, index)} />
             ))}

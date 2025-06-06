@@ -16,6 +16,6 @@ export const DroppableCell = ({ id }: Props) => {
   });
 
   return (
-    <div className={cn("bg-accent-foreground/10 h-full w-full", topsterRoundCorners && "rounded")} ref={setNodeRef}></div>
+    <div className={cn("aspect-square bg-accent-foreground/10 h-full w-full", topsterRoundCorners && "rounded")} ref={setNodeRef}></div>
   )
 }
