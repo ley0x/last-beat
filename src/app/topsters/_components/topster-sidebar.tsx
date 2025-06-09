@@ -28,7 +28,7 @@ export function TopsterSidebar() {
           <TabsTrigger value="import" className="border-0 active:shadow"><Import /> Import</TabsTrigger>
         </TabsList>
         <TabsContent value="add-release">
-          <Card className="gap-4">
+          <Card className="bg-card/20 gap-4">
             <CardHeader>
               <CardTitle>Add release</CardTitle>
               <CardDescription>

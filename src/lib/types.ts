@@ -19,3 +19,5 @@ export type SearchAlbumsResponse = {
 
 
 export type TopsterGridAlbum = z.infer<typeof LastFmSearchAlbumSchema> | null;
+
+export type GridSize = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;

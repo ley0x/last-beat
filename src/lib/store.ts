@@ -1,7 +1,7 @@
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils'
 
-import { Alltracks, AvailableColors, AvailableShapes, AvailableTxtSizes, Timeframe, TopsterGridAlbum } from './types';
+import { Alltracks, AvailableColors, AvailableShapes, AvailableTxtSizes, GridSize, Timeframe, TopsterGridAlbum } from './types';
 import { z } from 'zod';
 import { GeniusSearchTrackSchema } from './zod/schemas';
 
@@ -43,7 +43,7 @@ export const lcLyricsBackground = atom<string | null>(null);
 export const gridAlbumsAtom = atomWithStorage<TopsterGridAlbum[]>("grid-albums", new Array(5 * 5).fill(null));
 export const topsterShowTitlesAtom = atomWithStorage<boolean>("topster-show-titles", false);
 export const topsterRoundCornersAtom = atomWithStorage<boolean>("topster-round-corners", true);
-export const topsterWidthAtom = atomWithStorage<number>("topster-width", 5);
-export const topsterHeightAtom = atomWithStorage<number>("topster-height", 5);
+export const topsterWidthAtom = atomWithStorage<GridSize>("topster-width", 5);
+export const topsterHeightAtom = atomWithStorage<GridSize>("topster-height", 5);
 export const topsterTitleAtom = atomWithStorage<string>("topster-title", "Default");
 

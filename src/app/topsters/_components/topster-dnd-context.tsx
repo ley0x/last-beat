@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useAtom } from 'jotai';
 import { z } from 'zod';
 import {
@@ -39,38 +39,6 @@ import { TopsterSidebar } from './topster-sidebar';
 import Divider from '@/components/_common/divider';
 import { TopsterGridHeader } from './topster-grid-header';
 
-const AspectRatioDiv = ({ children }: { children: React.ReactNode }) => {
-  const divRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!divRef) return;
-    if (!divRef.current) return;
-    const aspectRatio = 16 / 9;
-    const updateHeight = () => {
-      const width = divRef?.current?.offsetWidth || 500;
-      const height = width / aspectRatio;
-      if (divRef?.current?.style?.height) {
-        divRef.current.style.height = `${height}px`;
-      }
-    };
-
-    updateHeight();
-    window.addEventListener('resize', updateHeight);
-
-    return () => {
-      window.removeEventListener('resize', updateHeight);
-    };
-  }, []);
-
-  return (
-    <div
-      ref={divRef}
-      className="bg-red-500/20 w-full flex flex-col sm:flex-row aspect-w-16 aspect-h-9 overflow-hidden"
-    >
-      {children}
-    </div>
-  );
-};
 export const TopsterDndContext = () => {
   const [albums, setAlbums] = useAtom(gridAlbumsAtom);
   const [activeItem, setActiveItem] = useState<z.infer<typeof LastFmSearchAlbumSchema> | null>(null);
@@ -142,30 +110,41 @@ export const TopsterDndContext = () => {
         items={albums.map((item, idx) => getCellId(item, idx))}
         strategy={rectSortingStrategy}
       >
-        {/* topster  */}
-        <section className="grow border border-red-500 flex flex-col gap-2">
-          <TopsterGridHeader elementRef={ref} />
-          <Card className="py-0 overflow-hidden mx-auto w-full max-w-full" >
-            <section ref={ref} className="bg-card py-2">
-              <CardHeader>
-                <CardTitle className="mx-auto">{topsterTitle}</CardTitle>
-                <Divider className="my-1" />
-              </CardHeader>
-              <CardContent className="flex justify-evenly w-full h-full">
-                <AspectRatioDiv>
-                  <TopsterGrid />
-                  <Titles />
-                </AspectRatioDiv>
-              </CardContent>
-            </section>
-          </Card>
-        </section>
-        {/* sidebar */}
-        <TopsterSidebar />
+        {/* Main Layout Container */}
+        <div className="w-full min-h-screen flex flex-col lg:flex-row gap-4 p-4">
+          {/* Topster Section */}
+          <section className="flex-1 flex flex-col gap-2">
+            <TopsterGridHeader elementRef={ref} />
+            <Card className="overflow-hidden w-full pt-4 max-w-full">
+              <section ref={ref} className="bg-card">
+                <CardHeader className="gap-0">
+                  <CardTitle className="text-center text-lg md:text-xl lg:text-2xl">
+                    {topsterTitle}
+                  </CardTitle>
+                  <Divider className="mb-4 mt-2" />
+                </CardHeader>
+                <CardContent className="px-4">
+                  <div className="w-full mx-auto">
+                    <div className="flex flex-col lg:flex-row gap-2 sm:gap-4 justify-around items-center relative w-full">
+                      <TopsterGrid />
+                      <Titles />
+                    </div>
+                  </div>
+                </CardContent>
+              </section>
+            </Card>
+          </section>
+
+          {/* Sidebar */}
+          <aside className="w-full lg:w-80 xl:w-96 flex-shrink-0">
+            <TopsterSidebar />
+          </aside>
+        </div>
       </SortableContext>
+
       <DragOverlay>
         {activeItem ? (
-          <div className="h-[120px] w-[120px] opacity-80 shadow-lg">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 opacity-80 shadow-lg">
             <Album album={activeItem} />
           </div>
         ) : null}
