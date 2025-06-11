@@ -1,25 +1,17 @@
 import React from "react";
+import { CSS } from "@dnd-kit/utilities";
+import { useSortable } from "@dnd-kit/sortable";
+import { useAtom } from "jotai";
 
 import { cn } from "@/lib/utils";
-import { Album } from "./album";
-
-interface SortableCellProps {
-  id: string;
-  album: z.infer<typeof LastFmSearchAlbumSchema> | null;
-}
-
-import { CSS } from "@dnd-kit/utilities";
-
-import {
-  useSortable,
-} from "@dnd-kit/sortable";
-
-import { z } from "zod";
-import { LastFmSearchAlbumSchema } from "@/lib/zod/schemas";
-import { DroppableCell } from "./droppable-cell";
-import { useAtom } from "jotai";
 import { topsterHeightAtom, topsterWidthAtom } from "@/lib/store";
+import { SortableCellProps } from "../_types";
+import { Album } from "./album";
+import { DroppableCell } from "./droppable-cell";
 
+/**
+ * Sortable cell component that can contain an album or be empty (droppable)
+ */
 export const SortableCell = ({ id, album }: SortableCellProps) => {
   const {
     attributes,
@@ -30,29 +22,33 @@ export const SortableCell = ({ id, album }: SortableCellProps) => {
     isDragging,
   } = useSortable({ id });
 
+  const [topsterWidth] = useAtom(topsterWidthAtom);
+  const [topsterHeight] = useAtom(topsterHeightAtom);
+
+  const max = Math.max(topsterWidth, topsterHeight);
+
   const style: React.CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
   };
 
-  const [topsterWidth] = useAtom(topsterWidthAtom);
-  const [topsterHeight] = useAtom(topsterHeightAtom);
-  const min = Math.max(topsterWidth, topsterHeight);
+  const containerClasses = cn(
+    "aspect-square cursor-pointer flex items-center justify-center overflow-hidden relative",
+    {
+      "size-24 sm:size-32 max-w-full": max <= 5,
+      "size-full max-w-full max-h-full": max > 5,
+    },
+    {
+      "z-10 opacity-0 cursor-grab": isDragging,
+      "z-1": !isDragging,
+      "bg-card": !album,
+    }
+  );
+
   return (
     <div
       ref={setNodeRef}
-      className={cn(
-        "size-full max-h-36 aspect-square cursor-pointer flex items-center justify-center overflow-hidden relative",
-        {
-          "size-24 sm:size-32": min <= 5,
-          "size-full": min > 5,
-        },
-        {
-          "z-10 opacity-0 cursor-grab": isDragging,
-          "z-1": !isDragging,
-          "bg-card": !album,
-        }
-      )}
+      className={containerClasses}
       style={style}
       {...attributes}
       {...listeners}
@@ -64,4 +60,4 @@ export const SortableCell = ({ id, album }: SortableCellProps) => {
       )}
     </div>
   );
-} 
+}; 

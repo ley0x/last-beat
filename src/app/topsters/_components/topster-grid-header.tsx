@@ -21,11 +21,11 @@ export const TopsterGridHeader = ({ elementRef }: Props) => {
   return (
     <header className="flex gap-2 flex-wrap">
       <DeleteTopster />
-      <Button size="sm" variant="ghost" className="shrink-0 w-min bg-input/30 border">
+      <Button size="sm" variant="ghost" className="cursor-pointer shrink-0 w-min bg-input/30 border">
         <PlusIcon />
       </Button>
       <Select>
-        <SelectTrigger className="grow">
+        <SelectTrigger className="grow cursor-pointer">
           <SelectValue placeholder="🔝 Select your topster" />
         </SelectTrigger>
         <SelectContent>

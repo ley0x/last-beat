@@ -23,9 +23,9 @@ export function TopsterSidebar() {
     <div className="flex flex-col gap-6">
       <Tabs defaultValue="add-release" className="">
         <TabsList className="w-full bg-input/30 border">
-          <TabsTrigger value="add-release" className="border-0 active:shadow"><Disc3 /> Add release</TabsTrigger>
-          <TabsTrigger value="options" className="border-0 active:shadow"><Wrench /> Options</TabsTrigger>
-          <TabsTrigger value="import" className="border-0 active:shadow"><Import /> Import</TabsTrigger>
+          <TabsTrigger value="add-release" className="cursor-pointer border-0 active:shadow"><Disc3 /> Add release</TabsTrigger>
+          <TabsTrigger value="options" className="cursor-pointer border-0 active:shadow"><Wrench /> Options</TabsTrigger>
+          <TabsTrigger value="import" className="cursor-pointer border-0 active:shadow"><Import /> Import</TabsTrigger>
         </TabsList>
         <TabsContent value="add-release">
           <Card className="bg-card/20 gap-4">
@@ -42,7 +42,7 @@ export function TopsterSidebar() {
           </Card>
         </TabsContent>
         <TabsContent value="options">
-          <Card className="gap-4">
+          <Card className="gap-4 bg-card/20">
             <CardHeader>
               <CardTitle>Options</CardTitle>
               <CardDescription>
@@ -50,7 +50,7 @@ export function TopsterSidebar() {
               </CardDescription>
             </CardHeader>
             <Divider className="my-0" />
-            <CardContent className="flex flex-col gap-2 min-h-[550px]" >
+            <CardContent className="flex flex-col gap-2" >
               <TopsterOptions />
             </CardContent>
           </Card>

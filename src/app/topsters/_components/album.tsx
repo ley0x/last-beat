@@ -1,29 +1,34 @@
-import React from 'react'
+import React from 'react';
 import Image from "next/image";
-import { cn, findLargestImage } from '@/lib/utils';
-import { z } from 'zod';
-import { LastFmSearchAlbumSchema } from '@/lib/zod/schemas';
 import { useAtom } from 'jotai';
+
+import { cn, findLargestImage } from '@/lib/utils';
 import { topsterRoundCornersAtom } from '@/lib/store';
+import { AlbumProps } from '../_types';
 
-type TAlbum = z.infer<typeof LastFmSearchAlbumSchema>;
-
-type Props = {
-  album: TAlbum;
-}
-
-export const Album = ({ album }: Props) => {
+/**
+ * Album component that displays an album cover image
+ */
+export const Album = ({ album }: AlbumProps) => {
   const [topsterRoundCorners] = useAtom(topsterRoundCornersAtom);
+  
+  const imageClasses = cn(
+    "aspect-square object-cover w-full h-full",
+    {
+      "rounded": topsterRoundCorners
+    }
+  );
+
   return (
     <Image
       src={findLargestImage(album.image)}
-      alt={album.name}
+      alt={`${album.name} by ${album.artist}`}
       width={120}
       height={120}
-      className={cn("aspect-square object-cover w-full h-full", topsterRoundCorners && "rounded")}
+      className={imageClasses}
       loading="lazy"
       unoptimized
     />
-  )
-}
+  );
+};
 

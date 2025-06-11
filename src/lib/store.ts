@@ -42,6 +42,7 @@ export const lcLyricsBackground = atom<string | null>(null);
 // topsters
 export const gridAlbumsAtom = atomWithStorage<TopsterGridAlbum[]>("grid-albums", new Array(5 * 5).fill(null));
 export const topsterShowTitlesAtom = atomWithStorage<boolean>("topster-show-titles", false);
+export const topsterGapAtom = atomWithStorage<boolean>("topster-gap", true);
 export const topsterRoundCornersAtom = atomWithStorage<boolean>("topster-round-corners", true);
 export const topsterWidthAtom = atomWithStorage<GridSize>("topster-width", 5);
 export const topsterHeightAtom = atomWithStorage<GridSize>("topster-height", 5);

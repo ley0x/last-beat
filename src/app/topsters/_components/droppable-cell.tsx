@@ -1,21 +1,39 @@
 "use client";
-import React from 'react'
+import React from 'react';
 import { useDroppable } from '@dnd-kit/core';
-import { cn } from '@/lib/utils';
 import { useAtom } from 'jotai';
+import { cn } from '@/lib/utils';
 import { topsterRoundCornersAtom } from '@/lib/store';
-type Props = {
-  id: string;
-}
+import { DroppableCellProps } from '../_types';
+import { EMPTY_STATES } from '../_constants';
 
-export const DroppableCell = ({ id }: Props) => {
+import Image from "next/image";
 
+/**
+ * Droppable cell component that represents an empty grid slot
+ */
+export const DroppableCell = ({ id }: DroppableCellProps) => {
   const [topsterRoundCorners] = useAtom(topsterRoundCornersAtom);
   const { setNodeRef } = useDroppable({
     id: id,
   });
 
   return (
-    <div className={cn("aspect-square bg-accent-foreground/10 h-full w-full", topsterRoundCorners && "rounded")} ref={setNodeRef}></div>
-  )
-}
+    <Image
+      src="/placeholder.webp"
+      alt="Drop here"
+      width={120}
+      height={120}
+      className={cn(
+        "aspect-square border object-cover bg-accent-foreground/10 size-full",
+        {
+          "rounded": topsterRoundCorners
+        }
+      )}
+      loading="lazy"
+      unoptimized
+      title={EMPTY_STATES.dropHere}
+      ref={setNodeRef}
+    />
+  );
+};

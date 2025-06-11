@@ -1,50 +1,92 @@
 "use client";
 
 import React, { useState } from "react";
-import { z } from "zod";
-import { LastFmSearchAlbumSchema } from "@/lib/zod/schemas";
+import { useAtom } from "jotai";
 
+import { getCellId } from "@/lib/utils";
+import { gridAlbumsAtom } from "@/lib/store";
+import { Album } from "../_types";
+import { filterAvailableAlbums } from "../_utils";
+import { EMPTY_STATES } from "../_constants";
 import { SearchBar } from "./searchbar";
 import { DraggableAlbum } from "./draggable-album";
-import { getCellId } from "@/lib/utils";
-import { useAtom } from "jotai";
-import { gridAlbumsAtom } from "@/lib/store";
 
-export function TopsterAlbumSearch() {
-  const [albums, setAlbums] = useState<z.infer<typeof LastFmSearchAlbumSchema>[]>([]);
+/**
+ * Album search component that allows users to search and drag albums into the topster
+ */
+export const TopsterAlbumSearch = () => {
+  const [searchResults, setSearchResults] = useState<Album[]>([]);
   const [topsterAlbums] = useAtom(gridAlbumsAtom);
 
-  const filteredAlbums = albums.filter(album => 
-    !topsterAlbums.some(topsterAlbum => topsterAlbum?.url === album.url)
-  );
+  const availableAlbums = filterAvailableAlbums(searchResults, topsterAlbums);
 
   return (
-    <div className="flex flex-col h-full max-h-screen">
-      <div className="flex-shrink-0 p-3 border-b">
-        <SearchBar setAlbums={setAlbums} />
-      </div>
-      
-      <div className="flex-1 overflow-y-auto p-3">
-        {filteredAlbums.length > 0 ? (
-          <div className="flex flex-wrap gap-2 justify-start">
-            {filteredAlbums.map((album, index) => (
-              <DraggableAlbum 
-                album={album} 
-                id={getCellId(album, index)} 
-                key={getCellId(album, index)} 
-              />
-            ))}
-          </div>
-        ) : albums.length > 0 ? (
-          <div className="text-center text-muted-foreground py-8">
-            All albums are already in your topster
-          </div>
-        ) : (
-          <div className="text-center text-muted-foreground py-8">
-            Search for albums to add to your topster
-          </div>
-        )}
-      </div>
+    <div className="flex flex-col h-full overflow-hidden">
+      <SearchHeader setAlbums={setSearchResults} />
+      <SearchResults albums={availableAlbums} hasResults={searchResults.length > 0} />
     </div>
   );
-} 
+};
+
+/**
+ * Search header component containing the search bar
+ */
+interface SearchHeaderProps {
+  setAlbums: React.Dispatch<React.SetStateAction<Album[]>>;
+}
+
+const SearchHeader = ({ setAlbums }: SearchHeaderProps) => (
+  <div className="flex-shrink-0 p-3 border-b">
+    <SearchBar setAlbums={setAlbums} />
+  </div>
+);
+
+/**
+ * Search results component that displays available albums
+ */
+interface SearchResultsProps {
+  albums: Album[];
+  hasResults: boolean;
+}
+
+const SearchResults = ({ albums, hasResults }: SearchResultsProps) => (
+  <div className="flex-1 max-h-96 overflow-y-auto p-2">
+    {albums.length > 0 ? (
+      <AlbumGrid albums={albums} />
+    ) : (
+      <EmptyState hasResults={hasResults} />
+    )}
+  </div>
+);
+
+/**
+ * Grid of draggable albums
+ */
+interface AlbumGridProps {
+  albums: Album[];
+}
+
+const AlbumGrid = ({ albums }: AlbumGridProps) => (
+  <div className="flex flex-wrap justify-start gap-1">
+    {albums.map((album, index) => (
+      <DraggableAlbum
+        album={album}
+        id={getCellId(album, index)}
+        key={getCellId(album, index)}
+      />
+    ))}
+  </div>
+);
+
+/**
+ * Empty state component
+ */
+interface EmptyStateProps {
+  hasResults: boolean;
+}
+
+const EmptyState = ({ hasResults }: EmptyStateProps) => (
+  <div className="text-center text-muted-foreground py-8">
+    {hasResults ? EMPTY_STATES.allAdded : EMPTY_STATES.noResults}
+  </div>
+); 

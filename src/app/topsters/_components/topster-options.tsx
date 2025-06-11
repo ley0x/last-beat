@@ -8,7 +8,7 @@ import { useAtom } from "jotai";
 import { cn } from "@/lib/utils"
 import { Slider } from "@/components/ui/slider"
 import Divider from "@/components/_common/divider";
-import { gridAlbumsAtom, topsterHeightAtom, topsterRoundCornersAtom, topsterShowTitlesAtom, topsterTitleAtom, topsterWidthAtom } from "@/lib/store";
+import { gridAlbumsAtom, topsterGapAtom, topsterHeightAtom, topsterRoundCornersAtom, topsterShowTitlesAtom, topsterTitleAtom, topsterWidthAtom } from "@/lib/store";
 
 import { Input } from "@/components/ui/input"
 import { MAX_TOPSTER_HEIGHT, MAX_TOPSTER_WIDTH, MIN_TOPSTER_HEIGHT, MIN_TOPSTER_WIDTH } from "@/lib/constances";
@@ -21,6 +21,7 @@ export const TopsterOptions = () => {
   const [topsterHeight, setTopsterHeight] = useAtom(topsterHeightAtom);
   const [topsterTitle, setTopsterTitle] = useAtom(topsterTitleAtom);
   const [, setAlbums] = useAtom(gridAlbumsAtom);
+  const [topsterGaps, setTopsterGap] = useAtom(topsterGapAtom);
 
   useEffect(() => {
     setAlbums((albums) => ([...albums, ...Array(topsterWidth * topsterHeight).fill(null)].slice(0, topsterWidth * topsterHeight)));
@@ -34,20 +35,11 @@ export const TopsterOptions = () => {
       </div>
       <Divider className="my-1" />
       <div className="flex justify-between w-full flex-wrap gap-1">
-        <Label htmlFor="show-titles">Show titles</Label>
+        <Label htmlFor="show-titles">Show albums names</Label>
         <Switch
           id="show-titles"
           onCheckedChange={() => setShowTitles(showTitles => !showTitles)}
           checked={showTitles}
-        />
-      </div>
-      <Divider className="my-1" />
-      <div className="flex justify-between w-full flex-wrap gap-1">
-        <Label htmlFor="round-corners">Round corners</Label>
-        <Switch
-          id="round-corners"
-          onCheckedChange={() => setRoundCorners(roundCorners => !roundCorners)}
-          checked={roundCorners}
         />
       </div>
       <Divider className="my-1" />
@@ -65,7 +57,6 @@ export const TopsterOptions = () => {
         />
         <span>{topsterWidth}</span>
       </div>
-      <Divider className="my-1" />
       <div className="flex justify-between w-full flex-wrap gap-1">
         <Label htmlFor="height">Height</Label>
         <Slider
@@ -79,6 +70,23 @@ export const TopsterOptions = () => {
           onValueChange={(value: GridSize[]) => setTopsterHeight(value[0])}
         />
         <span>{topsterHeight}</span>
+      </div>
+      <Divider className="my-1" />
+      <div className="flex justify-between w-full flex-wrap gap-1">
+        <Label htmlFor="round-corners">Gaps</Label>
+        <Switch
+          id="gaps"
+          onCheckedChange={() => setTopsterGap(topsterGap => !topsterGap)}
+          checked={topsterGaps}
+        />
+      </div>
+      <div className="flex justify-between w-full flex-wrap gap-1">
+        <Label htmlFor="round-corners">Round corners</Label>
+        <Switch
+          id="round-corners"
+          onCheckedChange={() => setRoundCorners(roundCorners => !roundCorners)}
+          checked={roundCorners}
+        />
       </div>
     </>
   );

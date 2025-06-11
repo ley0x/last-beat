@@ -59,7 +59,7 @@ export const ImportLastfm = () => {
     if (albums) {
       setAlbums(albums.map((album) => ({ artist: album.artist.name, url: album.url, name: album.name, image: album.image })));
     }
-  }, [albums]);
+  }, [albums, setAlbums]);
 
   const handleImport = async () => {
     await refetch();
@@ -67,7 +67,7 @@ export const ImportLastfm = () => {
   }
 
   return (
-    <Card className="gap-4">
+    <Card className="gap-4 bg-card/20">
       <CardHeader>
         <CardTitle>Import</CardTitle>
         <CardDescription>
@@ -75,7 +75,7 @@ export const ImportLastfm = () => {
         </CardDescription>
       </CardHeader>
       <Divider className="my-0" />
-      <CardContent className="flex flex-col gap-2 min-h-[550px]">
+      <CardContent className="flex flex-col gap-2">
         <Input placeholder="Last.fm username" value={username} onChange={(e) => setUsername(e.target.value)} />
         <div className="w-full flex gap-2">
           <Select defaultValue={timeframe} onValueChange={handleValueChange}>
