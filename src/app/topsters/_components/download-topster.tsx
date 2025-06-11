@@ -27,7 +27,7 @@ export const DownloadTopster = ({ elementRef }: Props) => {
         setLoading(false);
       })
       .catch((e) => {
-        console.error("Error generating image");
+        console.error("Error generating image", e);
         setLoading(false);
       });
   };

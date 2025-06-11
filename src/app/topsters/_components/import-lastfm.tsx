@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/card"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
 
+import { Input } from "@/components/ui/input"
+
 import { Timeframe } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -41,7 +43,7 @@ export const ImportLastfm = () => {
   const [height] = useAtom(topsterHeightAtom)
   const [width] = useAtom(topsterWidthAtom)
   const [, setAlbums] = useAtom(gridAlbumsAtom);
-  const username = "ley0x";
+  const [username, setUsername] = useState<string>("");
 
   const { data: albums, refetch } = useQuery({
     queryKey: ['top-albums', username, timeframe, height * width],
@@ -73,27 +75,30 @@ export const ImportLastfm = () => {
         </CardDescription>
       </CardHeader>
       <Divider className="my-0" />
-      <CardContent className="flex gap-2 min-h-[550px]">
-        <Select defaultValue={timeframe} onValueChange={handleValueChange}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select a timeframe" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Select a timeframe</SelectLabel>
-              <SelectItem value="7day">7 days</SelectItem>
-              <SelectItem value="1month">1 month</SelectItem>
-              <SelectItem value="3month">3 months</SelectItem>
-              <SelectItem value="6month">6 months</SelectItem>
-              <SelectItem value="12month">12 months</SelectItem>
-              <SelectItem value="overall">Overall</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-        <Button onClick={handleImport} size="sm" variant="secondary" className="hover:cursor-pointer">
-          <span>Import Last.fm</span>
-          <Image src="/providers/lastfm.png" width={20} height={20} alt="Last.fm logo" />
-        </Button>
+      <CardContent className="flex flex-col gap-2 min-h-[550px]">
+        <Input placeholder="Last.fm username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <div className="w-full flex gap-2">
+          <Select defaultValue={timeframe} onValueChange={handleValueChange}>
+            <SelectTrigger className="grow">
+              <SelectValue placeholder="Select a timeframe" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Select a timeframe</SelectLabel>
+                <SelectItem value="7day">7 days</SelectItem>
+                <SelectItem value="1month">1 month</SelectItem>
+                <SelectItem value="3month">3 months</SelectItem>
+                <SelectItem value="6month">6 months</SelectItem>
+                <SelectItem value="12month">12 months</SelectItem>
+                <SelectItem value="overall">Overall</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <Button onClick={handleImport} size="sm" variant="secondary" className="hover:cursor-pointer">
+            <span>Import</span>
+            <Image src="/providers/lastfm.png" width={20} height={20} alt="Last.fm logo" />
+          </Button>
+        </div>
       </CardContent>
     </Card>
   )

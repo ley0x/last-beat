@@ -11,6 +11,8 @@ import Divider from "@/components/_common/divider";
 import { gridAlbumsAtom, topsterHeightAtom, topsterRoundCornersAtom, topsterShowTitlesAtom, topsterTitleAtom, topsterWidthAtom } from "@/lib/store";
 
 import { Input } from "@/components/ui/input"
+import { MAX_TOPSTER_HEIGHT, MAX_TOPSTER_WIDTH, MIN_TOPSTER_HEIGHT, MIN_TOPSTER_WIDTH } from "@/lib/constances";
+import { GridSize } from "@/lib/types";
 
 export const TopsterOptions = () => {
   const [showTitles, setShowTitles] = useAtom(topsterShowTitlesAtom);
@@ -55,11 +57,11 @@ export const TopsterOptions = () => {
           defaultValue={[5]}
           value={[topsterWidth]}
           id="width"
-          max={10}
-          min={2}
+          max={MAX_TOPSTER_WIDTH}
+          min={MIN_TOPSTER_WIDTH}
           step={1}
           className={cn("w-[60%]")}
-          onValueChange={(value) => setTopsterWidth(value[0])}
+          onValueChange={(value: GridSize[]) => setTopsterWidth(value[0])}
         />
         <span>{topsterWidth}</span>
       </div>
@@ -70,11 +72,11 @@ export const TopsterOptions = () => {
           defaultValue={[5]}
           value={[topsterHeight]}
           id="height"
-          max={10}
-          min={2}
+          max={MAX_TOPSTER_HEIGHT}
+          min={MIN_TOPSTER_HEIGHT}
           step={1}
           className={cn("w-[60%]")}
-          onValueChange={(value) => setTopsterHeight(value[0])}
+          onValueChange={(value: GridSize[]) => setTopsterHeight(value[0])}
         />
         <span>{topsterHeight}</span>
       </div>

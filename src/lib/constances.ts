@@ -58,3 +58,8 @@ export const shapeStyle = {
   horizontal: "w-96 h-72",
   vertical: "w-72 h-96",
 }
+
+export const MAX_TOPSTER_WIDTH = 10;
+export const MAX_TOPSTER_HEIGHT = 10;
+export const MIN_TOPSTER_WIDTH = 2;
+export const MIN_TOPSTER_HEIGHT = 2;
