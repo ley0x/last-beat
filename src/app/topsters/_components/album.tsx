@@ -11,17 +11,19 @@ import { AlbumProps } from '../_types';
  */
 export const Album = ({ album }: AlbumProps) => {
   const [topsterRoundCorners] = useAtom(topsterRoundCornersAtom);
+  const image = findLargestImage(album.image);
 
   return (
     <Image
-      src={findLargestImage(album.image)}
+      src={image === "#" ? "/placeholder.svg" : image}
       alt={`${album.name} by ${album.artist}`}
       width={120}
       height={120}
       className={cn(
-        "aspect-square object-scale-down w-full h-full",
+        "relative aspect-square object-scale-down w-full h-full",
         {
-          "rounded": topsterRoundCorners
+          "rounded": topsterRoundCorners,
+          "opacity-5": image === "#"
         }
       )}
       loading="lazy"

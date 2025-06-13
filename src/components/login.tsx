@@ -54,7 +54,7 @@ export function Login() {
             <FormItem>
               <FormLabel>Last.fm username</FormLabel>
               <FormControl>
-                <Input placeholder="ley0x" {...field} />
+                <Input placeholder="Last.fm username" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public last.fm username.
