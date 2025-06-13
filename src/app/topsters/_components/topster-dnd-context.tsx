@@ -22,7 +22,6 @@ import { TopsterGridHeader } from './topster-grid-header';
  */
 export const TopsterDndContext = () => {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [topsterTitle] = useAtom(topsterTitleAtom);
 
   const {
     albums,
@@ -46,7 +45,6 @@ export const TopsterDndContext = () => {
       >
         <MainLayout
           cardRef={cardRef}
-          topsterTitle={topsterTitle}
         />
       </SortableContext>
 
@@ -66,15 +64,17 @@ export const TopsterDndContext = () => {
  */
 interface MainLayoutProps {
   cardRef: React.RefObject<HTMLDivElement | null>;
-  topsterTitle: string;
 }
 
-const MainLayout = ({ cardRef, topsterTitle }: MainLayoutProps) => (
-  <div className="w-full min-h-screen flex flex-col lg:flex-row gap-4 p-4">
-    <TopsterSection cardRef={cardRef} title={topsterTitle} />
-    <SidebarSection />
-  </div>
-);
+const MainLayout = ({ cardRef }: MainLayoutProps) => {
+  const [topsterTitle] = useAtom(topsterTitleAtom);
+  return (
+    <div className="w-full flex flex-col lg:flex-row gap-4 px-4 py-1">
+      <TopsterSection cardRef={cardRef} title={topsterTitle} />
+      <SidebarSection />
+    </div>
+  );
+}
 
 /**
  * Topster section containing the grid and controls

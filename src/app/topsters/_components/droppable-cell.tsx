@@ -20,12 +20,12 @@ export const DroppableCell = ({ id }: DroppableCellProps) => {
 
   return (
     <Image
-      src="/placeholder.webp"
+      src="/placeholder.svg"
       alt="Drop here"
       width={120}
       height={120}
       className={cn(
-        "aspect-square border object-cover bg-accent-foreground/10 size-full",
+        "aspect-square opacity-10 border object-cover bg-accent-foreground/10 size-full",
         {
           "rounded": topsterRoundCorners
         }

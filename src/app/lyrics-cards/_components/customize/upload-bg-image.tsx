@@ -2,7 +2,7 @@ import { z } from "zod";
 import { arrayBufferToString } from "@/lib/utils";
 import { useAtom } from "jotai";
 import { lcLyricsBackground } from "@/lib/store";
-import { ImageUploader } from "@/features/image-uploader";
+import { ImageUploader } from "@/services/image-uploader";
 
 export const UploadBgImage = () => {
   const [, setSelectedImage] = useAtom(lcLyricsBackground);

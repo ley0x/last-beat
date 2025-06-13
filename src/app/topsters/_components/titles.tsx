@@ -21,7 +21,7 @@ export const Titles = () => {
             "flex text-xs sm:text-sm lg:text-md": total <= 25,
             "flex text-xs sm:text-sm lg:text-xs": total > 25 && total <= 50,
             "flex text-xs sm:text-sm lg:text-[0.45rem]": total > 50 && total <= 75,
-            "flex text-xs sm:text-sm lg:text-[0.40rem]": total > 75 && total <= 100
+            "flex text-xs sm:text-sm lg:text-[0.38rem]": total > 75 && total <= 100
           })}>
             <span className="font-bold text-muted-foreground w-min">{idx + 1}.</span>
             <span className="text-muted-foreground line-clamp-1 break-all">{album.artist}</span>

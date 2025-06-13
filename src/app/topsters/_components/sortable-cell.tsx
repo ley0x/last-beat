@@ -36,7 +36,7 @@ export const SortableCell = ({ id, album }: SortableCellProps) => {
     "aspect-square cursor-pointer flex items-center justify-center overflow-hidden relative",
     {
       "size-24 sm:size-32 max-w-full": max <= 5,
-      "size-full max-w-full max-h-full": max > 5,
+      "size-full object-cover max-w-full max-h-36": max > 5,
     },
     {
       "z-10 opacity-0 cursor-grab": isDragging,

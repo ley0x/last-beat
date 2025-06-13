@@ -11,13 +11,6 @@ import { AlbumProps } from '../_types';
  */
 export const Album = ({ album }: AlbumProps) => {
   const [topsterRoundCorners] = useAtom(topsterRoundCornersAtom);
-  
-  const imageClasses = cn(
-    "aspect-square object-cover w-full h-full",
-    {
-      "rounded": topsterRoundCorners
-    }
-  );
 
   return (
     <Image
@@ -25,7 +18,12 @@ export const Album = ({ album }: AlbumProps) => {
       alt={`${album.name} by ${album.artist}`}
       width={120}
       height={120}
-      className={imageClasses}
+      className={cn(
+        "aspect-square object-scale-down w-full h-full",
+        {
+          "rounded": topsterRoundCorners
+        }
+      )}
       loading="lazy"
       unoptimized
     />

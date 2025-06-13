@@ -79,7 +79,7 @@ export const ImportLastfm = () => {
         <Input placeholder="Last.fm username" value={username} onChange={(e) => setUsername(e.target.value)} />
         <div className="w-full flex gap-2">
           <Select defaultValue={timeframe} onValueChange={handleValueChange}>
-            <SelectTrigger className="grow">
+            <SelectTrigger className="grow cursor-pointer">
               <SelectValue placeholder="Select a timeframe" />
             </SelectTrigger>
             <SelectContent>
