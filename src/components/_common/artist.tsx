@@ -1,4 +1,4 @@
-import { LastFmTopArtists } from '@/lib/zod/schemas'
+import { LastFmTopArtists } from '@/lib/schemas'
 import React, { useEffect, useState } from 'react'
 import { z } from 'zod'
 

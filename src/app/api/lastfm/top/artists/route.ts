@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
-import { lastFmUserGetTopArtists } from '@/lib/lastfm';
-import { TimeframeSchema } from '@/lib/zod/schemas';
+import { LastFmTopArtists, TimeframeSchema } from '@/lib/schemas';
+import { environment } from '@/lib/env';
 
 export const dynamic = 'force-dynamic' // defaults to force-static
 
@@ -12,7 +12,20 @@ export async function GET(request: NextRequest): Promise<void | Response> {
     const timeframe = TimeframeSchema.parse(searchParams.get('timeframe') ?? "1month");
     const limit = z.number().parse(Number(searchParams.get('limit') ?? "10"));
     const page = z.number().parse(Number(searchParams.get('page') ?? "1"));
-    const topArtists = await lastFmUserGetTopArtists(q, timeframe, limit, page);
+    const args = {
+      user: q,
+      api_key: environment.LASTFM_API_KEY,
+      format: 'json',
+      method: 'user.getTopArtists',
+      period: timeframe,
+      limit: limit.toString(),
+      page: page.toString(),
+    }
+    const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
+    const data = await res.json();
+    const topArtists =  LastFmTopArtists.array().parse(data.topartists.artist);
 
     return Response.json({ success: true, data: topArtists, page, limit });
   } catch (e: Error | unknown) {

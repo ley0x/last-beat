@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { DeezerAlbumSchema } from "./zod/schemas";
+import { DeezerAlbumSchema } from "@/lib/schemas";
 
 export const deezerSearchAlbum = async (q: string): Promise<z.infer<typeof DeezerAlbumSchema>[]> => {
 

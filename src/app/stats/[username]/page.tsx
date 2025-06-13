@@ -6,26 +6,25 @@ import { Profile } from "@/components/profile";
 
 import { SelectTimeframe } from "@/components/top/select-timeframe";
 
-import {
-  lastFmUserGetFriends,
-  lastFmUserGetInfo,
-  lastFmUserGetTopTags,
-} from "@/lib/lastfm";
 import { TopContainer } from "@/components/top/top-container";
 
 import { ReactQueryProvider } from "@/components/_common/react-query-provider";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ComingSoon } from "@/components/_common/comming-soon";
+import { z } from "zod";
+import { LastFmTopTags, LastFmUserFriends, LastFmUserInfo, UsernameSchema } from "@/lib/schemas";
+import { environment } from "@/lib/env";
+
 export default async function Page({
   params,
 }: {
   params: Promise<{ username: string }>;
 }) {
-  const { username } = await params;
-  const profile = await lastFmUserGetInfo(username);
-  const friends = await lastFmUserGetFriends(username, 20);
-  const tags = await lastFmUserGetTopTags(username, "1month");
+  const { username } = z.object({ username: UsernameSchema }).parse(await params);
+  const profile = await fetch(`${environment.HOST}/api/lastfm/user/info?q=${username}`).then(res => res.json()).then(data => LastFmUserInfo.parse(data.data));
+  const friends = await fetch(`${environment.HOST}/api/lastfm/user/friends?q=${username}&limit=20`).then(res => res.json()).then(data => LastFmUserFriends.array().parse(data.data));
+  const tags = await fetch(`${environment.HOST}/api/lastfm/user/tags?q=${username}&timeframe=1month&limit=10`).then(res => res.json()).then(data => LastFmTopTags.array().parse(data.data));
 
   return (
     <Main className="flex-col">

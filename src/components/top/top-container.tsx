@@ -9,7 +9,7 @@ import { TopTracks } from "@/components/top/tracks/top-tracks"
 import { TopArtists } from "@/components/top/artists/top-artists"
 
 import { Friends } from "@/components/music/friends"
-import { LastFmUserFriends, LastFmTopTags } from "@/lib/zod/schemas";
+import { LastFmUserFriends, LastFmTopTags } from "@/lib/schemas";
 
 import Divider from "@/components/_common/divider"
 import { z } from "zod";

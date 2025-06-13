@@ -7,8 +7,8 @@ import { SearchIcon } from 'lucide-react';
 import { z } from 'zod';
 
 import { Input } from '@/components/ui/input';
-import { searchAlbums } from '../_actions/search-lastfm.action';
 import { SearchBarProps } from '../_types';
+import { fetchLastFmSearchAlbum } from '@/services/api/lastfm';
 
 interface SearchFormInputs {
   search: string;
@@ -33,7 +33,7 @@ export const SearchBar = ({ setAlbums }: SearchBarProps) => {
   const onSubmit: SubmitHandler<SearchFormInputs> = async (data) => {
     setAlbums([]);
     try {
-      const albums = await searchAlbums(data.search);
+      const albums = await fetchLastFmSearchAlbum(data.search);
       setAlbums(albums);
     } catch (error) {
       console.error('Search failed:', error);

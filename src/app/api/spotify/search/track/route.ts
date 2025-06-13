@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
-import { searchSpotifyTrack } from '@/lib/spotify';
+import { searchSpotifyTrack } from '@/services/api/spotify';
 
 export const dynamic = 'force-dynamic' // defaults to force-static
 

@@ -16,27 +16,11 @@ import { Timeframe } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Divider from "@/components/_common/divider";
-import { LastFmTopAlbums } from "@/lib/zod/schemas";
 import { gridAlbumsAtom, topsterHeightAtom, topsterWidthAtom } from "@/lib/store";
 import { useAtom } from "jotai";
 import { useQuery } from "@tanstack/react-query";
+import { fetchLastFmUserTopAlbums } from "@/services/api/lastfm";
 
-const fetchUserTopAlbums = async (username: string, timeframe: Timeframe, limit: number) => {
-  const url = new URL('/api/lastfm/top/albums', window.location.origin);
-  url.searchParams.set('q', encodeURIComponent(username));
-  url.searchParams.set('timeframe', encodeURIComponent(timeframe));
-  url.searchParams.set('limit', encodeURIComponent(limit.toString()));
-  url.searchParams.set('page', "1");
-  const res = await fetch(url.toString());
-
-  if (!res.ok) {
-    throw new Error(res.statusText);
-  }
-
-  const json = await res.json()
-  const data = LastFmTopAlbums.array().parse(json.data);
-  return data;
-}
 
 export const ImportLastfm = () => {
   const [timeframe, setTimeframe] = useState<Timeframe>("1month");
@@ -47,7 +31,7 @@ export const ImportLastfm = () => {
 
   const { data: albums, refetch } = useQuery({
     queryKey: ['top-albums', username, timeframe, height * width],
-    queryFn: () => fetchUserTopAlbums(username, timeframe, height * width),
+    queryFn: () => fetchLastFmUserTopAlbums(username, timeframe, height * width),
     enabled: false
   });
 

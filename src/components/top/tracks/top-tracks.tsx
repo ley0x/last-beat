@@ -15,10 +15,10 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 
-import { MAX, MIN } from '@/lib/constances';
+import { MAX, MIN } from '@/lib/constants';
 import { DataTable } from '@/components/table/data-table';
 import { TrackColumns } from './columns';
-import { fetchUserTopTracks } from '@/lib/utils';
+import { fetchLastFmUserTopTracks } from '@/services/api/lastfm';
 
 
 type Props = {
@@ -32,7 +32,7 @@ export const TopTracks = ({ username, viewMore }: Props) => {
   const [mode, setMode] = useState<"grid" | "list">("list");
 
   const [limit] = useState(viewMore ? MIN : MAX);
-  const { data: tracks, isPending, isError, error } = useQuery({ queryKey: ['top-tracks', username, timeframe, limit, page], queryFn: () => fetchUserTopTracks(username, timeframe, limit, page) });
+  const { data: tracks, isPending, isError, error } = useQuery({ queryKey: ['top-tracks', username, timeframe, limit, page], queryFn: () => fetchLastFmUserTopTracks(username, timeframe, limit, page) });
 
 
   if (isPending) {

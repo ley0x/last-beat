@@ -8,7 +8,7 @@ import { z } from "zod"
 import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { LastFmTopTracks, SpotifyTrackSchema } from "@/lib/zod/schemas"
+import { LastFmTopTracks, SpotifyTrackSchema } from "@/lib/schemas"
 import { beautifyNumber, cn, findLargestImage } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"

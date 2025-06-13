@@ -1,4 +1,4 @@
-import { LastFmTopAlbums } from '@/lib/zod/schemas'
+import { LastFmTopAlbums } from '@/lib/schemas'
 import React from 'react'
 import { z } from 'zod'
 

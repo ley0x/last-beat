@@ -1,33 +1,27 @@
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
-import { LastFmTopAlbums, TimeframeSchema } from '@/lib/schemas';
 import { environment } from '@/lib/env';
+import { LastFmAlbumSchema } from '@/lib/schemas';
 
 export const dynamic = 'force-dynamic' // defaults to force-static
 
 export async function GET(request: NextRequest): Promise<void | Response> {
   try {
     const { searchParams } = new URL(request.url);
-    const q = decodeURIComponent(z.string().min(2).max(200).trim().parse(searchParams.get('q')));
-    const timeframe = TimeframeSchema.parse(searchParams.get('timeframe') ?? "1month");
-    const limit = z.number().parse(Number(searchParams.get('limit') ?? "10"));
-    const page = z.number().parse(Number(searchParams.get('page') ?? "1"));
+    const mbid = decodeURIComponent(z.string().min(2).max(200).trim().parse(searchParams.get('q')));
     const args = {
-      user: q,
+      mbid: encodeURIComponent(mbid),
       api_key: environment.LASTFM_API_KEY,
       format: 'json',
-      method: 'user.getTopAlbums',
-      period: timeframe,
-      limit: limit.toString(),
-      page: page.toString(),
+      method: 'album.getinfo',
     }
     const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
     const data = await res.json();
-    const topAlbums = LastFmTopAlbums.array().parse(data.topalbums.album);
+    const album = LastFmAlbumSchema.parse(data.album);
 
-    return Response.json({ success: true, data: topAlbums, page, limit });
+    return Response.json({ success: true, data: album });
   } catch (e: Error | unknown) {
     if (e instanceof Error) return Response.json({ success: false, error: e.message });
     return Response.json({ success: false, error: e });

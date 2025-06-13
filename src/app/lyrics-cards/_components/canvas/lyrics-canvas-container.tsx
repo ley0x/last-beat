@@ -15,7 +15,7 @@ import { CanvasBackground } from './canvas-background';
 import { LyricsCanvas } from './lyrics-canvas';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { Watermark } from './watermark';
-import { bgColorMap, shapeStyle } from '@/lib/constances';
+import { bgColorMap, shapeStyle } from '@/lib/constants';
 
 export const LyricsCanvasContainer = () => {
 

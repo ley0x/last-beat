@@ -7,8 +7,9 @@ import { Wrapper } from "@/components/_common/wrapper"
 import { Profile } from "@/components/profile"
 import { SelectTimeframe } from "@/components/top/select-timeframe"
 import { TopAlbums } from "@/components/top/albums/top-albums"
+import { LastFmUserInfo } from "@/lib/schemas"
+import { environment } from "@/lib/env"
 
-import { lastFmUserGetInfo } from "@/lib/lastfm"
 
 export default async function Page({
   params,
@@ -17,7 +18,8 @@ export default async function Page({
 }) {
   const { username } = await params;
 
-  const data = await lastFmUserGetInfo(username)
+  const data = await fetch(`${environment.HOST}/api/lastfm/user/info?q=${username}`).then(res => res.json()).then(data => LastFmUserInfo.parse(data.data))
+
   return <Main className="flex-col">
     <Profile data={data} />
     <Wrapper className="flex-col gap-5 py-5">

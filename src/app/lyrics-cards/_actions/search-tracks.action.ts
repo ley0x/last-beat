@@ -1,7 +1,7 @@
 'use server';
 
-import { environment } from '@/lib/zod/environment';
-import { GeniusSearchTrackSchema } from '@/lib/zod/schemas';
+import { environment } from '@/lib/env';
+import { GeniusSearchTrackSchema } from '@/lib/schemas';
 import { z } from 'zod';
 
 export const searchTracks = async (query: string): Promise<z.infer<typeof GeniusSearchTrackSchema>[]> => {

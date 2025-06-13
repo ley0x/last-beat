@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { LastFmSearchAlbumSchema } from '@/lib/zod/schemas';
+import { LastFmSearchAlbumSchema } from '@/lib/schemas';
 
 // Core types
 export type Album = z.infer<typeof LastFmSearchAlbumSchema>;

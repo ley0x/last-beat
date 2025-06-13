@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { z } from 'zod';
 import slugify from 'slugify';
 
-import { DeezerAlbumSchema } from '@/lib/zod/schemas';
+import { DeezerAlbumSchema } from '@/lib/schemas';
 
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { DownloadBtn } from './download-btn';

@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { LastFmUserFriends } from '@/lib/zod/schemas';
+import { LastFmUserFriends } from '@/lib/schemas';
 import { z } from 'zod';
 import { Friend } from './friend';
 import Header from '../_common/header';

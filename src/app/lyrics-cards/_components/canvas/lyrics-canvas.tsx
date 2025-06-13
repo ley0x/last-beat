@@ -4,7 +4,7 @@ import { lcCenterText, lcSelectedLyrics, lcShowQuotes, lcTxtColor, lcTxtSize } f
 import { cn } from '@/lib/utils';
 
 import { Quote } from '@/components/_common/quote'
-import { bgColorMap, quoteMap, sizeMap } from '@/lib/constances';
+import { bgColorMap, quoteMap, sizeMap } from '@/lib/constants';
 import { LyricsCanvasAuthor } from './lyrics-canvas-author';
 
 export const LyricsCanvas = () => {

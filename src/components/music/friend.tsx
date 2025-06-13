@@ -1,4 +1,4 @@
-import { LastFmUserFriends } from '@/lib/zod/schemas'
+import { LastFmUserFriends } from '@/lib/schemas'
 import React from 'react'
 import { z } from 'zod'
 

@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { environment } from "./zod/environment";
-import { SpotifyAlbumSchema, SpotifyArtistSchema, SpotifyTrackSchema } from "./zod/schemas";
+import { environment } from "@/lib/env";
+import { SpotifyAlbumSchema, SpotifyArtistSchema, SpotifyTrackSchema } from "@/lib/schemas";
 
 export const getSpotifyAccessToken = async () => {
   const response = await fetch('https://accounts.spotify.com/api/token', {

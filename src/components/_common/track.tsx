@@ -1,4 +1,4 @@
-import { LastFmTopTracks, SpotifyTrackSchema } from '@/lib/zod/schemas'
+import { LastFmTopTracks, SpotifyTrackSchema } from '@/lib/schemas'
 import React, { useEffect, useState } from 'react'
 import { z } from 'zod'
 

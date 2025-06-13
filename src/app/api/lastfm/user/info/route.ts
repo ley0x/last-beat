@@ -1,30 +1,26 @@
-import { NextRequest } from 'next/server';
-import { z } from 'zod';
 import { environment } from '@/lib/env';
-import { LastFmTrackSchema } from '@/lib/schemas';
+import { LastFmUserInfo, UsernameSchema } from '@/lib/schemas';
+import { NextRequest } from 'next/server';
 
 export const dynamic = 'force-dynamic' // defaults to force-static
 
 export async function GET(request: NextRequest): Promise<void | Response> {
   try {
     const { searchParams } = new URL(request.url);
-    const track = decodeURIComponent(z.string().min(2).max(200).trim().parse(searchParams.get('track')));
-    const artist = decodeURIComponent(z.string().min(2).max(200).trim().parse(searchParams.get('artist')));
-
+    const username = decodeURIComponent(UsernameSchema.parse(searchParams.get('q')));
     const args = {
-      track,
-      artist,
-      api_key: environment.LASTFM_API_KEY,
-      format: 'json',
-      method: 'track.getinfo',
+        user: username,
+        api_key: environment.LASTFM_API_KEY,
+        format: 'json',
+        method: 'user.getInfo',
     }
     const url = `${environment.LASTFM_BASE_URL}/?${new URLSearchParams(args)}`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Error while fetching: ${res.status} - ${res.statusText}`);
     const data = await res.json();
-    const foundTrack = LastFmTrackSchema.parse(data.track);
+    const infos = LastFmUserInfo.parse(data.user);
 
-    return Response.json({ success: true, data: foundTrack });
+    return Response.json({ success: true, data: infos });
   } catch (e: Error | unknown) {
     if (e instanceof Error) return Response.json({ success: false, error: e.message });
     return Response.json({ success: false, error: e });

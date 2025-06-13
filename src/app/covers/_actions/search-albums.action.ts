@@ -1,10 +1,9 @@
 'use server';
 
-import { lastFmAlbumSearch } from "@/lib/lastfm";
-
 import { Provider, SearchAlbumsResponse } from "@/lib/types";
-import { deezerSearchAlbum } from "@/lib/deezer";
-import { spotifySearchAlbum } from "@/lib/spotify";
+import { deezerSearchAlbum } from "@/services/api/deezer";
+import { fetchLastFmSearchAlbum } from "@/services/api/lastfm";
+import { spotifySearchAlbum } from "@/services/api/spotify";
 
 
 export async function searchAlbums(q: string, provider: Provider): Promise<SearchAlbumsResponse> {
@@ -21,7 +20,7 @@ export async function searchAlbums(q: string, provider: Provider): Promise<Searc
       return { "spotify": data };
     }
     if (provider === "lastfm") {
-      const data = await lastFmAlbumSearch(q);
+      const data = await fetchLastFmSearchAlbum(q);
       return { "lastfm": data.filter(album => album.image.some(image => image['#text'].length > 0)) };
     }
     return { "deezer": [], "lastfm": [], "spotify": [] };

@@ -3,7 +3,7 @@
 import React from 'react'
 import Header from '@/components/_common/header';
 import { z } from 'zod';
-import { LastFmTopTags } from '@/lib/zod/schemas';
+import { LastFmTopTags } from '@/lib/schemas';
 
 import { Badge } from "@/components/ui/badge"
 import { useTimeframe } from '@/hooks/useTimeframe';

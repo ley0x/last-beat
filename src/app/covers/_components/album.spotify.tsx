@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { z } from 'zod';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { SpotifyAlbumSchema } from '@/lib/zod/schemas';
+import { SpotifyAlbumSchema } from '@/lib/schemas';
 import { DownloadBtn } from './download-btn';
 import slugify from 'slugify';
 import { CopyBtn } from './copy-btn';
