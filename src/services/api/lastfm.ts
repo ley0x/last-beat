@@ -30,6 +30,7 @@ export const fetchLastFmUserTopArtists = async (username: string, timeframe: Tim
   const res = await fetch(url.toString());
 
   if (!res.ok) {
+    console.error("Error fetching lastfm top artists", res.statusText);
     throw new Error(res.statusText);
   }
 

@@ -1,4 +1,4 @@
-import { LastFmTopTracks, SpotifyTrackSchema } from '@/lib/schemas'
+import { LastFmTopTracks } from '@/lib/schemas'
 import React, { useEffect, useState } from 'react'
 import { z } from 'zod'
 
@@ -9,31 +9,17 @@ import Header from './header';
 import { findLargestImage } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
 import { ArtistSkeleton } from '../music/artist-skeleton';
+import { fetchSearchSpotifyTrack } from '@/services/api/spotify';
 
 type Props = {
   track: z.infer<typeof LastFmTopTracks>
-}
-
-const search = async (track: string, artist: string) => {
-  const url = new URL('/api/spotify/search/track', window.location.origin);
-  url.searchParams.set('track', encodeURIComponent(track));
-  url.searchParams.set('artist', encodeURIComponent(artist));
-  const res = await fetch(url.toString());
-
-  if (!res.ok) {
-    throw new Error(res.statusText);
-  }
-
-  const json = await res.json();
-  const foundTrack = SpotifyTrackSchema.parse(json.data);
-  return foundTrack;
 }
 
 export const Track = ({ track }: Props) => {
 
   const [image, setImage] = useState(findLargestImage(track.image));
 
-  const { isPending, data } = useQuery({ queryKey: ['search-track', track.name, track.artist], queryFn: () => search(track.name, track.artist.name) });
+  const { isPending, data } = useQuery({ queryKey: ['search-track', track.name, track.artist], queryFn: () => fetchSearchSpotifyTrack(track.name, track.artist.name) });
 
   useEffect(() => {
     if (!!data) {

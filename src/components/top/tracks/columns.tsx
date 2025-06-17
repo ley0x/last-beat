@@ -8,30 +8,17 @@ import { z } from "zod"
 import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { LastFmTopTracks, SpotifyTrackSchema } from "@/lib/schemas"
+import { LastFmTopTracks } from "@/lib/schemas"
 import { beautifyNumber, cn, findLargestImage } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
 import { CoverCard } from "@/components/top/cover-card"
 import { useQuery } from "@tanstack/react-query"
 import { useFetchTracksPlaytime } from "@/hooks/use-track-playtime"
+import { fetchSearchSpotifyTrack } from "@/services/api/spotify"
 
 export type TracksTable = z.infer<typeof LastFmTopTracks>
 
-const search = async (track: string, artist: string) => {
-  const url = new URL('/api/spotify/search/track', window.location.origin);
-  url.searchParams.set('track', encodeURIComponent(track));
-  url.searchParams.set('artist', encodeURIComponent(artist));
-  const res = await fetch(url.toString());
-
-  if (!res.ok) {
-    throw new Error(res.statusText);
-  }
-
-  const json = await res.json();
-  const foundTrack = SpotifyTrackSchema.parse(json.data);
-  return foundTrack;
-}
 
 export const TrackColumns: ColumnDef<TracksTable>[] = [
   {
@@ -51,7 +38,7 @@ export const TrackColumns: ColumnDef<TracksTable>[] = [
       const track = row.original;
 
       const [image, setImage] = useState(findLargestImage(track.image));
-      const { data } = useQuery({ queryKey: ['search-track', track.name, track.artist], queryFn: () => search(track.name, track.artist.name) });
+      const { data } = useQuery({ queryKey: ['search-track', track.name, track.artist], queryFn: () => fetchSearchSpotifyTrack(track.name, track.artist.name) });
 
       useEffect(() => {
         if (!!data) {
@@ -193,7 +180,7 @@ export const TrackColumns: ColumnDef<TracksTable>[] = [
     cell: ({ row }) => {
 
       const track = row.original;
-      const { data } = useQuery({ queryKey: ['search-track', track.name, track.artist], queryFn: () => search(track.name, track.artist.name) });
+      const { data } = useQuery({ queryKey: ['search-track', track.name, track.artist], queryFn: () => fetchSearchSpotifyTrack(track.name, track.artist.name) });
 
       const duration = data?.duration_ms;
       const minutes = duration ? (Number(row.original.playcount) * (duration / 60000)) : Math.floor(Number(row.original.playcount) * Number(row.original.duration) / 60);

@@ -6,7 +6,7 @@ import { useAtom } from "jotai";
 import { cn, getCellId } from "@/lib/utils";
 import { gridAlbumsAtom, topsterGapAtom, topsterHeightAtom, topsterWidthAtom } from "@/lib/store";
 import { SortableCell } from "./sortable-cell";
-import { GRID_CLASSES } from "../_constants";
+import { GRID_CLASSES } from "@/lib/constants";
 
 /*
 * Topster grid component that displays albums in a sortable grid layout

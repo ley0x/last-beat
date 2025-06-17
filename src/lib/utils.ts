@@ -2,7 +2,7 @@ import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { LastFmImage } from "./schemas";
 import { z } from "zod";
-import { TopsterGridAlbum } from "./types";
+import { Album, TopsterAlbum, TopsterGridAlbum } from "./types";
 
 
 export function beautifyNumber(number: number): string {
@@ -85,3 +85,23 @@ export const copyImageToClipboard = async (link: string) => {
 export function getCellId(item: TopsterGridAlbum, idx: number) {
   return item ? item.url : `empty-${idx}`;
 }
+
+/**
+ * Finds the index of a cell by its ID
+ */
+export const findCellIndex = (albums: TopsterAlbum[], cellId: string): number => {
+  return albums.findIndex((item, i) => {
+    const expectedId = item ? item.url : `empty-${i}`;
+    return expectedId === cellId;
+  });
+};
+
+
+/**
+ * Filters out albums that are already in the grid
+ */
+export const filterAvailableAlbums = (searchResults: Album[], gridAlbums: TopsterAlbum[]): Album[] => {
+  return searchResults.filter(album =>
+    !gridAlbums.some(gridAlbum => gridAlbum?.url === album.url)
+  );
+};

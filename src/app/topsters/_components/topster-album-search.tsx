@@ -5,9 +5,9 @@ import { useAtom } from "jotai";
 
 import { getCellId } from "@/lib/utils";
 import { gridAlbumsAtom } from "@/lib/store";
-import { Album } from "../_types";
-import { filterAvailableAlbums } from "../_utils";
-import { EMPTY_STATES } from "../_constants";
+import { Album } from "@/lib/types";
+import { filterAvailableAlbums } from "@/lib/utils";
+import { EMPTY_STATES } from "@/lib/constants";
 import { SearchBar } from "./searchbar";
 import { DraggableAlbum } from "./draggable-album";
 

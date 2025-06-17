@@ -23,10 +23,12 @@ const search = async (artistName: string) => {
   const res = await fetch(url.toString());
 
   if (!res.ok) {
+    console.error("Error searching artist profile picture", res.statusText);
     throw new Error(res.statusText);
   }
 
   const json = await res.json()
+  console.log("json", json);
   const profilePicture = z.string().url().parse(json.data);
   return profilePicture;
 }

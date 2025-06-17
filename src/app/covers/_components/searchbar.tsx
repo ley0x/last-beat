@@ -13,8 +13,34 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 
 import { Provider, SearchAlbumsResponse } from '@/lib/types';
 
-import { searchAlbums } from '../_actions/search-albums.action';
+import { fetchDeezerSearchAlbum } from '@/services/api/deezer';
+import { fetchSpotifySearchAlbum } from '@/services/api/spotify';
+import { fetchLastFmSearchAlbum } from '@/services/api/lastfm';
 
+async function searchAlbums(q: string, provider: Provider): Promise<SearchAlbumsResponse> {
+  try {
+    if (!q) throw new Error('q parameter is required');
+    if (!provider) throw new Error('provider parameter is required');
+
+    if (provider === "deezer") {
+      const data = await fetchDeezerSearchAlbum(q);
+      return { "deezer": data };
+    }
+    if (provider === "spotify") {
+      const data = await fetchSpotifySearchAlbum(q);
+      return { "spotify": data };
+    }
+    if (provider === "lastfm") {
+      const data = await fetchLastFmSearchAlbum(q);
+      return { "lastfm": data.filter(album => album.image.some(image => image['#text'].length > 0)) };
+    }
+    return { "deezer": [], "lastfm": [], "spotify": [] };
+
+  } catch (e: Error | unknown) {
+    console.error('Error when searching albums:', e);
+    return { "deezer": [], "lastfm": [], "spotify": [] };
+  }
+}
 
 type Inputs = {
   search: string;

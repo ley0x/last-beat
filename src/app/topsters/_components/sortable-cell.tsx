@@ -5,7 +5,7 @@ import { useAtom } from "jotai";
 
 import { cn } from "@/lib/utils";
 import { topsterHeightAtom, topsterWidthAtom } from "@/lib/store";
-import { SortableCellProps } from "../_types";
+import { SortableCellProps } from "@/lib/types";
 import { Album } from "./album";
 import { DroppableCell } from "./droppable-cell";
 

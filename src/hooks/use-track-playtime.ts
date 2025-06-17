@@ -11,7 +11,7 @@ export const useFetchTracksPlaytime = ({tracks}: UseFetchTrackPlaytime) => {
 
     const [totalTime, setTotalTime] = useState(0);
     const search = async (track: string, artist: string) => {
-        const url = new URL('/api/spotify/search/track', window.location.origin);
+        const url = new URL('/api/spotify/search', window.location.origin);
         url.searchParams.set('track', encodeURIComponent(track));
         url.searchParams.set('artist', encodeURIComponent(artist));
         const res = await fetch(url.toString());

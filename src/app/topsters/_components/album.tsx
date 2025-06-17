@@ -4,7 +4,7 @@ import { useAtom } from 'jotai';
 
 import { cn, findLargestImage } from '@/lib/utils';
 import { topsterRoundCornersAtom } from '@/lib/store';
-import { AlbumProps } from '../_types';
+import { AlbumProps } from '@/lib/types';
 
 /**
  * Album component that displays an album cover image

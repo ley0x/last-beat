@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { topsterTitleAtom } from '@/lib/store';
 import { getCellId } from '@/lib/utils';
-import { useTopsterDnd } from '../_hooks/use-topster-dnd';
+import { useTopsterDnd } from '@/hooks/use-topster-dnd';
 
 import { TopsterGrid } from './topster-grid';
 import { Album } from './album';

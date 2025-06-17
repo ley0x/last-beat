@@ -1,7 +1,7 @@
 import Header from '@/components/_common/header';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
-import { useTimeframe } from '@/hooks/useTimeframe';
+import { useTimeframe } from '@/hooks/use-timeframe';
 
 import { useRouter } from 'next/navigation'
 import { useParams } from 'next/navigation'
