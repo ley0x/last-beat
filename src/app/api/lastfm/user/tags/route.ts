@@ -30,7 +30,7 @@ export async function GET(request: NextRequest): Promise<void | Response> {
 
     return Response.json({ success: true, data: tags });
   } catch (e: Error | unknown) {
-    if (e instanceof Error) return Response.json({ success: false, error: e.message });
-    return Response.json({ success: false, error: e });
+    if (e instanceof Error) return Response.json({ success: false, error: e.message }, { status: 500 });
+    return Response.json({ success: false, error: e }, { status: 500 });
   }
 }

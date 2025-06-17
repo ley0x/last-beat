@@ -39,7 +39,6 @@ export const fetchSpotifySearchAlbum = async (q: string): Promise<z.infer<typeof
   const url = new URL('/api/spotify/album/search', window.location.origin);
   url.searchParams.set('q', encodeURIComponent(q));
   const res = await fetch(url.toString());
-  console.log("res", res);
   if (!res.ok) throw new Error(res.statusText);
   const json = await res.json();
   const data = SpotifyAlbumSchema.array().parse(json.data);

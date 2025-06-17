@@ -17,10 +17,8 @@ export async function GET(request: NextRequest): Promise<void | Response> {
     if (!res.ok) throw new Error(res.statusText);
     let json = await res.json();
     const artists = SpotifyArtistSchema.array().parse(json.data);
-    console.log("artists", artists);
     if (artists.length === 0) throw new Error("No artist found");
     const artistID = artists[0].id;
-    console.log("artistId", artistID);
 
     // Fetching artist details on spotify
     res = await fetch(`${environment.HOST}/api/spotify/artist?q=${encodeURIComponent(artistID)}`);
@@ -30,11 +28,10 @@ export async function GET(request: NextRequest): Promise<void | Response> {
     const images = artist.images;
     if (images.length === 0) throw new Error("No artist profile picture found");
     const profilePicture = images[0].url;
-    console.log("profilePicture", profilePicture);
 
     return Response.json({ success: true, data: profilePicture });
   } catch (e: Error | unknown) {
-    if (e instanceof Error) return Response.json({ success: false, error: e.message });
-    return Response.json({ success: false, error: e });
+    if (e instanceof Error) return Response.json({ success: false, error: e.message }, { status: 500 });
+    return Response.json({ success: false, error: e }, { status: 500 });
   }
 }

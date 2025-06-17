@@ -28,7 +28,7 @@ export async function GET(request: NextRequest): Promise<void | Response> {
   try {
     const { searchParams } = new URL(request.url);
     const artist = decodeURIComponent(z.string().min(2).max(200).trim().parse(searchParams.get('artist')));
-    const name = decodeURIComponent(z.string().min(2).max(200).trim().parse(searchParams.get('track')));
+    const name = decodeURIComponent(z.string().min(2).max(200).trim().parse(searchParams.get('name')));
 
     const accessToken = await getSpotifyAccessToken();
     const args = {
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest): Promise<void | Response> {
 
     return Response.json({ success: true, data });
   } catch (e: Error | unknown) {
-    if (e instanceof Error) return Response.json({ success: false, error: e.message });
+    if (e instanceof Error) return Response.json({ success: false, error: e.message }, { status: 500 });
     return Response.json({ success: false, error: e }, { status: 500 });
   }
 }

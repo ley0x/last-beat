@@ -12,9 +12,7 @@ export const DeleteTopster = () => {
   const emptyGrid = Array(size).fill(null);
 
   const handleDelete = () => {
-    console.log("deleting");
     setAlbums(emptyGrid);
-    console.log(emptyGrid);
     setTopsterTitle("Untitled");
   };
 

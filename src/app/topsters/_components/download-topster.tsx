@@ -18,10 +18,8 @@ export const DownloadTopster = ({ elementRef }: Props) => {
     setLoading(true);
 
     if (!elementRef.current) return;
-    console.log(elementRef.current);
     toPng(elementRef.current, { cacheBust: false, pixelRatio: 1, skipFonts: false })
       .then((dataUrl) => {
-        console.log(dataUrl);
         const name = `${slugify("topster", { lower: true })}-card.png`;
         download(dataUrl, name);
         setLoading(false);

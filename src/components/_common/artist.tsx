@@ -28,7 +28,6 @@ const search = async (artistName: string) => {
   }
 
   const json = await res.json()
-  console.log("json", json);
   const profilePicture = z.string().url().parse(json.data);
   return profilePicture;
 }
