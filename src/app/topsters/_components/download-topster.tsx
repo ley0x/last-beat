@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button"
 import { Download, LoaderCircle } from "lucide-react"
 import { RefObject, useState } from 'react';
 
-import { toPng } from 'html-to-image';
+import { toJpeg } from 'html-to-image';
 import slugify from "slugify";
 
 import download from 'downloadjs';
+import { topsterTitleAtom } from "@/lib/store";
+import { useAtom } from "jotai";
 
 type Props = {
   elementRef: RefObject<HTMLDivElement | null>;
@@ -14,13 +16,15 @@ type Props = {
 
 export const DownloadTopster = ({ elementRef }: Props) => {
   const [loading, setLoading] = useState(false);
+  const [topsterName] = useAtom(topsterTitleAtom);
+
   const handleExport = () => {
     setLoading(true);
 
     if (!elementRef.current) return;
-    toPng(elementRef.current, { cacheBust: false, pixelRatio: 1, skipFonts: false })
+    toJpeg(elementRef.current, { cacheBust: false, pixelRatio: 1, skipFonts: true, quality: 1})
       .then((dataUrl) => {
-        const name = `${slugify("topster", { lower: true })}-card.png`;
+        const name = slugify(`${topsterName}-topster.jpeg`, { lower: true });
         download(dataUrl, name);
         setLoading(false);
       })
