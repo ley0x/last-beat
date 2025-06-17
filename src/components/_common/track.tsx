@@ -4,11 +4,12 @@ import { z } from 'zod'
 
 import Link from 'next/link'
 
+import { ArtistSkeleton } from '@/components/_common/artist-skeleton';
+
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import Header from './header';
 import { findLargestImage } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
-import { ArtistSkeleton } from '../music/artist-skeleton';
 import { fetchSearchSpotifyTrack } from '@/services/api/spotify';
 
 type Props = {

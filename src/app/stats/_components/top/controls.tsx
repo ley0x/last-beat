@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Grid3x3, Grip } from 'lucide-react';
-import { ShareStats } from '@/components/top/share-stats';
+import { ShareStats } from '@/app/stats/_components/top/share-stats';
 
 type Props = {
   setPage: React.Dispatch<React.SetStateAction<number>>;

@@ -4,8 +4,9 @@ import React from 'react'
 
 import { LastFmUserFriends } from '@/lib/schemas';
 import { z } from 'zod';
-import { Friend } from './friend';
-import Header from '../_common/header';
+
+import Header from '@/components/_common/header';
+import { Friend } from '@/app/stats/_components/music/friend';
 
 type Props = {
   username: string;

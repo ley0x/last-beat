@@ -2,8 +2,10 @@
 
 import React, { useState } from 'react'
 
-import { StatsContainer } from '@/components/music/stats-container';
-import { AlbumSkeleton } from '@/components/music/album-skeleton';
+import { StatsContainer } from '@/app/stats/_components/music/stats-container';
+import { AlbumSkeleton } from '@/components/_common/album-skeleton';
+import { DataTable } from '@/app/stats/_components/table/data-table';
+
 import { ErrorStatus } from '@/components/_common/error-status';
 import { Track } from '@/components/_common/track';
 
@@ -16,7 +18,6 @@ import {
 } from '@tanstack/react-query'
 
 import { MAX, MIN } from '@/lib/constants';
-import { DataTable } from '@/components/table/data-table';
 import { TrackColumns } from './columns';
 import { fetchLastFmUserTopTracks } from '@/services/api/lastfm';
 

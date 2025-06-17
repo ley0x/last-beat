@@ -10,7 +10,8 @@ import { cn, findLargestImage } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
 
 import { ErrorStatus } from '@/components/_common/error-status';
-import { ArtistSkeleton } from '../music/artist-skeleton';
+
+import { ArtistSkeleton } from '@/components/_common/artist-skeleton';
 
 type Props = {
   artist: z.infer<typeof LastFmTopArtists>;

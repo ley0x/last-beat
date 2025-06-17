@@ -5,7 +5,7 @@ import { useTimeframe } from '@/hooks/use-timeframe';
 
 import { useRouter } from 'next/navigation'
 import { useParams } from 'next/navigation'
-import { Controls } from '@/components/top/controls';
+import { Controls } from '@/app/stats/_components/top/controls';
 
 type Props = {
   children: React.ReactNode;

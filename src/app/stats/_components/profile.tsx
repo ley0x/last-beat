@@ -4,8 +4,8 @@ import { LastFmUserInfo } from '@/lib/schemas'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import React from 'react'
 import { z } from 'zod'
-import Header from './_common/header';
-import { Wrapper } from './_common/wrapper';
+import Header from '@/components/_common/header';
+import { Wrapper } from '@/components/_common/wrapper';
 import Link from 'next/link'
 import { beautifyNumber, findLargestImage } from '@/lib/utils';
 

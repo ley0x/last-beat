@@ -5,15 +5,16 @@ import { useAtom } from 'jotai';
 
 import { timeframeAtom } from '@/lib/store';
 import { Artist } from '@/components/_common/artist';
-import { StatsContainer } from '@/components/music/stats-container';
-import { ArtistSkeleton } from '@/components/music/artist-skeleton';
 import { ErrorStatus } from '@/components/_common/error-status';
+
+import { StatsContainer } from '@/app/stats/_components/music/stats-container';
+import { ArtistSkeleton } from '@/components/_common/artist-skeleton';
+import { DataTable } from '@/app/stats/_components/table/data-table';
 
 import {
   useQuery
 } from '@tanstack/react-query'
 
-import { DataTable } from '@/components/table/data-table';
 import { ArtistsColumns } from './columns';
 import { MAX, MIN } from '@/lib/constants';
 import { fetchLastFmUserTopArtists } from '@/services/api/lastfm';

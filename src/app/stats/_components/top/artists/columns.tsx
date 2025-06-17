@@ -1,22 +1,40 @@
 "use client"
 
-import { useState } from "react"
-import Link from "next/link"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 
 import { z } from "zod"
 import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { LastFmTopAlbums } from "@/lib/schemas"
+import { LastFmTopArtists } from "@/lib/schemas"
 import { cn, findLargestImage } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
-import { CoverCard } from "@/components/top/cover-card"
 
-export type AlbumsTable = z.infer<typeof LastFmTopAlbums>
+import { CoverCard } from "@/app/stats/_components/top/cover-card"
+import { ArtistSkeleton } from "@/components/_common/artist-skeleton"
 
-export const AlbumsColumns: ColumnDef<AlbumsTable>[] = [
+import { useQuery } from "@tanstack/react-query"
+import { ErrorStatus } from "@/components/_common/error-status"
+
+export type AlbumsTable = z.infer<typeof LastFmTopArtists>
+
+const search = async (artistName: string) => {
+  const url = new URL('/api/spotify/search/artist-profile-picture', window.location.origin);
+  url.searchParams.set('q', encodeURIComponent(artistName));
+  const res = await fetch(url.toString());
+
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+
+  const json = await res.json()
+  const profilePicture = z.string().url().parse(json.data);
+  return profilePicture;
+}
+
+export const ArtistsColumns: ColumnDef<AlbumsTable>[] = [
   {
     accessorKey: "image",
     header: () => {
@@ -28,15 +46,30 @@ export const AlbumsColumns: ColumnDef<AlbumsTable>[] = [
     },
     cell: ({ row }) => {
 
+      const artist = row.original;
       /* eslint-disable react-hooks/rules-of-hooks */
       const [show, setShow] = useState(false);
+      const [profilePicture, setProfilePicture] = useState(findLargestImage(artist.image));
+      const { isPending, isError, data } = useQuery({ queryKey: ['search-profile-picture', artist.name], queryFn: () => search(artist.name) });
 
-      const image = findLargestImage(row.original.image);
+      useEffect(() => {
+        if (!data) return;
+        setProfilePicture(data);
+      }, [data]);
+
+      if (isPending) {
+        return <ArtistSkeleton />
+      }
+
+      if (isError) {
+        return (<ErrorStatus message={"Artist not found"} />)
+      }
+
       return (
         <div className="w-fit">
-          <CoverCard url={findLargestImage(row.original.image)} show={show} setShow={setShow} />
+          <CoverCard url={profilePicture} show={show} setShow={setShow} />
           <Image
-            src={image === "#" ? "/placeholder.webp" : image}
+            src={profilePicture === "#" ? "/placeholder.webp" : profilePicture}
             onClick={() => setShow(!show)}
             width={50}
             height={50}
@@ -82,8 +115,8 @@ export const AlbumsColumns: ColumnDef<AlbumsTable>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "artist.name",
-    sortingFn: (a, b) => a.original.artist.name.localeCompare(b.original.artist.name),
+    accessorKey: "name",
+    sortingFn: (a, b) => a.original.name.localeCompare(b.original.name),
     header: ({ column }) => {
       const sorted = column.getIsSorted();
       return (
@@ -97,34 +130,12 @@ export const AlbumsColumns: ColumnDef<AlbumsTable>[] = [
     },
     cell: ({ row }) => {
       return (
-        <p>{row.original.artist.name ?? "-"}</p>
+        <p>{row.original.name ?? "-"}</p>
       )
     }
     ,
     enableSorting: true,
     enableHiding: true,
-  },
-  {
-    accessorKey: "name",
-    header: ({ column }) => {
-      const sorted = column.getIsSorted();
-      return (
-        <Button variant="ghost" className="flex justify-between w-full rounded-none cursor-pointer" onClick={() => column.toggleSorting()}>
-          <span>Album</span>
-          {sorted === false ? (
-            <ArrowDownUp />
-          ) : (sorted === "asc" ? <ArrowDown /> : <ArrowUp />)}
-        </Button>
-      )
-    },
-    cell: ({ row }) => {
-      return (
-        <Link href={row.original.url} rel="noreferrer" target="_blank" className="font-bold">{row.getValue("name")}</Link>
-      )
-    }
-    ,
-    enableSorting: true,
-    enableHiding: false,
   },
   {
     accessorKey: "playcount",
@@ -149,4 +160,35 @@ export const AlbumsColumns: ColumnDef<AlbumsTable>[] = [
     enableSorting: true,
     enableHiding: true,
   },
+  // {
+  //   accessorKey: "playtime",
+  //   sortingFn: (a, b) => Number(a.original.playcount) - Number(b.original.playcount),
+  //   header: ({ column }) => {
+  //     const sorted = column.getIsSorted();
+  //     return (
+  //       <Button variant="ghost" className="flex justify-around w-full rounded-none cursor-pointer" onClick={() => column.toggleSorting()}>
+  //         <span>Playcount</span>
+  //         {sorted === false ? (
+  //           <ArrowDownUp />
+  //         ) : (sorted === "asc" ? <ArrowDown /> : <ArrowUp />)}
+  //       </Button>
+  //     )
+  //   },
+  //   cell: ({ row }) => {
+
+  //     const [tracks] = useAtom(allTracksAtom);
+
+  //     const artist = row.original.name;
+  //     const filteredTracks = tracks?.filter((track) => track.artist.name === artist) ?? [];
+  //     const { minutes } = useFetchTracksPlaytime({tracks: filteredTracks});
+
+  //     if (!tracks) return (<p className="text-center text-lg">-</p>);
+  //     return (
+  //       <p className="text-center text-lg">{beautifyNumber(minutes)} minutes</p>
+  //     )
+  //   }
+  //   ,
+  //   enableSorting: true,
+  //   enableHiding: true,
+  // },
 ]

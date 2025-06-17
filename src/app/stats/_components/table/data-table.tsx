@@ -29,8 +29,9 @@ import {
 } from "@/components/ui/table"
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
-import { Button } from "../ui/button"
-import { Input } from "../ui/input"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]

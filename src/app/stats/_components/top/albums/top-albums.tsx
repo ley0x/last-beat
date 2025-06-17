@@ -9,11 +9,11 @@ import { timeframeAtom } from '@/lib/store';
 import {
   useQuery
 } from '@tanstack/react-query'
-import { AlbumSkeleton } from '@/components/music/album-skeleton';
-import { StatsContainer } from '@/components/music/stats-container';
+import { AlbumSkeleton } from '@/components/_common/album-skeleton';
+import { StatsContainer } from '@/app/stats/_components/music/stats-container';
 import { ErrorStatus } from '@/components/_common/error-status';
-import { DataTable } from '@/components/table/data-table';
-import { AlbumsColumns } from '@/components/top/albums/columns';
+import { DataTable } from '@/app/stats/_components/table/data-table';
+import { AlbumsColumns } from '@/app/stats/_components/top/albums/columns';
 import { MAX, MIN } from '@/lib/constants';
 import { fetchLastFmUserTopAlbums } from '@/services/api/lastfm';
 

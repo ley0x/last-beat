@@ -3,12 +3,13 @@ import { useFetchAllTracks } from "@/hooks/use-fetch-all-tracks";
 import { timeframeAtom } from "@/lib/store";
 import { useAtom } from "jotai";
 
-import { TopTags } from "@/components/top/tags/top-tags"
-import { TopAlbums } from "@/components/top/albums/top-albums"
-import { TopTracks } from "@/components/top/tracks/top-tracks"
-import { TopArtists } from "@/components/top/artists/top-artists"
+import { TopTags } from "@/app/stats/_components/top/tags/top-tags"
+import { TopAlbums } from "@/app/stats/_components/top/albums/top-albums"
+import { TopTracks } from "@/app/stats/_components/top/tracks/top-tracks"
+import { TopArtists } from "@/app/stats/_components/top/artists/top-artists"
 
-import { Friends } from "@/components/music/friends"
+import { Friends } from "@/app/stats/_components/music/friends"
+
 import { LastFmUserFriends, LastFmTopTags } from "@/lib/schemas";
 
 import Divider from "@/components/_common/divider"

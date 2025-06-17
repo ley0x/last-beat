@@ -1,17 +1,15 @@
 import Header from "@/components/_common/header";
 import { Main } from "@/components/_common/main";
 import { Wrapper } from "@/components/_common/wrapper";
-
-import { Profile } from "@/components/profile";
-
-import { SelectTimeframe } from "@/components/top/select-timeframe";
-
-import { TopContainer } from "@/components/top/top-container";
-
 import { ReactQueryProvider } from "@/components/_common/react-query-provider";
+import { ComingSoon } from "@/components/_common/comming-soon";
+
+import { Profile } from "@/app/stats/_components/profile";
+import { SelectTimeframe } from "@/app/stats/_components/top/select-timeframe";
+import { TopContainer } from "@/app/stats/_components/top/top-container";
+
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ComingSoon } from "@/components/_common/comming-soon";
 import { z } from "zod";
 import { LastFmTopTags, LastFmUserFriends, LastFmUserInfo, UsernameSchema } from "@/lib/schemas";
 import { environment } from "@/lib/env";
