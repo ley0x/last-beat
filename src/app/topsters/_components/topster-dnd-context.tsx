@@ -4,18 +4,20 @@ import React, { useRef } from 'react';
 import { useAtom } from 'jotai';
 import { DndContext, DragOverlay } from "@dnd-kit/core";
 import { SortableContext, rectSortingStrategy } from "@dnd-kit/sortable";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 
 import { topsterTitleAtom } from '@lib/store';
 import { getCellId } from '@lib/utils';
 import { useTopsterDnd } from '@hooks/use-topster-dnd';
 
-import { TopsterGrid } from './topster-grid';
-import { Album } from './album';
-import { Titles } from './titles';
-import { TopsterSidebar } from './topster-sidebar';
-import { TopsterGridHeader } from './topster-grid-header';
-import { Input } from '@/components/ui/input';
+import { TopsterGrid } from '@topsters/topster-grid';
+import { Album } from '@topsters/album';
+import { Titles } from '@topsters/titles';
+import { TopsterSidebar } from '@topsters/topster-sidebar';
+import { TopsterGridHeader } from '@topsters/topster-grid-header';
+
+import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card";
+import { Input } from '@components/ui/input';
 
 /**
  * Main container component that provides drag and drop context for the topster feature

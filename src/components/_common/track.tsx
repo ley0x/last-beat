@@ -4,13 +4,14 @@ import { z } from 'zod'
 
 import Link from 'next/link'
 
+import Header from '@common/header';
 import { ArtistSkeleton } from '@common/artist-skeleton';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
-import Header from './header';
+
 import { findLargestImage } from '@lib/utils';
 import { useQuery } from '@tanstack/react-query';
-import { fetchSearchSpotifyTrack } from '@/services/api/spotify';
+import { fetchSearchSpotifyTrack } from '@services/api/spotify';
 
 type Props = {
   track: z.infer<typeof LastFmTopTracks>

@@ -1,25 +1,31 @@
 "use client";
+
+import { useEffect, useState } from "react";
+
+import { useAtom } from "jotai";
+
+import { useQuery } from "@tanstack/react-query";
+
 import Image from "next/image"
 
+import Divider from "@common/divider";
+
+import { Button } from "@components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
+} from "@components/ui/card"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@components/ui/select"
 
-import { Input } from "@/components/ui/input"
+import { Input } from "@components/ui/input"
 
 import { Timeframe } from "@lib/types";
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import Divider from "@common/divider";
 import { gridAlbumsAtom, topsterHeightAtom, topsterWidthAtom } from "@lib/store";
-import { useAtom } from "jotai";
-import { useQuery } from "@tanstack/react-query";
-import { fetchLastFmUserTopAlbums } from "@/services/api/lastfm";
+
+import { fetchLastFmUserTopAlbums } from "@services/api/lastfm";
 
 
 export const ImportLastfm = () => {

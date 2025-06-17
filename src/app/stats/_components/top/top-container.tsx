@@ -1,19 +1,21 @@
 "use client";
-import { useFetchAllTracks } from "@hooks/use-fetch-all-tracks";
-import { timeframeAtom } from "@lib/store";
+
 import { useAtom } from "jotai";
 
-import { TopTags } from "@/app/stats/_components/top/tags/top-tags"
-import { TopAlbums } from "@/app/stats/_components/top/albums/top-albums"
-import { TopTracks } from "@/app/stats/_components/top/tracks/top-tracks"
-import { TopArtists } from "@/app/stats/_components/top/artists/top-artists"
+import { z } from "zod";
 
-import { Friends } from "@/app/stats/_components/music/friends"
+import { useFetchAllTracks } from "@hooks/use-fetch-all-tracks";
+import { timeframeAtom } from "@lib/store";
+
+import { TopTags } from "@stats/top/tags/top-tags"
+import { TopAlbums } from "@stats/top/albums/top-albums"
+import { TopTracks } from "@stats/top/tracks/top-tracks"
+import { TopArtists } from "@stats/top/artists/top-artists"
+import { Friends } from "@stats/music/friends"
 
 import { LastFmUserFriends, LastFmTopTags } from "@lib/schemas";
 
 import Divider from "@common/divider"
-import { z } from "zod";
 
 type TopContainerProps = {
   username: string;

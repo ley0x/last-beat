@@ -10,7 +10,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@components/ui/select"
 
 import { timeframeAtom } from "@lib/store";
 import { Timeframe } from "@lib/types";

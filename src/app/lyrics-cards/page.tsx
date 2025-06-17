@@ -2,21 +2,22 @@ import Header from "@common/header"
 import { Main } from "@common/main"
 
 import { ReactQueryProvider } from "@common/react-query-provider"
-import { TrackLyrics } from "./_components/track-lyrics"
 import { Wrapper } from "@common/wrapper"
-import { Search } from "./_components/search/search"
-import { LyricsCanvasContainer } from "./_components/canvas/lyrics-canvas-container"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { TrackLyrics } from "@lyrics-cards/track-lyrics"
+import { Search } from "@lyrics-cards/search/search"
+import { LyricsCanvasContainer } from "@lyrics-cards/canvas/lyrics-canvas-container"
+import { CustomizeCard } from "@lyrics-cards/customize/customize-card"
+import { ResetButton } from "@lyrics-cards/customize/reset-button"
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/ui/tabs"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { CustomizeCard } from "./_components/customize/customize-card"
-import { ResetButton } from "./_components/customize/reset-button"
+} from "@components/ui/card"
 
 export default async function Page() {
   return (

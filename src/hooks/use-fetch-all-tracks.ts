@@ -3,7 +3,7 @@ import { Alltracks, Timeframe } from "@lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { allTracksAtom } from "@lib/store";
-import { fetchLastFmUserTopTracks } from "@/services/api/lastfm";
+import { fetchLastFmUserTopTracks } from "@services/api/lastfm";
 
 type UseFetchAllTracksParams = {
     username: string;

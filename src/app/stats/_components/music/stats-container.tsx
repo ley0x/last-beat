@@ -1,11 +1,11 @@
 import Header from '@common/header';
-import { Button } from '@/components/ui/button';
+import { Button } from '@components/ui/button';
 import { Plus } from 'lucide-react';
 import { useTimeframe } from '@hooks/use-timeframe';
-
 import { useRouter } from 'next/navigation'
 import { useParams } from 'next/navigation'
-import { Controls } from '@/app/stats/_components/top/controls';
+
+import { Controls } from '@stats/top/controls';
 
 type Props = {
   children: React.ReactNode;

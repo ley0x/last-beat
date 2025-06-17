@@ -4,9 +4,9 @@ import { Main } from "@common/main"
 import { ReactQueryProvider } from "@common/react-query-provider"
 import { Wrapper } from "@common/wrapper"
 
-import { Profile } from "@/app/stats/_components/profile"
-import { SelectTimeframe } from "@/app/stats/_components/top/select-timeframe"
-import { TopTracks } from "@/app/stats/_components/top/tracks/top-tracks"
+import { Profile } from "@stats/profile"
+import { SelectTimeframe } from "@stats/top/select-timeframe"
+import { TopTracks } from "@stats/top/tracks/top-tracks"
 
 import { environment } from "@lib/env"
 import { LastFmUserInfo } from "@lib/schemas"

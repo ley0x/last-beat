@@ -1,14 +1,18 @@
 'use client';
 
-import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { SearchIcon } from 'lucide-react';
 import { z } from 'zod';
 
-import { Input } from '@/components/ui/input';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { SearchIcon } from 'lucide-react';
+
+import { Input } from '@components/ui/input';
+
 import { SearchBarProps } from '@lib/types';
-import { fetchLastFmSearchAlbum } from '@/services/api/lastfm';
+
+import { fetchLastFmSearchAlbum } from '@services/api/lastfm';
 
 interface SearchFormInputs {
   search: string;

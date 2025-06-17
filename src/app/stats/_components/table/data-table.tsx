@@ -5,7 +5,7 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@components/ui/dropdown-menu"
 
 import {
   ColumnDef,
@@ -26,12 +26,12 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@components/ui/table"
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@components/ui/button"
+import { Input } from "@components/ui/input"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]

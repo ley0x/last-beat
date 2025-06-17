@@ -10,9 +10,9 @@ import { ColumnDef } from "@tanstack/react-table"
 import { LastFmTopArtists } from "@lib/schemas"
 import { cn, findLargestImage } from "@lib/utils"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@components/ui/button"
 
-import { CoverCard } from "@/app/stats/_components/top/cover-card"
+import { CoverCard } from "@stats/top/cover-card"
 import { ArtistSkeleton } from "@common/artist-skeleton"
 
 import { useQuery } from "@tanstack/react-query"

@@ -3,11 +3,15 @@
 import React from 'react';
 import Image from 'next/image';
 import { z } from 'zod';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { SpotifyAlbumSchema } from '@lib/schemas';
-import { DownloadBtn } from './download-btn';
 import slugify from 'slugify';
-import { CopyBtn } from './copy-btn';
+
+import { Card, CardContent, CardFooter, CardHeader } from '@components/ui/card';
+
+import { SpotifyAlbumSchema } from '@lib/schemas';
+
+import { DownloadBtn } from '@covers/download-btn';
+import { CopyBtn } from '@covers/copy-btn';
+
 import Divider from '@common/divider';
 
 type Props = {

@@ -7,9 +7,9 @@ import { timeframeAtom } from '@lib/store';
 import { Artist } from '@common/artist';
 import { ErrorStatus } from '@common/error-status';
 
-import { StatsContainer } from '@/app/stats/_components/music/stats-container';
+import { StatsContainer } from '@stats/music/stats-container';
 import { ArtistSkeleton } from '@common/artist-skeleton';
-import { DataTable } from '@/app/stats/_components/table/data-table';
+import { DataTable } from '@stats/table/data-table';
 
 import {
   useQuery
@@ -17,7 +17,7 @@ import {
 
 import { ArtistsColumns } from './columns';
 import { MAX, MIN } from '@lib/constants';
-import { fetchLastFmUserTopArtists } from '@/services/api/lastfm';
+import { fetchLastFmUserTopArtists } from '@services/api/lastfm';
 
 type Props = {
   username: string

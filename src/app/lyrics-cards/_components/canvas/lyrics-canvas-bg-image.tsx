@@ -1,10 +1,11 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import Image from 'next/image';
 
-import { cn } from '@lib/utils';
-import { useAtom } from 'jotai';
 import { lcBlur, lcBrightness, lcGrayscale, lcOpacity, lcSelectedTrack, lcShowBgImage } from '@lib/store';
+
+import { cn } from '@lib/utils';
 
 export const LyricsCanvasBgImage = () => {
   const [selectedTrack] = useAtom(lcSelectedTrack);

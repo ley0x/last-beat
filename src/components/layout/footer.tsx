@@ -1,6 +1,7 @@
 import { Logo } from "@common/logo";
-import { Wrapper } from "../_common/wrapper";
-import BackToTop from "./back-to-top";
+import { Wrapper } from "@common/wrapper";
+
+import BackToTop from "@layout/back-to-top";
 
 export const Footer = () => {
 

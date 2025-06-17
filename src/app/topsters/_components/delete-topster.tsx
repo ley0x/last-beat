@@ -1,7 +1,10 @@
-import { Button } from "@/components/ui/button"
-import { gridAlbumsAtom, topsterHeightAtom, topsterTitleAtom, topsterWidthAtom } from "@lib/store";
-import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react"
+
+import { useAtom } from "jotai";
+
+import { Button } from "@components/ui/button"
+
+import { gridAlbumsAtom, topsterHeightAtom, topsterTitleAtom, topsterWidthAtom } from "@lib/store";
 
 export const DeleteTopster = () => {
   const [, setAlbums] = useAtom(gridAlbumsAtom);

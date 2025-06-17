@@ -1,6 +1,7 @@
-import { Disc3 } from 'lucide-react'
-import React from 'react'
+import { Disc3 } from "lucide-react"
+
 import Link from "next/link"
+
 import { cn } from '@lib/utils';
 
 type Props = {

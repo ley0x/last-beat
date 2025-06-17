@@ -1,15 +1,17 @@
 'use client';
 
-import { lcBgColor, lcBlur, lcBrightness, lcCenterText, lcGrayscale, lcOpacity, lcShape, lcShowBgImage, lcShowCredits, lcShowQuotes, lcShowWatermark, lcTxtColor, lcTxtSize } from '@lib/store';
 import { useAtom } from 'jotai';
+
+import { lcBgColor, lcBlur, lcBrightness, lcCenterText, lcGrayscale, lcOpacity, lcShape, lcShowBgImage, lcShowCredits, lcShowQuotes, lcShowWatermark, lcTxtColor, lcTxtSize } from '@lib/store';
 
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { Button } from '@/components/ui/button';
+} from "@components/ui/tooltip"
+
+import { Button } from '@components/ui/button';
 
 export const ResetButton = () => {
 

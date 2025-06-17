@@ -1,10 +1,12 @@
-import React from 'react';
 import { useAtom } from 'jotai';
-import { lcCenterText, lcSelectedLyrics, lcShowQuotes, lcTxtColor, lcTxtSize } from '@lib/store';
+
 import { cn } from '@lib/utils';
+
+import { lcCenterText, lcSelectedLyrics, lcShowQuotes, lcTxtColor, lcTxtSize } from '@lib/store';
 
 import { Quote } from '@common/quote'
 import { bgColorMap, quoteMap, sizeMap } from '@lib/constants';
+
 import { LyricsCanvasAuthor } from './lyrics-canvas-author';
 
 export const LyricsCanvas = () => {

@@ -1,4 +1,6 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@components/ui/button"
+import { PlusIcon } from "lucide-react"
+
 import {
   Select,
   SelectContent,
@@ -7,11 +9,11 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { PlusIcon } from "lucide-react"
-import { DownloadTopster } from "./download-topster"
+} from "@components/ui/select"
+
+import { DownloadTopster } from "@topsters/download-topster"
+import { DeleteTopster } from "@topsters/delete-topster"
 import { RefObject } from "react"
-import { DeleteTopster } from "./delete-topster"
 
 type Props = {
   elementRef: RefObject<HTMLDivElement | null>;

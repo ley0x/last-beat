@@ -1,14 +1,17 @@
 "use client";
-import { Button } from "@/components/ui/button"
-import { Download, LoaderCircle } from "lucide-react"
 import { RefObject, useState } from 'react';
+import { useAtom } from "jotai";
+
+import { Download, LoaderCircle } from "lucide-react"
+
+import { Button } from "@components/ui/button"
 
 import { toJpeg } from 'html-to-image';
 import slugify from "slugify";
 
 import download from 'downloadjs';
+
 import { topsterTitleAtom } from "@lib/store";
-import { useAtom } from "jotai";
 
 type Props = {
   elementRef: RefObject<HTMLDivElement | null>;

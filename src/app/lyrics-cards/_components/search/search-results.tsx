@@ -9,9 +9,9 @@ import { getLyricsAction } from "../../_actions/fetch-lyrics.action";
 import { lcSelectedTrack, lcTrackLyrics } from "@lib/store";
 import { GeniusSearchTrackSchema } from "@lib/schemas";
 
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@components/ui/skeleton";
 import Divider from "@common/divider";
-import { Button } from "@/components/ui/button";
+import { Button } from "@components/ui/button";
 
 type Props = {
   loading: boolean;

@@ -11,11 +11,11 @@ import { ColumnDef } from "@tanstack/react-table"
 import { LastFmTopTracks } from "@lib/schemas"
 import { beautifyNumber, cn, findLargestImage } from "@lib/utils"
 
-import { Button } from "@/components/ui/button"
-import { CoverCard } from "@/app/stats/_components/top/cover-card"
+import { Button } from "@components/ui/button"
+import { CoverCard } from "@stats/top/cover-card"
 import { useQuery } from "@tanstack/react-query"
 import { useFetchTracksPlaytime } from "@hooks/use-track-playtime"
-import { fetchSearchSpotifyTrack } from "@/services/api/spotify"
+import { fetchSearchSpotifyTrack } from "@services/api/spotify"
 
 export type TracksTable = z.infer<typeof LastFmTopTracks>
 

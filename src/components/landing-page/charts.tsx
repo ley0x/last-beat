@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Wrapper } from "../_common/wrapper";
+
+import { Wrapper } from "@common/wrapper";
 
 export const Charts = () => {
   return (

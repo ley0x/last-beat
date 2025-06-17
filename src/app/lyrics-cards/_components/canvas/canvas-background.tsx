@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { lcLyricsBackground } from "@lib/store";
 import { useAtom } from "jotai";
+
+import { lcLyricsBackground } from "@lib/store";
 
 import { LyricsCanvasBgImage } from './lyrics-canvas-bg-image';
 

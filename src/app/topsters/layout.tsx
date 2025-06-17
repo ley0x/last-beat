@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { SidebarProvider } from "@/components/ui/sidebar"
+
+import { SidebarProvider } from "@components/ui/sidebar"
+
 import { AppSidebar } from "@layout/app-sidebar";
 import { Navbar } from "@layout/navbar";
 

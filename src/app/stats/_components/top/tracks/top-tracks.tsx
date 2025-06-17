@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react'
 
-import { StatsContainer } from '@/app/stats/_components/music/stats-container';
+import { StatsContainer } from '@stats/music/stats-container';
 import { AlbumSkeleton } from '@common/album-skeleton';
-import { DataTable } from '@/app/stats/_components/table/data-table';
+import { DataTable } from '@stats/table/data-table';
 
 import { ErrorStatus } from '@common/error-status';
 import { Track } from '@common/track';
@@ -19,7 +19,7 @@ import {
 
 import { MAX, MIN } from '@lib/constants';
 import { TrackColumns } from './columns';
-import { fetchLastFmUserTopTracks } from '@/services/api/lastfm';
+import { fetchLastFmUserTopTracks } from '@services/api/lastfm';
 
 
 type Props = {

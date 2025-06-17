@@ -12,8 +12,9 @@ import { GeniusSearchTrackSchema } from '@lib/schemas';
 import { lcSelectedLyrics, lcSelectedTrack, lcTrackLyrics } from "@lib/store";
 
 import { searchTracks } from '../../_actions/search-tracks.action';
-import { Input } from '@/components/ui/input';
-import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
+
+import { Input } from '@components/ui/input';
+import { HoverBorderGradient } from '@components/ui/hover-border-gradient';
 
 type Inputs = {
   search: string;

@@ -1,4 +1,4 @@
-import { AvailableColors, AvailableTxtSizes, GridDimension } from "./types";
+import { AvailableColors, AvailableTxtSizes, GridDimension } from "@lib/types";
 
 export const MIN = 8;
 export const MAX = 80;

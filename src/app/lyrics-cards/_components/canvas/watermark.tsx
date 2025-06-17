@@ -1,9 +1,11 @@
 'use client';
 
-import { lcShowWatermark } from '@lib/store';
-import { cn } from '@lib/utils';
 import { useAtom } from 'jotai';
 import Image from 'next/image';
+
+import { cn } from '@lib/utils';
+
+import { lcShowWatermark } from '@lib/store';
 
 type Props = {
   width?: number;

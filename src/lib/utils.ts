@@ -1,8 +1,10 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { LastFmImage } from "./schemas";
+
 import { z } from "zod";
-import { Album, TopsterAlbum, TopsterGridAlbum } from "./types";
+
+import { Album, TopsterAlbum, TopsterGridAlbum } from "@lib/types";
+import { LastFmImage } from "@lib/schemas";
 
 
 export function beautifyNumber(number: number): string {

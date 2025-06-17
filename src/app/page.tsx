@@ -1,9 +1,10 @@
 import { Main } from "@common/main";
-import { Charts } from "@/components/landing-page/charts";
-import { Hero } from "@/components/landing-page/hero";
-import { LyricsCards } from "@/components/landing-page/lyrics-cards";
-import { Stats } from "@/components/landing-page/stats";
-import { Topsters } from "@/components/landing-page/topsters";
+
+import { Charts } from "@landing-page/charts";
+import { Hero } from "@landing-page/hero";
+import { LyricsCards } from "@landing-page/lyrics-cards";
+import { Stats } from "@landing-page/stats";
+import { Topsters } from "@landing-page/topsters";
 
 import { Footer } from "@layout/footer";
 

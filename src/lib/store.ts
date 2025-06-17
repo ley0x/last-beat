@@ -1,9 +1,10 @@
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils'
 
-import { Alltracks, AvailableColors, AvailableShapes, AvailableTxtSizes, GridSize, Timeframe, TopsterGridAlbum } from './types';
 import { z } from 'zod';
-import { GeniusSearchTrackSchema } from './schemas';
+
+import { Alltracks, AvailableColors, AvailableShapes, AvailableTxtSizes, GridSize, Timeframe, TopsterGridAlbum } from '@lib/types';
+import { GeniusSearchTrackSchema } from '@lib/schemas';
 
 
 export const timeframeAtom = atom<Timeframe>("1month");

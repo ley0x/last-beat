@@ -2,15 +2,18 @@
 
 import { useEffect } from "react";
 
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
 import { useAtom } from "jotai";
+
 import { cn } from "@lib/utils"
-import { Slider } from "@/components/ui/slider"
+
+import { Label } from "@components/ui/label"
+import { Switch } from "@components/ui/switch"
+import { Slider } from "@components/ui/slider"
+
 import Divider from "@common/divider";
 import { gridAlbumsAtom, topsterGapAtom, topsterHeightAtom, topsterRoundCornersAtom, topsterShowTitlesAtom, topsterTitleAtom, topsterWidthAtom } from "@lib/store";
 
-import { Input } from "@/components/ui/input"
+import { Input } from "@components/ui/input"
 import { MAX_TOPSTER_HEIGHT, MAX_TOPSTER_WIDTH, MIN_TOPSTER_HEIGHT, MIN_TOPSTER_WIDTH } from "@lib/constants";
 import { GridSize } from "@lib/types";
 

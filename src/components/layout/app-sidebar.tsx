@@ -7,7 +7,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@components/ui/sidebar"
 import Divider from "@common/divider"
 
 import { Image, AudioLines, MicVocal, Trophy, Download } from "lucide-react"

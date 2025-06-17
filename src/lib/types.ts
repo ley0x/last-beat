@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { DeezerAlbumSchema, LastFmSearchAlbumSchema, LastFmTopTracks, SpotifyAlbumSchema, TimeframeSchema } from "./schemas";
+import { DeezerAlbumSchema, LastFmSearchAlbumSchema, LastFmTopTracks, SpotifyAlbumSchema, TimeframeSchema } from "@lib/schemas";
 
 export type Timeframe = z.infer<typeof TimeframeSchema>;
 

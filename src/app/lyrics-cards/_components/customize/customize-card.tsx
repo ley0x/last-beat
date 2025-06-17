@@ -1,7 +1,13 @@
 'use client';
 
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
+import { Label } from "@components/ui/label"
+import { Switch } from "@components/ui/switch"
+
+import { useAtom } from "jotai";
+
+import { lcShowBgImage, lcShowWatermark, lcGrayscale, lcBlur, lcBrightness, lcOpacity, lcShowQuotes, lcShowCredits, lcCenterText } from "@lib/store";
+
+import Header from "@common/header"
 
 import { ToggleBgColor } from "./toggle-bg-color";
 import { ToggleShape } from "./toggle-shape"
@@ -9,10 +15,6 @@ import { ToggleTxtColor } from "./toggle-txt-color";
 import { ToggleTxtSize } from "./toggle-txt-size";
 import { UploadBgImage } from "./upload-bg-image";
 
-import { useAtom } from "jotai";
-import { lcShowBgImage, lcShowWatermark, lcGrayscale, lcBlur, lcBrightness, lcOpacity, lcShowQuotes, lcShowCredits, lcCenterText } from "@lib/store";
-
-import Header from "@common/header"
 
 export const CustomizeCard = () => {
   const [bgImage, setBgImage] = useAtom(lcShowBgImage);

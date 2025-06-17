@@ -4,7 +4,7 @@ import Header from "@common/header";
 import Divider from "@common/divider";
 import { Logo } from "@common/logo";
 
-import { Login } from "@/app/stats/_components/login";
+import { Login } from "@stats/login";
 
 export default function Home() {
   return (

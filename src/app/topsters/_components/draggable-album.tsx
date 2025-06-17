@@ -1,12 +1,14 @@
 "use client";
 
 import React from 'react';
-import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
+
+import { useDraggable } from '@dnd-kit/core';
 
 import { cn } from '@lib/utils';
 import { DraggableAlbumProps } from '@lib/types';
-import { Album } from "./album";
+
+import { Album } from "@topsters/album";
 
 /**
  * Draggable album component for search results that can be dragged into the grid

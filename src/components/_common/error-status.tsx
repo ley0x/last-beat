@@ -1,6 +1,6 @@
-import React from 'react'
-import Header from './header';
 import { cn } from '@lib/utils';
+
+import Header from '@common/header';
 
 type Props = {
   message: string;

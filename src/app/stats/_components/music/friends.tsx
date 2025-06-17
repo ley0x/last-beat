@@ -1,12 +1,11 @@
 "use client";
 
-import React from 'react'
-
-import { LastFmUserFriends } from '@lib/schemas';
 import { z } from 'zod';
 
+import { LastFmUserFriends } from '@lib/schemas';
+
 import Header from '@common/header';
-import { Friend } from '@/app/stats/_components/music/friend';
+import { Friend } from '@stats/music/friend';
 
 type Props = {
   username: string;

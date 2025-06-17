@@ -6,10 +6,14 @@ import Link from 'next/link';
 import { z } from 'zod';
 import slugify from 'slugify';
 import { LastFmSearchAlbumSchema } from '@lib/schemas';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+
+import { Card, CardContent, CardFooter, CardHeader } from '@components/ui/card';
+
 import { findLargestImage } from '@lib/utils';
-import { CopyBtn } from './copy-btn';
-import { DownloadBtn } from './download-btn';
+
+import { CopyBtn } from '@covers/copy-btn';
+import { DownloadBtn } from '@covers/download-btn';
+
 import Divider from '@common/divider';
 
 type Props = {

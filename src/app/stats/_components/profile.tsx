@@ -1,12 +1,15 @@
 "use client";
 
-import { LastFmUserInfo } from '@lib/schemas'
-import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import React from 'react'
 import { z } from 'zod'
+
+import Link from 'next/link'
+
+import { LastFmUserInfo } from '@lib/schemas'
+
+import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import Header from '@common/header';
 import { Wrapper } from '@common/wrapper';
-import Link from 'next/link'
 import { beautifyNumber, findLargestImage } from '@lib/utils';
 
 type Props = {

@@ -8,8 +8,9 @@ import { gridAlbumsAtom } from "@lib/store";
 import { Album } from "@lib/types";
 import { filterAvailableAlbums } from "@lib/utils";
 import { EMPTY_STATES } from "@lib/constants";
-import { SearchBar } from "./searchbar";
-import { DraggableAlbum } from "./draggable-album";
+
+import { SearchBar } from "@topsters/searchbar";
+import { DraggableAlbum } from "@topsters/draggable-album";
 
 /**
  * Album search component that allows users to search and drag albums into the topster

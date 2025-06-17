@@ -5,12 +5,13 @@ import { z } from 'zod'
 import Link from 'next/link'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
-import Header from './header';
+
 import { cn, findLargestImage } from '@lib/utils';
+
 import { useQuery } from '@tanstack/react-query';
 
+import Header from '@common/header';
 import { ErrorStatus } from '@common/error-status';
-
 import { ArtistSkeleton } from '@common/artist-skeleton';
 
 type Props = {

@@ -2,11 +2,12 @@
 
 import { useState } from "react"
 
-import { SearchBar } from "./searchbar"
+import { SearchBar } from "@covers/searchbar"
+import { DeezerAlbum } from "@covers/album.deezer";
+import { LastfmAlbum } from "@covers/album.lastfm";
+import { SpotifyAlbum } from "@covers/album.spotify";
+
 import { SearchAlbumsResponse, Provider } from "@lib/types";
-import { DeezerAlbum } from "./album.deezer";
-import { LastfmAlbum } from "./album.lastfm";
-import { SpotifyAlbum } from "./album.spotify";
 
 export const Covers = () => {
   const [albums, setAlbums] = useState<SearchAlbumsResponse>({ "deezer": [], "lastfm": [], "spotify": [] });

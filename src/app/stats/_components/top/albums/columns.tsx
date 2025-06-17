@@ -11,8 +11,8 @@ import { ColumnDef } from "@tanstack/react-table"
 import { LastFmTopAlbums } from "@lib/schemas"
 import { cn, findLargestImage } from "@lib/utils"
 
-import { Button } from "@/components/ui/button"
-import { CoverCard } from "@/app/stats/_components/top/cover-card"
+import { Button } from "@components/ui/button"
+import { CoverCard } from "@stats/top/cover-card"
 
 export type AlbumsTable = z.infer<typeof LastFmTopAlbums>
 

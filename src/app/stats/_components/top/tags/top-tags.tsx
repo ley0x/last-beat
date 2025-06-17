@@ -5,7 +5,7 @@ import Header from '@common/header';
 import { z } from 'zod';
 import { LastFmTopTags } from '@lib/schemas';
 
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@components/ui/badge"
 import { useTimeframe } from '@hooks/use-timeframe';
 
 type Props = {

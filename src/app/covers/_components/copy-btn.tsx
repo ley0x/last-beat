@@ -1,7 +1,11 @@
-import { Button } from "@/components/ui/button";
-import { cn, copyImageToClipboard } from "@lib/utils";
-import { CheckIcon, CopyIcon } from "lucide-react";
 import { useState } from "react";
+
+import { CheckIcon, CopyIcon } from "lucide-react";
+
+import { cn, copyImageToClipboard } from "@lib/utils";
+
+import { Button } from "@components/ui/button";
+
 
 type CopyBtnProps = {
   link: string;

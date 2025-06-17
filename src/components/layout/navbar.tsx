@@ -1,5 +1,7 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,12 +9,12 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+} from "@components/ui/breadcrumb";
 
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { usePathname } from "next/navigation";
-import { ToggleTheme } from "../_common/toggle-theme";
-import { ToggleBg } from "./toggle-background";
+import { SidebarTrigger } from "@components/ui/sidebar";
+
+import { ToggleTheme } from "@common/toggle-theme";
+import { ToggleBg } from "@layout/toggle-background";
 
 type BreadcrumbProps = {
   page: string;

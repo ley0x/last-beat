@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Share } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-
 import { toast } from "sonner"
+
+import { Button } from '@components/ui/button';
 
 export const ShareStats = () => {
   const copyURLToClipboard = () => {

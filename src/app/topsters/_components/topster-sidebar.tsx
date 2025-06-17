@@ -1,22 +1,27 @@
 "use client";
+
+import Divider from "@common/divider";
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@components/ui/card"
+
+import { Disc3, Import, Wrench } from "lucide-react"
+
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/components/ui/tabs"
-import { TopsterAlbumSearch } from "./topster-album-search"
-import { TopsterOptions } from "./topster-options"
-import { Disc3, Import, Wrench } from "lucide-react"
-import { ImportLastfm } from "./import-lastfm";
-import Divider from "@common/divider";
+} from "@components/ui/tabs"
+
+import { TopsterAlbumSearch } from "@topsters/topster-album-search"
+import { TopsterOptions } from "@topsters/topster-options"
+import { ImportLastfm } from "@topsters/import-lastfm";
 
 export function TopsterSidebar() {
   return (

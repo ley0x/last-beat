@@ -9,9 +9,11 @@ import slugify from 'slugify';
 
 import { DeezerAlbumSchema } from '@lib/schemas';
 
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { DownloadBtn } from './download-btn';
-import { CopyBtn } from './copy-btn';
+import { Card, CardContent, CardFooter, CardHeader } from '@components/ui/card';
+
+import { DownloadBtn } from '@covers/download-btn';
+import { CopyBtn } from '@covers/copy-btn';
+
 import Divider from '@common/divider';
 
 

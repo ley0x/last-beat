@@ -3,7 +3,7 @@ import { AArrowDown, AArrowUp, ALargeSmall } from "lucide-react"
 import {
   ToggleGroup,
   ToggleGroupItem,
-} from "@/components/ui/toggle-group"
+} from "@components/ui/toggle-group"
 
 import Header from "@common/header"
 import { useAtom } from "jotai";

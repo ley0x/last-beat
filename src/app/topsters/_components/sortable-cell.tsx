@@ -6,8 +6,9 @@ import { useAtom } from "jotai";
 import { cn } from "@lib/utils";
 import { topsterHeightAtom, topsterWidthAtom } from "@lib/store";
 import { SortableCellProps } from "@lib/types";
-import { Album } from "./album";
-import { DroppableCell } from "./droppable-cell";
+
+import { Album } from "@topsters/album";
+import { DroppableCell } from "@topsters/droppable-cell";
 
 /**
  * Sortable cell component that can contain an album or be empty (droppable)
