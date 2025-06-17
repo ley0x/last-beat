@@ -4,11 +4,11 @@ import React, { useState } from 'react'
 import { useAtom } from 'jotai';
 
 import { timeframeAtom } from '@lib/store';
-import { Artist } from '@/components/_common/artist';
-import { ErrorStatus } from '@/components/_common/error-status';
+import { Artist } from '@common/artist';
+import { ErrorStatus } from '@common/error-status';
 
 import { StatsContainer } from '@/app/stats/_components/music/stats-container';
-import { ArtistSkeleton } from '@/components/_common/artist-skeleton';
+import { ArtistSkeleton } from '@common/artist-skeleton';
 import { DataTable } from '@/app/stats/_components/table/data-table';
 
 import {

@@ -6,7 +6,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-import Header from "@/components/_common/header"
+import Header from "@common/header"
 
 import { cn } from "@lib/utils";
 import { colors } from "@lib/constants";

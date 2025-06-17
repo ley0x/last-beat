@@ -12,7 +12,7 @@ import { Friends } from "@/app/stats/_components/music/friends"
 
 import { LastFmUserFriends, LastFmTopTags } from "@lib/schemas";
 
-import Divider from "@/components/_common/divider"
+import Divider from "@common/divider"
 import { z } from "zod";
 
 type TopContainerProps = {

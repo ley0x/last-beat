@@ -10,7 +10,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { findLargestImage } from '@lib/utils';
 import { CopyBtn } from './copy-btn';
 import { DownloadBtn } from './download-btn';
-import Divider from '@/components/_common/divider';
+import Divider from '@common/divider';
 
 type Props = {
   album: z.infer<typeof LastFmSearchAlbumSchema>;

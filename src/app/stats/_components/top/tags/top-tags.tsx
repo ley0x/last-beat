@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react'
-import Header from '@/components/_common/header';
+import Header from '@common/header';
 import { z } from 'zod';
 import { LastFmTopTags } from '@lib/schemas';
 

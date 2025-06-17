@@ -1,9 +1,9 @@
-import Header from "@/components/_common/header"
-import { Main } from "@/components/_common/main"
+import Header from "@common/header"
+import { Main } from "@common/main"
 
-import { ReactQueryProvider } from "@/components/_common/react-query-provider"
+import { ReactQueryProvider } from "@common/react-query-provider"
 import { TrackLyrics } from "./_components/track-lyrics"
-import { Wrapper } from "@/components/_common/wrapper"
+import { Wrapper } from "@common/wrapper"
 import { Search } from "./_components/search/search"
 import { LyricsCanvasContainer } from "./_components/canvas/lyrics-canvas-container"
 

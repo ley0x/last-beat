@@ -12,7 +12,7 @@ import { DeezerAlbumSchema } from '@lib/schemas';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { DownloadBtn } from './download-btn';
 import { CopyBtn } from './copy-btn';
-import Divider from '@/components/_common/divider';
+import Divider from '@common/divider';
 
 
 type Props = {

@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import { lcCenterText, lcSelectedLyrics, lcShowQuotes, lcTxtColor, lcTxtSize } from '@lib/store';
 import { cn } from '@lib/utils';
 
-import { Quote } from '@/components/_common/quote'
+import { Quote } from '@common/quote'
 import { bgColorMap, quoteMap, sizeMap } from '@lib/constants';
 import { LyricsCanvasAuthor } from './lyrics-canvas-author';
 

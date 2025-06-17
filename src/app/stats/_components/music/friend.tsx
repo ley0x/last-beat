@@ -5,7 +5,7 @@ import { z } from 'zod'
 import Link from 'next/link'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
-import Header from '@/components/_common/header';
+import Header from '@common/header';
 import { findLargestImage } from '@lib/utils';
 
 type Props = {

@@ -10,7 +10,7 @@ import { lcSelectedTrack, lcTrackLyrics } from "@lib/store";
 import { GeniusSearchTrackSchema } from "@lib/schemas";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import Divider from "@/components/_common/divider";
+import Divider from "@common/divider";
 import { Button } from "@/components/ui/button";
 
 type Props = {

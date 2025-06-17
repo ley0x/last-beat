@@ -12,7 +12,7 @@ import { UploadBgImage } from "./upload-bg-image";
 import { useAtom } from "jotai";
 import { lcShowBgImage, lcShowWatermark, lcGrayscale, lcBlur, lcBrightness, lcOpacity, lcShowQuotes, lcShowCredits, lcCenterText } from "@lib/store";
 
-import Header from "@/components/_common/header"
+import Header from "@common/header"
 
 export const CustomizeCard = () => {
   const [bgImage, setBgImage] = useAtom(lcShowBgImage);

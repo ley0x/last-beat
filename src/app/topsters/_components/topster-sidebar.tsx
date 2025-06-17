@@ -16,7 +16,7 @@ import { TopsterAlbumSearch } from "./topster-album-search"
 import { TopsterOptions } from "./topster-options"
 import { Disc3, Import, Wrench } from "lucide-react"
 import { ImportLastfm } from "./import-lastfm";
-import Divider from "@/components/_common/divider";
+import Divider from "@common/divider";
 
 export function TopsterSidebar() {
   return (

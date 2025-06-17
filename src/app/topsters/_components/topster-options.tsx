@@ -7,7 +7,7 @@ import { Switch } from "@/components/ui/switch"
 import { useAtom } from "jotai";
 import { cn } from "@lib/utils"
 import { Slider } from "@/components/ui/slider"
-import Divider from "@/components/_common/divider";
+import Divider from "@common/divider";
 import { gridAlbumsAtom, topsterGapAtom, topsterHeightAtom, topsterRoundCornersAtom, topsterShowTitlesAtom, topsterTitleAtom, topsterWidthAtom } from "@lib/store";
 
 import { Input } from "@/components/ui/input"

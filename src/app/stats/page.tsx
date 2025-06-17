@@ -1,8 +1,8 @@
-import { Wrapper } from "@/components/_common/wrapper";
-import { Main } from "@/components/_common/main";
-import Header from "@/components/_common/header";
-import Divider from "@/components/_common/divider";
-import { Logo } from "@/components/_common/logo";
+import { Wrapper } from "@common/wrapper";
+import { Main } from "@common/main";
+import Header from "@common/header";
+import Divider from "@common/divider";
+import { Logo } from "@common/logo";
 
 import { Login } from "@/app/stats/_components/login";
 

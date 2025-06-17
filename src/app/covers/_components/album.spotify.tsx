@@ -8,7 +8,7 @@ import { SpotifyAlbumSchema } from '@lib/schemas';
 import { DownloadBtn } from './download-btn';
 import slugify from 'slugify';
 import { CopyBtn } from './copy-btn';
-import Divider from '@/components/_common/divider';
+import Divider from '@common/divider';
 
 type Props = {
   album: z.infer<typeof SpotifyAlbumSchema>;

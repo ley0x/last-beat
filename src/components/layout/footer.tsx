@@ -1,4 +1,4 @@
-import { Logo } from "@/components/_common/logo";
+import { Logo } from "@common/logo";
 import { Wrapper } from "../_common/wrapper";
 import BackToTop from "./back-to-top";
 

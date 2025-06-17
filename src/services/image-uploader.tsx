@@ -3,7 +3,7 @@
 import React, { useRef, useState, ChangeEventHandler } from 'react';
 import { File } from 'lucide-react';
 
-import Header from "@/components/_common/header"
+import Header from "@common/header"
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';

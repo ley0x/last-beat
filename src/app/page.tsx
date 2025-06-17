@@ -1,4 +1,4 @@
-import { Main } from "@/components/_common/main";
+import { Main } from "@common/main";
 import { Charts } from "@/components/landing-page/charts";
 import { Hero } from "@/components/landing-page/hero";
 import { LyricsCards } from "@/components/landing-page/lyrics-cards";

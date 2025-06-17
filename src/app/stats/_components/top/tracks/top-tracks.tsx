@@ -3,11 +3,11 @@
 import React, { useState } from 'react'
 
 import { StatsContainer } from '@/app/stats/_components/music/stats-container';
-import { AlbumSkeleton } from '@/components/_common/album-skeleton';
+import { AlbumSkeleton } from '@common/album-skeleton';
 import { DataTable } from '@/app/stats/_components/table/data-table';
 
-import { ErrorStatus } from '@/components/_common/error-status';
-import { Track } from '@/components/_common/track';
+import { ErrorStatus } from '@common/error-status';
+import { Track } from '@common/track';
 
 
 import { timeframeAtom } from '@lib/store';

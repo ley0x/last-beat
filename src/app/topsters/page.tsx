@@ -1,6 +1,6 @@
-import { Main } from "@/components/_common/main"
+import { Main } from "@common/main"
 
-import { ReactQueryProvider } from "@/components/_common/react-query-provider"
+import { ReactQueryProvider } from "@common/react-query-provider"
 import { TopsterDndContext } from "./_components/topster-dnd-context"
 
 export default async function Page() {

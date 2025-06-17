@@ -1,4 +1,4 @@
-import Header from '@/components/_common/header';
+import Header from '@common/header';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import { useTimeframe } from '@hooks/use-timeframe';

@@ -1,8 +1,8 @@
-import Header from "@/components/_common/header";
-import { Main } from "@/components/_common/main";
-import { Wrapper } from "@/components/_common/wrapper";
-import { ReactQueryProvider } from "@/components/_common/react-query-provider";
-import { ComingSoon } from "@/components/_common/comming-soon";
+import Header from "@common/header";
+import { Main } from "@common/main";
+import { Wrapper } from "@common/wrapper";
+import { ReactQueryProvider } from "@common/react-query-provider";
+import { ComingSoon } from "@common/comming-soon";
 
 import { Profile } from "@/app/stats/_components/profile";
 import { SelectTimeframe } from "@/app/stats/_components/top/select-timeframe";

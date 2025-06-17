@@ -5,7 +5,7 @@ import React from 'react'
 import { LastFmUserFriends } from '@lib/schemas';
 import { z } from 'zod';
 
-import Header from '@/components/_common/header';
+import Header from '@common/header';
 import { Friend } from '@/app/stats/_components/music/friend';
 
 type Props = {

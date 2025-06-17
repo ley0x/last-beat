@@ -1,8 +1,8 @@
-import { Main } from "@/components/_common/main"
-import { Wrapper } from "@/components/_common/wrapper"
+import { Main } from "@common/main"
+import { Wrapper } from "@common/wrapper"
 
-import { ReactQueryProvider } from "@/components/_common/react-query-provider"
-import { ComingSoon } from "@/components/_common/comming-soon"
+import { ReactQueryProvider } from "@common/react-query-provider"
+import { ComingSoon } from "@common/comming-soon"
 
 
 export default async function Page() {

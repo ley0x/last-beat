@@ -13,10 +13,10 @@ import { cn, findLargestImage } from "@lib/utils"
 import { Button } from "@/components/ui/button"
 
 import { CoverCard } from "@/app/stats/_components/top/cover-card"
-import { ArtistSkeleton } from "@/components/_common/artist-skeleton"
+import { ArtistSkeleton } from "@common/artist-skeleton"
 
 import { useQuery } from "@tanstack/react-query"
-import { ErrorStatus } from "@/components/_common/error-status"
+import { ErrorStatus } from "@common/error-status"
 
 export type AlbumsTable = z.infer<typeof LastFmTopArtists>
 

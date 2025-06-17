@@ -5,7 +5,7 @@ import {
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
 
-import Header from "@/components/_common/header"
+import Header from "@common/header"
 import { useAtom } from "jotai";
 import { lcShape } from "@lib/store";
 
