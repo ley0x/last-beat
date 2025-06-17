@@ -4,7 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { Provider } from 'jotai'
 import { cn } from "@/lib/utils";
-import { CustomBackground } from "@/components/layout/custom-background";
+import { CustomBackground } from "@layout/custom-background";
 import { ThemeProvider } from "@/components/providers/theme-provider"
 
 const geistSans = Geist({

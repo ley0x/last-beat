@@ -5,7 +5,7 @@ import { LyricsCards } from "@/components/landing-page/lyrics-cards";
 import { Stats } from "@/components/landing-page/stats";
 import { Topsters } from "@/components/landing-page/topsters";
 
-import { Footer } from "@/components/layout/footer";
+import { Footer } from "@layout/footer";
 
 export default function Home() {
   return (

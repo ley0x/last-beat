@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { SidebarProvider } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/layout/app-sidebar";
-import { Navbar } from "@/components/layout/navbar";
+import { AppSidebar } from "@layout/app-sidebar";
+import { Navbar } from "@layout/navbar";
 
 export const metadata: Metadata = {
   title: "LastBeat - Topsters",

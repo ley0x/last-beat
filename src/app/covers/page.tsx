@@ -1,9 +1,9 @@
-import { Main } from "@/components/_common/main"
-import { Wrapper } from "@/components/_common/wrapper"
+import { Main } from "@common/main"
+import { Wrapper } from "@common/wrapper"
 
-import { ReactQueryProvider } from "@/components/_common/react-query-provider"
-import { Covers } from "./_components/covers"
-import Header from "@/components/_common/header"
+import { ReactQueryProvider } from "@common/react-query-provider"
+import { Covers } from "@covers/covers"
+import Header from "@common/header"
 
 
 export default async function Page() {
