@@ -6,7 +6,7 @@ import { z } from 'zod';
 import { LastFmTopTags } from '@lib/schemas';
 
 import { Badge } from "@/components/ui/badge"
-import { useTimeframe } from '@/hooks/use-timeframe';
+import { useTimeframe } from '@hooks/use-timeframe';
 
 type Props = {
   tags: z.infer<typeof LastFmTopTags>[]

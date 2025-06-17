@@ -1,5 +1,5 @@
 "use client";
-import { useFetchAllTracks } from "@/hooks/use-fetch-all-tracks";
+import { useFetchAllTracks } from "@hooks/use-fetch-all-tracks";
 import { timeframeAtom } from "@lib/store";
 import { useAtom } from "jotai";
 
