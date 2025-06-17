@@ -1,4 +1,4 @@
-import { LastFmTopTracks, SpotifyTrackSchema } from "@/lib/schemas";
+import { LastFmTopTracks, SpotifyTrackSchema } from "@lib/schemas";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { z } from "zod";

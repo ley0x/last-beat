@@ -6,8 +6,8 @@ import { DndContext, DragOverlay } from "@dnd-kit/core";
 import { SortableContext, rectSortingStrategy } from "@dnd-kit/sortable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-import { topsterTitleAtom } from '@/lib/store';
-import { getCellId } from '@/lib/utils';
+import { topsterTitleAtom } from '@lib/store';
+import { getCellId } from '@lib/utils';
 import { useTopsterDnd } from '@/hooks/use-topster-dnd';
 
 import { TopsterGrid } from './topster-grid';

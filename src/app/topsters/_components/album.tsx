@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 import { useAtom } from 'jotai';
 
-import { cn, findLargestImage } from '@/lib/utils';
-import { topsterRoundCornersAtom } from '@/lib/store';
-import { AlbumProps } from '@/lib/types';
+import { cn, findLargestImage } from '@lib/utils';
+import { topsterRoundCornersAtom } from '@lib/store';
+import { AlbumProps } from '@lib/types';
 
 const PLACEHOLDER = "/placeholder.svg";
 

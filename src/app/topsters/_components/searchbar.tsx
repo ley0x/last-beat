@@ -7,7 +7,7 @@ import { SearchIcon } from 'lucide-react';
 import { z } from 'zod';
 
 import { Input } from '@/components/ui/input';
-import { SearchBarProps } from '@/lib/types';
+import { SearchBarProps } from '@lib/types';
 import { fetchLastFmSearchAlbum } from '@/services/api/lastfm';
 
 interface SearchFormInputs {

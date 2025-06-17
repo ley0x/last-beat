@@ -1,4 +1,4 @@
-import { LastFmUserFriends } from '@/lib/schemas'
+import { LastFmUserFriends } from '@lib/schemas'
 import React from 'react'
 import { z } from 'zod'
 
@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import Header from '@/components/_common/header';
-import { findLargestImage } from '@/lib/utils';
+import { findLargestImage } from '@lib/utils';
 
 type Props = {
   friend: z.infer<typeof LastFmUserFriends>

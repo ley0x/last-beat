@@ -7,7 +7,7 @@ import {
 
 import Header from "@/components/_common/header"
 import { useAtom } from "jotai";
-import { lcTxtSize } from "@/lib/store";
+import { lcTxtSize } from "@lib/store";
 
 export function ToggleTxtSize() {
   const [size, setSize] = useAtom(lcTxtSize);

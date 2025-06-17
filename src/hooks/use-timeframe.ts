@@ -1,5 +1,5 @@
-import { timeframeAtom } from "@/lib/store";
-import { Timeframe } from "@/lib/types";
+import { timeframeAtom } from "@lib/store";
+import { Timeframe } from "@lib/types";
 import { useAtom } from "jotai";
 import { useEffect, useMemo, useState } from "react";
 

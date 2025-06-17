@@ -11,7 +11,7 @@ import { z } from 'zod';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-import { Provider, SearchAlbumsResponse } from '@/lib/types';
+import { Provider, SearchAlbumsResponse } from '@lib/types';
 
 import { fetchDeezerSearchAlbum } from '@/services/api/deezer';
 import { fetchSpotifySearchAlbum } from '@/services/api/spotify';

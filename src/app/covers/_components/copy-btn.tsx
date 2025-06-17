@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { cn, copyImageToClipboard } from "@/lib/utils";
+import { cn, copyImageToClipboard } from "@lib/utils";
 import { CheckIcon, CopyIcon } from "lucide-react";
 import { useState } from "react";
 

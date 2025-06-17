@@ -10,14 +10,14 @@ import { ErrorStatus } from '@/components/_common/error-status';
 import { Track } from '@/components/_common/track';
 
 
-import { timeframeAtom } from '@/lib/store';
+import { timeframeAtom } from '@lib/store';
 
 import { useAtom } from 'jotai';
 import {
   useQuery,
 } from '@tanstack/react-query'
 
-import { MAX, MIN } from '@/lib/constants';
+import { MAX, MIN } from '@lib/constants';
 import { TrackColumns } from './columns';
 import { fetchLastFmUserTopTracks } from '@/services/api/lastfm';
 

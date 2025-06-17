@@ -7,7 +7,7 @@ import {
 
 import Header from "@/components/_common/header"
 import { useAtom } from "jotai";
-import { lcShape } from "@/lib/store";
+import { lcShape } from "@lib/store";
 
 export function ToggleShape() {
   const [shape, setShape] = useAtom(lcShape);

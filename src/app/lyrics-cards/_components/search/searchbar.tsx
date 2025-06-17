@@ -8,8 +8,8 @@ import { z } from 'zod';
 import { useAtom } from "jotai";
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { GeniusSearchTrackSchema } from '@/lib/schemas';
-import { lcSelectedLyrics, lcSelectedTrack, lcTrackLyrics } from "@/lib/store";
+import { GeniusSearchTrackSchema } from '@lib/schemas';
+import { lcSelectedLyrics, lcSelectedTrack, lcTrackLyrics } from "@lib/store";
 
 import { searchTracks } from '../../_actions/search-tracks.action';
 import { Input } from '@/components/ui/input';

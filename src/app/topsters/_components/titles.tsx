@@ -1,5 +1,5 @@
-import { gridAlbumsAtom, topsterHeightAtom, topsterShowTitlesAtom, topsterWidthAtom } from "@/lib/store"
-import { cn } from "@/lib/utils";
+import { gridAlbumsAtom, topsterHeightAtom, topsterShowTitlesAtom, topsterWidthAtom } from "@lib/store"
+import { cn } from "@lib/utils";
 import { useAtom } from "jotai"
 
 export const Titles = () => {

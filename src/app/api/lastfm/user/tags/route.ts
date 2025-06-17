@@ -1,5 +1,5 @@
-import { environment } from '@/lib/env';
-import { LastFmTopTags, TimeframeSchema, UsernameSchema } from '@/lib/schemas';
+import { environment } from '@lib/env';
+import { LastFmTopTags, TimeframeSchema, UsernameSchema } from '@lib/schemas';
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
 

@@ -14,7 +14,7 @@
   "templates": {
     "react-component": {
       "description": "Create a React component with TypeScript and shadcn/ui patterns",
-      "template": "import { cn } from '@/lib/utils'\n\ninterface {{ComponentName}}Props {\n  className?: string\n}\n\nexport function {{ComponentName}}({ className }: {{ComponentName}}Props) {\n  return (\n    <div className={cn('', className)}>\n      {/* Component content */}\n    </div>\n  )\n}"
+      "template": "import { cn } from '@lib/utils'\n\ninterface {{ComponentName}}Props {\n  className?: string\n}\n\nexport function {{ComponentName}}({ className }: {{ComponentName}}Props) {\n  return (\n    <div className={cn('', className)}>\n      {/* Component content */}\n    </div>\n  )\n}"
     },
     "custom-hook": {
       "description": "Create a custom React hook with TypeScript",
@@ -42,7 +42,7 @@
     },
     "tanstack-query-hook": {
       "description": "Create a TanStack Query hook",
-      "template": "import { useQuery } from '@tanstack/react-query'\nimport { {{apiFunction}} } from '@/lib/api/{{module}}'\n\nexport function {{hookName}}({{params}}) {\n  return useQuery({\n    queryKey: ['{{queryKey}}', {{keyParams}}],\n    queryFn: () => {{apiFunction}}({{params}}),\n    // Additional options\n  })\n}"
+      "template": "import { useQuery } from '@tanstack/react-query'\nimport { {{apiFunction}} } from '@lib/api/{{module}}'\n\nexport function {{hookName}}({{params}}) {\n  return useQuery({\n    queryKey: ['{{queryKey}}', {{keyParams}}],\n    queryFn: () => {{apiFunction}}({{params}}),\n    // Additional options\n  })\n}"
     }
   },
   "snippets": {

@@ -1,8 +1,8 @@
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
 
-import { environment } from '@/lib/env';
-import { LastFmSearchAlbumSchema } from '@/lib/schemas';
+import { environment } from '@lib/env';
+import { LastFmSearchAlbumSchema } from '@lib/schemas';
 
 export const dynamic = 'force-dynamic' // defaults to force-static
 

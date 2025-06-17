@@ -1,7 +1,7 @@
 "use client";
 
-import { showGlowyBackgroundAtom } from "@/lib/store";
-import { cn } from "@/lib/utils";
+import { showGlowyBackgroundAtom } from "@lib/store";
+import { cn } from "@lib/utils";
 import { useAtom } from "jotai";
 
 export const CustomBackground = ({ children }: Readonly<{ children: React.ReactNode }>) => {

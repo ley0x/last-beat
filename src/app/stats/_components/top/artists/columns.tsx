@@ -7,8 +7,8 @@ import { z } from "zod"
 import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { LastFmTopArtists } from "@/lib/schemas"
-import { cn, findLargestImage } from "@/lib/utils"
+import { LastFmTopArtists } from "@lib/schemas"
+import { cn, findLargestImage } from "@lib/utils"
 
 import { Button } from "@/components/ui/button"
 

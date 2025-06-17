@@ -1,7 +1,7 @@
-import { LastFmSearchAlbumSchema, LastFmTopAlbums, LastFmTopArtists, LastFmTopTracks } from "@/lib/schemas";
-import { Timeframe } from "@/lib/types";
+import { LastFmSearchAlbumSchema, LastFmTopAlbums, LastFmTopArtists, LastFmTopTracks } from "@lib/schemas";
+import { Timeframe } from "@lib/types";
 
-import { MIN } from '@/lib/constants';
+import { MIN } from '@lib/constants';
 import { z } from "zod";
 
 export const fetchLastFmUserTopAlbums = async (username: string, timeframe: Timeframe, limit: number = MIN, page: number = 1) => {

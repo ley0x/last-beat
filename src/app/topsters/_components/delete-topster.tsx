@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { gridAlbumsAtom, topsterHeightAtom, topsterTitleAtom, topsterWidthAtom } from "@/lib/store";
+import { gridAlbumsAtom, topsterHeightAtom, topsterTitleAtom, topsterWidthAtom } from "@lib/store";
 import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react"
 

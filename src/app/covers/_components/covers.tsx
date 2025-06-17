@@ -3,7 +3,7 @@
 import { useState } from "react"
 
 import { SearchBar } from "./searchbar"
-import { SearchAlbumsResponse, Provider } from "@/lib/types";
+import { SearchAlbumsResponse, Provider } from "@lib/types";
 import { DeezerAlbum } from "./album.deezer";
 import { LastfmAlbum } from "./album.lastfm";
 import { SpotifyAlbum } from "./album.spotify";

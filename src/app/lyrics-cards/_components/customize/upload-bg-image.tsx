@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { arrayBufferToString } from "@/lib/utils";
+import { arrayBufferToString } from "@lib/utils";
 import { useAtom } from "jotai";
-import { lcLyricsBackground } from "@/lib/store";
+import { lcLyricsBackground } from "@lib/store";
 import { ImageUploader } from "@/services/image-uploader";
 
 export const UploadBgImage = () => {

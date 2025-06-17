@@ -1,6 +1,6 @@
 'use client';
 
-import { lcBgColor, lcBlur, lcBrightness, lcCenterText, lcGrayscale, lcOpacity, lcShape, lcShowBgImage, lcShowCredits, lcShowQuotes, lcShowWatermark, lcTxtColor, lcTxtSize } from '@/lib/store';
+import { lcBgColor, lcBlur, lcBrightness, lcCenterText, lcGrayscale, lcOpacity, lcShape, lcShowBgImage, lcShowCredits, lcShowQuotes, lcShowWatermark, lcTxtColor, lcTxtSize } from '@lib/store';
 import { useAtom } from 'jotai';
 
 import {

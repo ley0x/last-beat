@@ -1,5 +1,5 @@
-import { AvailableColors } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { AvailableColors } from "@lib/types";
+import { cn } from "@lib/utils";
 
 type Props = {
   className?: string;

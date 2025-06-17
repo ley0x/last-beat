@@ -10,7 +10,7 @@ import { ToggleTxtSize } from "./toggle-txt-size";
 import { UploadBgImage } from "./upload-bg-image";
 
 import { useAtom } from "jotai";
-import { lcShowBgImage, lcShowWatermark, lcGrayscale, lcBlur, lcBrightness, lcOpacity, lcShowQuotes, lcShowCredits, lcCenterText } from "@/lib/store";
+import { lcShowBgImage, lcShowWatermark, lcGrayscale, lcBlur, lcBrightness, lcOpacity, lcShowQuotes, lcShowCredits, lcCenterText } from "@lib/store";
 
 import Header from "@/components/_common/header"
 

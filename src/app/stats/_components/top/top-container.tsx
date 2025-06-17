@@ -1,6 +1,6 @@
 "use client";
 import { useFetchAllTracks } from "@/hooks/use-fetch-all-tracks";
-import { timeframeAtom } from "@/lib/store";
+import { timeframeAtom } from "@lib/store";
 import { useAtom } from "jotai";
 
 import { TopTags } from "@/app/stats/_components/top/tags/top-tags"
@@ -10,7 +10,7 @@ import { TopArtists } from "@/app/stats/_components/top/artists/top-artists"
 
 import { Friends } from "@/app/stats/_components/music/friends"
 
-import { LastFmUserFriends, LastFmTopTags } from "@/lib/schemas";
+import { LastFmUserFriends, LastFmTopTags } from "@lib/schemas";
 
 import Divider from "@/components/_common/divider"
 import { z } from "zod";

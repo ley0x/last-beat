@@ -1,4 +1,4 @@
-import { LastFmTopTracks } from '@/lib/schemas'
+import { LastFmTopTracks } from '@lib/schemas'
 import React, { useEffect, useState } from 'react'
 import { z } from 'zod'
 
@@ -8,7 +8,7 @@ import { ArtistSkeleton } from '@/components/_common/artist-skeleton';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import Header from './header';
-import { findLargestImage } from '@/lib/utils';
+import { findLargestImage } from '@lib/utils';
 import { useQuery } from '@tanstack/react-query';
 import { fetchSearchSpotifyTrack } from '@/services/api/spotify';
 

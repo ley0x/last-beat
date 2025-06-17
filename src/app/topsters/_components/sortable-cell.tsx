@@ -3,9 +3,9 @@ import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
 import { useAtom } from "jotai";
 
-import { cn } from "@/lib/utils";
-import { topsterHeightAtom, topsterWidthAtom } from "@/lib/store";
-import { SortableCellProps } from "@/lib/types";
+import { cn } from "@lib/utils";
+import { topsterHeightAtom, topsterWidthAtom } from "@lib/store";
+import { SortableCellProps } from "@lib/types";
 import { Album } from "./album";
 import { DroppableCell } from "./droppable-cell";
 

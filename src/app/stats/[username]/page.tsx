@@ -11,8 +11,8 @@ import { TopContainer } from "@/app/stats/_components/top/top-container";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { z } from "zod";
-import { LastFmTopTags, LastFmUserFriends, LastFmUserInfo, UsernameSchema } from "@/lib/schemas";
-import { environment } from "@/lib/env";
+import { LastFmTopTags, LastFmUserFriends, LastFmUserInfo, UsernameSchema } from "@lib/schemas";
+import { environment } from "@lib/env";
 
 export default async function Page({
   params,

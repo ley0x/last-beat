@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { useAtom } from 'jotai';
 
-import { timeframeAtom } from '@/lib/store';
+import { timeframeAtom } from '@lib/store';
 import { Artist } from '@/components/_common/artist';
 import { ErrorStatus } from '@/components/_common/error-status';
 
@@ -16,7 +16,7 @@ import {
 } from '@tanstack/react-query'
 
 import { ArtistsColumns } from './columns';
-import { MAX, MIN } from '@/lib/constants';
+import { MAX, MIN } from '@lib/constants';
 import { fetchLastFmUserTopArtists } from '@/services/api/lastfm';
 
 type Props = {

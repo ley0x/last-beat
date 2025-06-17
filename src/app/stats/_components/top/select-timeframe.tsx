@@ -12,8 +12,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-import { timeframeAtom } from "@/lib/store";
-import { Timeframe } from "@/lib/types";
+import { timeframeAtom } from "@lib/store";
+import { Timeframe } from "@lib/types";
 
 export function SelectTimeframe() {
   const [timeframe, setTimeframe] = useAtom(timeframeAtom);

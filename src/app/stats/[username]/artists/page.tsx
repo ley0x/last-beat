@@ -8,8 +8,8 @@ import { Profile } from "@/app/stats/_components/profile"
 import { SelectTimeframe } from "@/app/stats/_components/top/select-timeframe"
 import { TopArtists } from "@/app/stats/_components/top/artists/top-artists"
 
-import { LastFmUserInfo } from "@/lib/schemas"
-import { environment } from "@/lib/env"
+import { LastFmUserInfo } from "@lib/schemas"
+import { environment } from "@lib/env"
 
 export default async function Page({
   params,

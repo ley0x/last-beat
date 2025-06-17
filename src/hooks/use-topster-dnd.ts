@@ -11,9 +11,9 @@ import {
 } from '@dnd-kit/core';
 import { arrayMove } from '@dnd-kit/sortable';
 
-import { gridAlbumsAtom } from '@/lib/store';
-import { Album, TopsterAlbum } from '@/lib/types';
-import { findCellIndex } from '@/lib/utils';
+import { gridAlbumsAtom } from '@lib/store';
+import { Album, TopsterAlbum } from '@lib/types';
+import { findCellIndex } from '@lib/utils';
 
 interface UseTopsterDndReturn {
   albums: TopsterAlbum[];

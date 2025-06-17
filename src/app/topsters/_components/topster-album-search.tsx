@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import { useAtom } from "jotai";
 
-import { getCellId } from "@/lib/utils";
-import { gridAlbumsAtom } from "@/lib/store";
-import { Album } from "@/lib/types";
-import { filterAvailableAlbums } from "@/lib/utils";
-import { EMPTY_STATES } from "@/lib/constants";
+import { getCellId } from "@lib/utils";
+import { gridAlbumsAtom } from "@lib/store";
+import { Album } from "@lib/types";
+import { filterAvailableAlbums } from "@lib/utils";
+import { EMPTY_STATES } from "@lib/constants";
 import { SearchBar } from "./searchbar";
 import { DraggableAlbum } from "./draggable-album";
 

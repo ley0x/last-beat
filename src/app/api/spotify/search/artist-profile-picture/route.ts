@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
-import { SpotifyArtistSchema } from '@/lib/schemas';
-import { environment } from '@/lib/env';
+import { SpotifyArtistSchema } from '@lib/schemas';
+import { environment } from '@lib/env';
 
 export const dynamic = 'force-dynamic' // defaults to force-static
 

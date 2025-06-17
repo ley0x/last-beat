@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { Alltracks, Timeframe } from "@/lib/types";
+import { Alltracks, Timeframe } from "@lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
-import { allTracksAtom } from "@/lib/store";
+import { allTracksAtom } from "@lib/store";
 import { fetchLastFmUserTopTracks } from "@/services/api/lastfm";
 
 type UseFetchAllTracksParams = {

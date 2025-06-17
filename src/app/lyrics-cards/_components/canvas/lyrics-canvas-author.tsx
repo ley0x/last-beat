@@ -1,5 +1,5 @@
-import { lcSelectedTrack, lcShowCredits } from "@/lib/store";
-import { cn } from "@/lib/utils";
+import { lcSelectedTrack, lcShowCredits } from "@lib/store";
+import { cn } from "@lib/utils";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 

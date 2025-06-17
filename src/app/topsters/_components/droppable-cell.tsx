@@ -2,10 +2,10 @@
 import React from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { useAtom } from 'jotai';
-import { cn } from '@/lib/utils';
-import { topsterRoundCornersAtom } from '@/lib/store';
-import { DroppableCellProps } from '@/lib/types';
-import { EMPTY_STATES } from '@/lib/constants';
+import { cn } from '@lib/utils';
+import { topsterRoundCornersAtom } from '@lib/store';
+import { DroppableCellProps } from '@lib/types';
+import { EMPTY_STATES } from '@lib/constants';
 
 import Image from "next/image";
 

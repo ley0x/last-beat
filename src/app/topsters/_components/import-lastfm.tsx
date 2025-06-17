@@ -12,11 +12,11 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 
 import { Input } from "@/components/ui/input"
 
-import { Timeframe } from "@/lib/types";
+import { Timeframe } from "@lib/types";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Divider from "@/components/_common/divider";
-import { gridAlbumsAtom, topsterHeightAtom, topsterWidthAtom } from "@/lib/store";
+import { gridAlbumsAtom, topsterHeightAtom, topsterWidthAtom } from "@lib/store";
 import { useAtom } from "jotai";
 import { useQuery } from "@tanstack/react-query";
 import { fetchLastFmUserTopAlbums } from "@/services/api/lastfm";

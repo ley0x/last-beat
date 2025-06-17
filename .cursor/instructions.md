@@ -135,8 +135,8 @@ export async function serverAction(data: FormData) {
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
-import type { User } from '@/lib/types'
+import { cn } from '@lib/utils'
+import type { User } from '@lib/types'
 ```
 
 ## Best Practices

@@ -4,7 +4,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useAtom } from 'jotai';
 
-import { lcSelectedLyrics, lcTrackLyrics } from '@/lib/store';
+import { lcSelectedLyrics, lcTrackLyrics } from '@lib/store';
 
 export const TrackLyrics = () => {
   const [, setSelectedText] = useAtom(lcSelectedLyrics);

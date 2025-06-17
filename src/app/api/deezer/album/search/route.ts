@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
 
-import { DeezerAlbumSchema } from '@/lib/schemas';
+import { DeezerAlbumSchema } from '@lib/schemas';
 
 export const dynamic = 'force-dynamic' // defaults to force-static
 

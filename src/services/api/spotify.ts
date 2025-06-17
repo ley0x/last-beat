@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { SpotifyAlbumSchema, SpotifyArtistSchema, SpotifyTrackSchema } from "@/lib/schemas";
+import { SpotifyAlbumSchema, SpotifyArtistSchema, SpotifyTrackSchema } from "@lib/schemas";
 
 
 export const getSpotifyArtistID = async (artistName: string): Promise<string> => {

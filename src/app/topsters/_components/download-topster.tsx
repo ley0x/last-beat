@@ -7,7 +7,7 @@ import { toJpeg } from 'html-to-image';
 import slugify from "slugify";
 
 import download from 'downloadjs';
-import { topsterTitleAtom } from "@/lib/store";
+import { topsterTitleAtom } from "@lib/store";
 import { useAtom } from "jotai";
 
 type Props = {

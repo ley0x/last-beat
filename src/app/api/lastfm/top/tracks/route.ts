@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
-import { LastFmTopTracks, TimeframeSchema } from '@/lib/schemas';
-import { environment } from '@/lib/env';
+import { LastFmTopTracks, TimeframeSchema } from '@lib/schemas';
+import { environment } from '@lib/env';
 
 export const dynamic = 'force-dynamic' // defaults to force-static
 

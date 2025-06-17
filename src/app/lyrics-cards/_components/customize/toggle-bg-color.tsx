@@ -8,11 +8,11 @@ import {
 
 import Header from "@/components/_common/header"
 
-import { cn } from "@/lib/utils";
-import { colors } from "@/lib/constants";
+import { cn } from "@lib/utils";
+import { colors } from "@lib/constants";
 import { useAtom } from "jotai";
-import { lcBgColor } from "@/lib/store";
-import { AvailableColors } from "@/lib/types";
+import { lcBgColor } from "@lib/store";
+import { AvailableColors } from "@lib/types";
 
 export function ToggleBgColor() {
   const [color, setColor] = useAtom(lcBgColor);

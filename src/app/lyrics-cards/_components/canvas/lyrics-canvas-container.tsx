@@ -7,15 +7,15 @@ import slugify from 'slugify';
 import { toPng } from 'html-to-image';
 import download from 'downloadjs';
 
-import { lcBgColor, lcSelectedTrack, lcShape } from '@/lib/store';
+import { lcBgColor, lcSelectedTrack, lcShape } from '@lib/store';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@lib/utils';
 
 import { CanvasBackground } from './canvas-background';
 import { LyricsCanvas } from './lyrics-canvas';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { Watermark } from './watermark';
-import { bgColorMap, shapeStyle } from '@/lib/constants';
+import { bgColorMap, shapeStyle } from '@lib/constants';
 
 export const LyricsCanvasContainer = () => {
 

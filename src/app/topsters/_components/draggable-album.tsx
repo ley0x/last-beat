@@ -4,8 +4,8 @@ import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 
-import { cn } from '@/lib/utils';
-import { DraggableAlbumProps } from '@/lib/types';
+import { cn } from '@lib/utils';
+import { DraggableAlbumProps } from '@lib/types';
 import { Album } from "./album";
 
 /**

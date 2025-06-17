@@ -1,8 +1,8 @@
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
 
-import { SpotifyArtistSchema } from '@/lib/schemas';
-import { environment } from '@/lib/env';
+import { SpotifyArtistSchema } from '@lib/schemas';
+import { environment } from '@lib/env';
 
 const getSpotifyAccessToken = async () => {
   const response = await fetch('https://accounts.spotify.com/api/token', {

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { SearchResults } from "./search-results"
 import { SearchBar } from "./searchbar"
-import { GeniusSearchTrackSchema } from "@/lib/schemas";
+import { GeniusSearchTrackSchema } from "@lib/schemas";
 import { z } from "zod";
 
 export const Search = () => {

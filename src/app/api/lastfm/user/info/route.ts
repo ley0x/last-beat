@@ -1,5 +1,5 @@
-import { environment } from '@/lib/env';
-import { LastFmUserInfo, UsernameSchema } from '@/lib/schemas';
+import { environment } from '@lib/env';
+import { LastFmUserInfo, UsernameSchema } from '@lib/schemas';
 import { NextRequest } from 'next/server';
 
 export const dynamic = 'force-dynamic' // defaults to force-static

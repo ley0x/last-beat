@@ -1,4 +1,4 @@
-import { LastFmTopAlbums } from '@/lib/schemas'
+import { LastFmTopAlbums } from '@lib/schemas'
 import React from 'react'
 import { z } from 'zod'
 
@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import Header from './header';
-import { findLargestImage } from '@/lib/utils';
+import { findLargestImage } from '@lib/utils';
 
 type Props = {
   album: z.infer<typeof LastFmTopAlbums>

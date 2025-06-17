@@ -6,8 +6,8 @@ import { ArrowRight } from "lucide-react";
 
 import { getLyricsAction } from "../../_actions/fetch-lyrics.action";
 
-import { lcSelectedTrack, lcTrackLyrics } from "@/lib/store";
-import { GeniusSearchTrackSchema } from "@/lib/schemas";
+import { lcSelectedTrack, lcTrackLyrics } from "@lib/store";
+import { GeniusSearchTrackSchema } from "@lib/schemas";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import Divider from "@/components/_common/divider";

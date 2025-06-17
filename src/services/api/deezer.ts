@@ -1,4 +1,4 @@
-import { DeezerAlbumSchema } from "@/lib/schemas";
+import { DeezerAlbumSchema } from "@lib/schemas";
 
 export const fetchDeezerSearchAlbum = async (query: string) => {
   const url = new URL('/api/deezer/album/search', window.location.origin);
