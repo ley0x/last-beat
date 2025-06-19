@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+;
+import { Link } from "@tanstack/react-router";
 import { z } from 'zod';
 import slugify from 'slugify';
 import { LastFmSearchAlbumSchema } from '@lib/schemas';
@@ -25,14 +25,13 @@ export const LastfmAlbum = ({ album }: Props) => {
   return (
     <Card className="flex flex-col gap-0 justify-between shadow-md w-42 py-2">
       <CardHeader className="my-0">
-        <Link href={album.url} target="_blank" className="block">
-          <Image
+        <Link to={album.url} target="_blank" className="block">
+          <img
             src={findLargestImage(album.image)}
             alt={`Cover of the album ${album.name}`}
             height={200}
             width={200}
             loading="lazy"
-            unoptimized
             className="aspect-square grow mx-auto"
           />
         </Link>

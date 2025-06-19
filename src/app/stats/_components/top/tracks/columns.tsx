@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
+import { Link } from "@tanstack/react-router"
+
 
 import { z } from "zod"
 import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react"
@@ -49,14 +49,14 @@ export const TrackColumns: ColumnDef<TracksTable>[] = [
       return (
         <div className="w-fit">
           <CoverCard url={image} show={show} setShow={setShow} />
-          <Image
+          <img
             src={image}
             onClick={() => setShow(!show)}
             width={50}
             height={50}
             alt="cover"
             className="cursor-pointer"
-            unoptimized
+            
             loading="lazy"
           />
         </div>
@@ -133,7 +133,7 @@ export const TrackColumns: ColumnDef<TracksTable>[] = [
     },
     cell: ({ row }) => {
       return (
-        <Link href={row.original.url} rel="noreferrer" target="_blank" className="font-bold">{row.getValue("name")}</Link>
+        <Link to={row.original.url} rel="noreferrer" target="_blank" className="font-bold">{row.getValue("name")}</Link>
       )
     }
     ,

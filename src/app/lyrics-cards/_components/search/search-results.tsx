@@ -1,4 +1,4 @@
-import Image from "next/image";
+;
 
 import { useAtom } from "jotai";
 import { z } from "zod";
@@ -53,7 +53,7 @@ export const SearchResults = ({ loading, foundTracks }: Props) => {
               className="flex flex-row w-full justify-between items-center flex-wrap gap-2 rounded-none h-auto py-1 cursor-pointer"
             >
               <div className="flex gap-2 items-center">
-                <Image src={getCover()} alt={track.title} width={40} height={50} unoptimized loading="lazy" />
+                <img src={getCover()} alt={track.title} width={40} height={50}  loading="lazy" />
                 <div className='flex flex-col items-start'>
                   <p>{track.title_with_featured}</p>
                   <p className="text-card-foreground/80 text-sm">{track.artist_names}</p>

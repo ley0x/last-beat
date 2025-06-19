@@ -1,12 +1,12 @@
-import Image from "next/image";
-import Link from "next/link";
+;
+import { Link } from "@tanstack/react-router";
 
 import { Wrapper } from "@common/wrapper";
 
 export const Charts = () => {
   return (
     <Wrapper className="flex-wrap justify-between items-center gap-y-5 gap-x-2">
-      <Image
+      <img
         alt="Gil Scott-Heron"
         src="/artists/gil-scott-heron.jpg"
         width={1200 / 3}
@@ -22,7 +22,7 @@ export const Charts = () => {
           </p>
           <div className="mt-4 md:mt-8">
             <Link
-              href="#"
+              to="#"
               className="inline-block rounded-sm bg-primary px-12 py-3 text-sm font-medium text-white transition hover:bg-red-500 focus:ring-3 focus:outline-hidden ring-red-400"
             >
               Explore charts

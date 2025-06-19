@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
+import { Link } from "@tanstack/react-router"
+
 
 import { z } from "zod"
 import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react"
@@ -35,14 +35,14 @@ export const AlbumsColumns: ColumnDef<AlbumsTable>[] = [
       return (
         <div className="w-fit">
           <CoverCard url={findLargestImage(row.original.image)} show={show} setShow={setShow} />
-          <Image
+          <img
             src={image === "#" ? "/placeholder.webp" : image}
             onClick={() => setShow(!show)}
             width={50}
             height={50}
             alt="cover"
             className="cursor-pointer"
-            unoptimized
+            
             loading="lazy"
           />
         </div>
@@ -119,7 +119,7 @@ export const AlbumsColumns: ColumnDef<AlbumsTable>[] = [
     },
     cell: ({ row }) => {
       return (
-        <Link href={row.original.url} rel="noreferrer" target="_blank" className="font-bold">{row.getValue("name")}</Link>
+        <Link to={row.original.url} rel="noreferrer" target="_blank" className="font-bold">{row.getValue("name")}</Link>
       )
     }
     ,

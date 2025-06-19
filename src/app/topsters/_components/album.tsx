@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import Image from "next/image";
+;
 import { useAtom } from 'jotai';
 
 import { cn, findLargestImage } from '@lib/utils';
@@ -35,7 +35,7 @@ export const Album = ({ album }: AlbumProps) => {
   if(img === PLACEHOLDER) return null;
 
   return (
-    <Image
+    <img
       src={img}
       alt={`${album.name} by ${album.artist}`}
       width={120}
@@ -49,7 +49,7 @@ export const Album = ({ album }: AlbumProps) => {
         }
       )}
       loading="lazy"
-      unoptimized
+      
     />
   );
 };

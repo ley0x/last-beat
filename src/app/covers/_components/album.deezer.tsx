@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+;
+import { Link } from "@tanstack/react-router";
 
 import { z } from 'zod';
 import slugify from 'slugify';
@@ -26,14 +26,13 @@ export const DeezerAlbum = ({ album }: Props) => {
   return (
     <Card className="flex flex-col w-64 max-w-full gap-1 justify-between shadow-md py-2">
       <CardHeader className="my-0">
-        <Link href={album.link} target="_blank" className="block">
-          <Image
+        <Link to={album.link} target="_blank" className="block">
+          <img
             src={album.cover_medium}
             alt={`Cover of the album ${album.title}`}
             height={200}
             width={200}
             loading="lazy"
-            unoptimized
             className="aspect-square grow mx-auto"
           />
         </Link>

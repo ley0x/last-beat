@@ -1,7 +1,7 @@
 'use client';
 
 import { useAtom } from 'jotai';
-import Image from 'next/image';
+;
 
 import { cn } from '@lib/utils';
 
@@ -20,13 +20,13 @@ export const Watermark = ({ width, height, className }: Props) => {
   if (!showWatermark) return null;
 
   return (
-    <Image
+    <img
       src="/logo.png"
       alt="watermark"
       width={!!width ? width : 30}
       height={!!height ? height : 30}
       className={cn(className)}
-      unoptimized
+      
       loading="lazy"
     />
   )

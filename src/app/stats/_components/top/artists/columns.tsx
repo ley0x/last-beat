@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Image from "next/image"
+
 
 import { z } from "zod"
 import { ArrowDown, ArrowDownUp, ArrowUp } from "lucide-react"
@@ -68,14 +68,14 @@ export const ArtistsColumns: ColumnDef<AlbumsTable>[] = [
       return (
         <div className="w-fit">
           <CoverCard url={profilePicture} show={show} setShow={setShow} />
-          <Image
+          <img
             src={profilePicture === "#" ? "/placeholder.webp" : profilePicture}
             onClick={() => setShow(!show)}
             width={50}
             height={50}
             alt="cover"
             className="cursor-pointer"
-            unoptimized
+            
             loading="lazy"
           />
         </div>

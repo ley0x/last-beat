@@ -30,14 +30,32 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env
-
-# vercel
-.vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
 debug.py
+.DS_Store
+.cache
+.env
+.vercel
+.output
+.vinxi
+
+/build/
+/api/
+/server/build
+/public/build
+.vinxi
+
+# Sentry Config File
+.env.sentry-build-plugin
+
+
+**/build
+**/public
+pnpm-lock.yaml
+routeTree.gen.ts
+
+.tanstack

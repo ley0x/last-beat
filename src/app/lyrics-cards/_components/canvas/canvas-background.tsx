@@ -1,4 +1,4 @@
-import Image from "next/image";
+;
 import { useAtom } from "jotai";
 
 import { lcLyricsBackground } from "@lib/store";
@@ -12,7 +12,7 @@ export const CanvasBackground = () => {
       <LyricsCanvasBgImage />
       {img && (
         <div className="absolute inset-0 z-0">
-          <Image
+          <img
             src={img}
             alt="Illustration to lyrics"
             fill

@@ -6,7 +6,7 @@ import { useAtom } from "jotai";
 
 import { useQuery } from "@tanstack/react-query";
 
-import Image from "next/image"
+
 
 import Divider from "@common/divider";
 
@@ -86,7 +86,7 @@ export const ImportLastfm = () => {
           </Select>
           <Button onClick={handleImport} size="sm" variant="secondary" className="hover:cursor-pointer">
             <span>Import</span>
-            <Image src="/providers/lastfm.png" width={20} height={20} alt="Last.fm logo" />
+            <img src="/providers/lastfm.png" width={20} height={20} alt="Last.fm logo" />
           </Button>
         </div>
       </CardContent>

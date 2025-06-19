@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
+;
 import { z } from 'zod';
 import slugify from 'slugify';
 
@@ -23,13 +23,12 @@ export const SpotifyAlbum = ({ album }: Props) => {
   return (
     <Card className="flex flex-col w-64 max-w-full gap-1 justify-between shadow-md py-2">
       <CardHeader className="my-0">
-        <Image
+        <img
           src={album.images[0].url}
           alt={`Cover of the album ${album.name}`}
           height={200}
           width={200}
           loading="lazy"
-          unoptimized
           className="aspect-square grow mx-auto"
         />
       </CardHeader>

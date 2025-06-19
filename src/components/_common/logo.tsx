@@ -1,6 +1,6 @@
 import { Disc3 } from "lucide-react"
 
-import Link from "next/link"
+import { Link } from "@tanstack/react-router"
 
 import { cn } from '@lib/utils';
 
@@ -43,7 +43,7 @@ export const Logo = ({ className, withText, notClickable, size }: Props) => {
   )
 
   return (
-    <Link href="/" className="flex gap-x-2 items-center">
+    <Link to="/" className="flex gap-x-2 items-center">
       <Icon size={size} /> {withText && <span className={cn("text-card-foreground underline decoration-primary underline-offset-4", className)}>Last Beat</span>}
     </Link>
   )

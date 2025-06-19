@@ -2,7 +2,7 @@ import { LastFmTopAlbums } from '@lib/schemas'
 import React from 'react'
 import { z } from 'zod'
 
-import Link from 'next/link'
+import { Link } from "@tanstack/react-router"
 
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 
@@ -19,7 +19,7 @@ export const Album = ({ album }: Props) => {
 
   return (
     <div className="shrink-0 w-34 flex flex-col justify-start items-center h-50">
-      <Link href={album.url ?? "#"} rel="noopener noreferrer" target="_blank">
+      <Link to={album.url ?? "#"} rel="noopener noreferrer" target="_blank">
         <Avatar>
           <AvatarImage className="h-34 w-34 object-cover rounded-sm shadow" src={image === "#" ? "/placeholder.webp" : image} />
           <AvatarFallback>{album.name}</AvatarFallback>

@@ -20,5 +20,5 @@ export const UploadBgImage = () => {
     const string = this.result instanceof ArrayBuffer ? arrayBufferToString(this.result) : this.result;
     setSelectedImage(string);
   }
-  return (<ImageUploader handleLoad={handleLoad} />)
+  return (<imgUploader handleLoad={handleLoad} />)
 }

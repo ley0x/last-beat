@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Image from "next/image";
+;
 
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -91,15 +91,15 @@ export const SearchBar = ({ setAlbums, setProvider }: Props) => {
                 <SelectGroup>
                   <SelectLabel>Providers</SelectLabel>
                   <SelectItem value="deezer">
-                    <Image src="/providers/deezer.png" width={20} height={20} alt="Deezer logo" />
+                    <img src="/providers/deezer.png" width={20} height={20} alt="Deezer logo" />
                     Deezer
                   </SelectItem>
                   <SelectItem value="spotify">
-                    <Image src="/providers/spotify.png" width={20} height={20} alt="Spotify logo" />
+                    <img src="/providers/spotify.png" width={20} height={20} alt="Spotify logo" />
                     Spotify
                   </SelectItem>
                   <SelectItem value="lastfm">
-                    <Image src="/providers/lastfm.png" width={20} height={20} alt="Last.fm logo" />
+                    <img src="/providers/lastfm.png" width={20} height={20} alt="Last.fm logo" />
                     Last.fm
                   </SelectItem>
                 </SelectGroup>

@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+;
+import { Link } from "@tanstack/react-router";
 import { Wrapper } from "@common/wrapper";
 
 export const Stats = () => {
@@ -20,7 +20,7 @@ export const Stats = () => {
 
               <div className="mt-4 lg:mt-8">
                 <Link
-                  href="/stats"
+                  to="/stats"
                   className="inline-block rounded-sm border border-white bg-white px-12 py-3 text-sm font-medium text-primary transition hover:bg-transparent hover:text-white focus:ring-3 focus:ring-red-400 focus:outline-hidden"
                 >
                   See your stats
@@ -29,7 +29,7 @@ export const Stats = () => {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <Image
+            <img
               alt="John Coltrane"
               src="/artists/john-coltrane.jpg"
               className="h-96 w-full object-cover sm:h-72 md:h-full"
@@ -37,7 +37,7 @@ export const Stats = () => {
               width={707}
               height={900}
             />
-            <Image
+            <img
               alt="Donna Summer"
               src="/artists/donna-summer.jpg"
               className="h-96 w-full object-cover sm:h-72 md:h-full"

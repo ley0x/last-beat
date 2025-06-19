@@ -2,7 +2,7 @@ import { LastFmTopTracks } from '@lib/schemas'
 import React, { useEffect, useState } from 'react'
 import { z } from 'zod'
 
-import Link from 'next/link'
+import { Link } from "@tanstack/react-router"
 
 import Header from '@common/header';
 import { ArtistSkeleton } from '@common/artist-skeleton';
@@ -35,7 +35,7 @@ export const Track = ({ track }: Props) => {
 
   return (
     <div className="w-34 flex flex-col justify-start items-center h-50">
-      <Link href={track.url ?? "#"} rel="noopener noreferrer" target="_blank">
+      <Link to={track.url ?? "#"} rel="noopener noreferrer" target="_blank">
         <Avatar>
           <AvatarImage className="h-34 w-34 rounded-sm shadow" src={image} />
           <AvatarFallback>{track.name}</AvatarFallback>

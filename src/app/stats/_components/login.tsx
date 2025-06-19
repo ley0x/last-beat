@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { toast } from "sonner"
 
-import Image from "next/image"
+
 import { Button } from "@components/ui/button"
 
 import {
@@ -66,7 +66,7 @@ export function Login() {
         />
         <Button type="submit" variant="outline" className="hover:cursor-pointer">
           <span>Search on Last.fm</span>
-          <Image src="/providers/lastfm.png" width={20} height={20} alt="Last.fm logo" />
+          <img src="/providers/lastfm.png" width={20} height={20} alt="Last.fm logo" />
         </Button>
       </form>
     </Form>

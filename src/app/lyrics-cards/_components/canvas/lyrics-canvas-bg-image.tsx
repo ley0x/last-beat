@@ -1,7 +1,7 @@
 'use client';
 
 import { useAtom } from 'jotai';
-import Image from 'next/image';
+;
 
 import { lcBlur, lcBrightness, lcGrayscale, lcOpacity, lcSelectedTrack, lcShowBgImage } from '@lib/store';
 
@@ -19,7 +19,7 @@ export const LyricsCanvasBgImage = () => {
 
   return (
     <div className="absolute inset-0 w-full h-full">
-      <Image
+      <img
         src={selectedTrack.header_image_thumbnail_url}
         alt=""
         width={100}
@@ -30,7 +30,7 @@ export const LyricsCanvasBgImage = () => {
           "blur-xs": blur,
           "brightness-50": brightness,
         })}
-        unoptimized
+        
         loading="lazy"
       />
     </div>

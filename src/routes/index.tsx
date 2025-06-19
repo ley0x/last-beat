@@ -1,4 +1,6 @@
-import { Main } from "@common/main";
+// app/routes/index.tsx
+import { createFileRoute } from '@tanstack/react-router'
+
 
 import { Charts } from "@landing-page/charts";
 import { Hero } from "@landing-page/hero";
@@ -7,8 +9,9 @@ import { Stats } from "@landing-page/stats";
 import { Topsters } from "@landing-page/topsters";
 
 import { Footer } from "@layout/footer";
+import { Main } from '@/components/_common/main';
 
-export default function Home() {
+const Home = () => {
   return (
     <Main className="relative h-full">
       <Hero />
@@ -22,3 +25,6 @@ export default function Home() {
     </Main>
   );
 }
+export const Route = createFileRoute('/')({
+  component: Home,
+})

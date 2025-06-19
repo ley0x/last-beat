@@ -1,13 +1,9 @@
-
-
-const {
-  default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
+import tailwindAnimate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
-    // your paths
     "./src/**/*.{ts,tsx}",
   ],
   darkMode: "class",
@@ -15,6 +11,8 @@ module.exports = {
     extend: {
       animation: {
         aurora: "aurora 60s linear infinite",
+        shine: 'shine 3s ease-out infinite',
+        'gradient-flow': 'gradientFlow 10s ease 0s infinite normal none running',
       },
       keyframes: {
         aurora: {
@@ -25,31 +23,23 @@ module.exports = {
             backgroundPosition: "350% 50%, 350% 50%",
           },
         },
+        shine: {
+          '0%': { backgroundPosition: '200% 0' },
+          '25%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        },
+        gradientFlow: {
+          '0%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
+          '100%': { 'background-position': '0% 50%' },
+        },
       },
     },
   },
   plugins: [
     addVariablesForColors,
-    require("tailwindcss-animate"),
+    tailwindAnimate,
   ],
-  extend: {
-    keyframes: {
-      shine: {
-        '0%': { backgroundPosition: '200% 0' },
-        '25%': { backgroundPosition: '-200% 0' },
-        '100%': { backgroundPosition: '-200% 0' },
-      },
-      gradientFlow: {
-        '0%': { 'background-position': '0% 50%' },
-        '50%': { 'background-position': '100% 50%' },
-        '100%': { 'background-position': '0% 50%' },
-      },
-    },
-    animation: {
-      shine: 'shine 3s ease-out infinite',
-      'gradient-flow': 'gradientFlow 10s ease 0s infinite normal none running',
-    },
-  },
 };
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).

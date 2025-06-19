@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+;
+import { Link } from "@tanstack/react-router";
 import { Wrapper } from "@common/wrapper";
 
 export const LyricsCards = () => {
@@ -8,7 +8,7 @@ export const LyricsCards = () => {
       <Wrapper>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 w-full">
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-2">
-            <Image
+            <img
               alt="John Coltrane"
               src="/artists/sade.jpg"
               className="h-96 w-full object-cover sm:h-72 md:h-full"
@@ -16,7 +16,7 @@ export const LyricsCards = () => {
               width={707}
               height={900}
             />
-            <Image
+            <img
               alt="Nina Simone"
               src="/artists/nina-simone.jpg"
               className="h-96 w-full object-cover sm:h-72 md:h-full"
@@ -37,7 +37,7 @@ export const LyricsCards = () => {
 
               <div className="mt-4 lg:mt-8">
                 <Link
-                  href="/cards"
+                  to="/cards"
                   className="inline-block rounded-sm border border-white bg-white px-12 py-3 text-sm font-medium text-red-500 transition hover:bg-transparent hover:text-white focus:ring-3 focus:ring-red-400 focus:outline-hidden"
                 >
                   Generate cards

@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+;
+import { Link } from "@tanstack/react-router";
 import { Wrapper } from "@common/wrapper";
 
 export const Topsters = () => {
@@ -16,7 +16,7 @@ export const Topsters = () => {
           </p>
           <div className="mt-4 md:mt-8">
             <Link
-              href="/topsters"
+              to="/topsters"
               className="inline-block rounded-sm bg-primary px-12 py-3 text-sm font-medium text-white transition hover:bg-red-500 focus:ring-3 focus:outline-hidden ring-red-400"
             >
               Generate topsters
@@ -24,7 +24,7 @@ export const Topsters = () => {
           </div>
         </div>
       </div>
-      <Image
+      <img
         alt="Charles Mingus"
         src="/artists/mingus.jpg"
         width={500 / 1.5}

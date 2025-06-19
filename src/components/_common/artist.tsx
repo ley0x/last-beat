@@ -2,7 +2,7 @@ import { LastFmTopArtists } from '@lib/schemas'
 import React, { useEffect, useState } from 'react'
 import { z } from 'zod'
 
-import Link from 'next/link'
+import { Link } from "@tanstack/react-router"
 
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 
@@ -55,7 +55,7 @@ export const Artist = ({ artist, className }: Props) => {
 
   return (
     <div className={cn("shrink-0 w-34 flex flex-col justify-between items-center", className)}>
-      <Link href={artist.url ?? "#"} rel="noopener noreferrer" target="_blank">
+      <Link to={artist.url ?? "#"} rel="noopener noreferrer" target="_blank">
         <Avatar>
           <AvatarImage className="h-34 w-34 object-cover rounded-full shadow" src={profilePicture === "#" ? "/placeholder.webp" : profilePicture} />
           <AvatarFallback>{artist.name}</AvatarFallback>

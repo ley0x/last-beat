@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { X } from "lucide-react";
-import Image from "next/image"
+
 
 import { Button } from "@components/ui/button";
 
@@ -30,7 +30,7 @@ export const CoverCard = ({ setShow, show, url }: Props) => {
       <Button className="cursor-pointer absolute right-10 top-10" variant="ghost" size="icon" onClick={() => setShow(false)}>
         <X />
       </Button>
-      <Image src={url} alt="cover" width={500} height={500} className="size-72 sm:size-96 md:size-[500px] max-w-full" onClick={(e) => e.stopPropagation()} unoptimized loading="lazy" />
+      <img src={url} alt="cover" width={500} height={500} className="size-72 sm:size-96 md:size-[500px] max-w-full" onClick={(e) => e.stopPropagation()}  loading="lazy" />
     </div>
   )
 }

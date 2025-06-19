@@ -2,7 +2,7 @@ import { LastFmUserFriends } from '@lib/schemas'
 import React from 'react'
 import { z } from 'zod'
 
-import Link from 'next/link'
+import { Link } from "@tanstack/react-router"
 
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import Header from '@common/header';
@@ -21,7 +21,7 @@ export const Friend = ({ friend }: Props) => {
   }
   return (
     <div className="w-42 flex flex-col justify-center items-center">
-      <Link href={getLink(friend)}>
+      <Link to={getLink(friend)}>
         <Avatar>
           <AvatarImage className="h-32 w-32 rounded-full shadow" src={image === "#" ? "/placeholder.webp" : image} />
           <AvatarFallback>{friend.name}</AvatarFallback>

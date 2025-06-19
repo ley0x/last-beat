@@ -7,7 +7,7 @@ import { topsterRoundCornersAtom } from '@lib/store';
 import { DroppableCellProps } from '@lib/types';
 import { EMPTY_STATES } from '@lib/constants';
 
-import Image from "next/image";
+;
 
 /**
  * Droppable cell component that represents an empty grid slot
@@ -19,7 +19,7 @@ export const DroppableCell = ({ id }: DroppableCellProps) => {
   });
 
   return (
-    <Image
+    <img
       src="/placeholder.svg"
       alt="Drop here"
       width={120}
@@ -31,7 +31,7 @@ export const DroppableCell = ({ id }: DroppableCellProps) => {
         }
       )}
       loading="lazy"
-      unoptimized
+      
       title={EMPTY_STATES.dropHere}
       ref={setNodeRef}
     />
