@@ -1,0 +1,255 @@
+# Cursor Rules for Last Beat - TanStack Start Application
+
+## Project Overview
+
+This is a TanStack Start application using TypeScript, Tailwind CSS, shadcn/ui, and follows clean architecture principles.
+
+## Tech Stack
+
+- **Framework**: TanStack Start with File-based Routing
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4 + shadcn/ui components
+- **State Management**: Jotai for client state, TanStack Query for server state
+- **Forms**: React Hook Form with Zod validation
+- **Animation**: Motion (Framer Motion)
+- **Router**: TanStack Router (built-in)
+
+## Architecture Principles
+
+### Clean Architecture Layers
+
+1. **Presentation Layer** (`/src/routes`, `/src/components`)
+
+   - React components, route components, layouts
+   - UI components from shadcn/ui
+   - Client-side state management
+
+2. **Application Layer** (`/src/services`, `/src/hooks`)
+
+   - Business logic
+   - Custom hooks
+   - Service layer abstractions
+
+3. **Domain Layer** (`/src/lib/types.ts`, `/src/lib/schemas.ts`)
+
+   - Domain models and types
+   - Zod schemas for validation
+   - Business rules and entities
+
+4. **Infrastructure Layer** (`/src/api`, `/src/lib/utils.ts`)
+   - Server-side API functions
+   - Database access (future: Drizzle)
+   - Utility functions
+
+### Directory Structure
+
+```txt
+src/
+├── routes/                # TanStack Start file-based routes
+│   ├── __root.tsx         # Root route with layout
+│   ├── index.tsx          # Home page route
+│   └── api/               # API routes
+├── components/            # Reusable UI components
+│   ├── ui/                # shadcn/ui components
+│   ├── forms/             # Form components
+│   ├── features/          # Feature-specific components
+│   └── layout/            # Layout components
+├── services/              # Service layer abstractions
+├── hooks/                 # Custom React hooks
+├── lib/                   # Internal library code
+│   ├── store.ts           # Jotai atoms and stores
+│   ├── schemas.ts         # Zod validation schemas
+│   ├── types.ts           # TypeScript type definitions
+│   └── utils.ts           # Utility functions
+├── api/                   # Server-side API functions
+└── server/                # Server configuration
+```
+
+## Code Standards
+
+### Data Fetching Rules
+
+- **Use TanStack Start server functions for mutations** (POST, PUT, DELETE, PATCH)
+- **Use TanStack Query for all read operations** (GET requests)
+- **Use route loaders for initial data fetching**
+- Server functions should be in `/src/api/` directory
+- Leverage TanStack Router's built-in data loading capabilities
+
+### Routing Rules
+
+- Use TanStack Router file-based routing conventions
+- Define route components in `/src/routes/`
+- Use route loaders for data dependencies
+- Implement proper route validation with search params
+- Use route context for sharing data between route components
+
+### TypeScript Rules
+
+- Always use strict TypeScript
+- Define interfaces/types in `/src/lib/types.ts`
+- Use Zod schemas for runtime validation
+- Prefer type-safe patterns with satisfies operator
+- Use const assertions where appropriate
+- Leverage TanStack Router's type-safe routing
+
+### Component Rules
+
+- Use functional components with hooks
+- Prefer composition over inheritance
+- Extract custom hooks for reusable logic
+- Use proper TypeScript props interfaces
+- Follow shadcn/ui patterns for consistency
+- Never use React.FC for components but prefer functional components with typing arguments directly
+
+### Styling Rules
+
+- Use Tailwind CSS utility classes
+- Follow shadcn/ui design system
+- Use CSS variables for theming
+- Prefer Tailwind over custom CSS
+- Use `cn()` utility for conditional classes
+
+### State Management Rules
+
+- **Client State**: Use Jotai atoms for global client state
+- **Server State**: Use TanStack Query for server data
+- **Form State**: Use React Hook Form with Zod validation
+- **Route State**: Use TanStack Router's search params and route context
+- Keep state as local as possible
+- Use proper TypeScript typing for all state
+
+### Form Handling Rules
+
+- Always use React Hook Form with Zod resolvers
+- Define schemas in `/src/lib/schemas.ts`
+- Use shadcn/ui form components
+- Implement proper error handling and validation
+- Use TanStack Start server functions for form submissions
+
+### File Naming Conventions
+
+- Every files should be camel cased: kebab-case (e.g., `user-profile.tsx`)
+
+## TanStack Start Specific Patterns
+
+### Server Functions
+
+- Create server functions in `/src/routes/api/` directory
+- Use proper error handling with try-catch blocks
+- Validate inputs with Zod schemas
+- Return type-safe responses
+- Handle authentication and authorization
+
+### Route Structure
+
+- Use `__root.tsx` for app-wide layout and providers
+- Implement route-level error boundaries
+- Use route loaders for data dependencies
+- Leverage route context for shared state
+- Implement proper loading states
+
+### Data Loading
+
+- Use route loaders for initial page data
+- Combine with TanStack Query for client-side caching
+- Implement proper error and loading states
+- Use Suspense boundaries appropriately
+- Prefetch data when possible
+
+## Best Practices
+
+### Performance
+
+- Use dynamic imports for code splitting
+- Implement proper loading states with TanStack Router
+- Use React.memo() for expensive components
+- Optimize images with proper loading strategies
+- Use Suspense boundaries appropriately
+- Leverage TanStack Start's built-in optimizations
+
+### Error Handling
+
+- Implement route-level error boundaries
+- Use TanStack Query error handling
+- Handle server function errors gracefully
+- Provide meaningful error messages
+- Log errors appropriately for debugging
+
+### Accessibility
+
+- Use semantic HTML elements
+- Implement proper ARIA attributes
+- Ensure keyboard navigation works
+- Follow WCAG guidelines
+- Test with screen readers
+
+### Security
+
+- Validate all inputs with Zod schemas
+- Sanitize user-generated content
+- Use proper authentication (future: Better Auth)
+- Implement CSRF protection
+- Follow security best practices
+
+## Dependencies Usage
+
+### Core Libraries
+
+- **TanStack Start**: Full-stack React framework
+- **TanStack Router**: Type-safe routing with file-based conventions
+- **React**: Use hooks, Suspense, and modern patterns
+- **TypeScript**: Strict mode with proper typing
+- **Tailwind CSS**: Utility-first styling approach
+
+### UI Libraries
+
+- **shadcn/ui**: Primary component library
+- **Radix UI**: Headless components (via shadcn/ui)
+- **Lucide React**: Icon library
+- **Motion**: Animation library (use sparingly)
+
+### State & Data
+
+- **TanStack Query**: Server state management and caching
+- **Jotai**: Atomic state management for client state
+- **React Hook Form**: Form state and validation
+- **Zod**: Schema validation and type inference
+
+### Utilities
+
+- **clsx + tailwind-merge**: Conditional class names via `cn()`
+- **class-variance-authority**: Component variant handling
+- **next-themes**: Theme management
+- **slugify**: URL-friendly string generation
+
+## TanStack Start Configuration
+
+### Server Setup
+
+- Configure server in `/src/server/` directory
+- Set up proper middleware for CORS, authentication
+- Configure static file serving
+- Set up proper error handling middleware
+
+### Build & Deploy
+
+- Use TanStack Start's built-in build system
+- Configure environment variables properly
+- Set up proper production optimizations
+- Consider deployment to Vercel, Netlify, or Node.js servers
+
+## Future Considerations
+
+- **Authentication**: Integrate Better Auth
+- **Database**: Migrate to Drizzle ORM with PostgreSQL
+- **Testing**: Add Jest + Testing Library
+- **Deployment**: Optimize for various deployment targets
+
+## Code Quality
+
+- Use ESLint with TanStack recommended configs
+- Run type checking before commits
+- Follow consistent import ordering
+- Use absolute imports via TypeScript paths
+- Write self-documenting code with clear naming
+- Leverage TanStack Start's development tools

@@ -13,7 +13,7 @@ export const Layout = ({ children }: Props) => {
       <AppSidebar />
       <div className="flex flex-col w-full min-h-screen">
         <Navbar />
-          {children}
+        {children}
       </div>
     </SidebarProvider>
     )

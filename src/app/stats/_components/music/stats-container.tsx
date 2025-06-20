@@ -1,47 +1,46 @@
-import Header from '@common/header';
-import { Button } from '@components/ui/button';
-import { Plus } from 'lucide-react';
-import { useTimeframe } from '@hooks/use-timeframe';
-import { useRouter } from 'next/navigation'
-import { useParams } from 'next/navigation'
+import Header from '@common/header'
+import { Button } from '@components/ui/button'
+import { Plus } from 'lucide-react'
+import { useTimeframe } from '@hooks/use-timeframe'
 
-import { Controls } from '@stats/top/controls';
+import { Controls } from '@stats/top/controls'
+import { useNavigate } from '@tanstack/react-router'
 
 type Props = {
-  children: React.ReactNode;
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  viewMore?: boolean;
-  setMode: React.Dispatch<React.SetStateAction<"grid" | "list">>;
-  mode: "grid" | "list";
-  type: "albums" | "artists" | "tags" | "tracks";
+  children: React.ReactNode
+  page: number
+  setPage: React.Dispatch<React.SetStateAction<number>>
+  viewMore?: boolean
+  setMode: React.Dispatch<React.SetStateAction<'grid' | 'list'>>
+  mode: 'grid' | 'list'
+  username: string
+  type: 'albums' | 'artists' | 'tags' | 'tracks'
 }
 
-export const StatsContainer = ({ children, page, setPage, type, viewMore, setMode, mode }: Props) => {
-  const router = useRouter();
-  const params = useParams<{ username: string; }>()
-  const time = useTimeframe();
+export const StatsContainer = ({ children, page, setPage, type, viewMore, setMode, mode, username }: Props) => {
+  const time = useTimeframe()
+  const navigate = useNavigate({ from: '/stats/$username' })
 
   const data = {
     albums: {
-      title: "Top Albums",
+      title: 'Top Albums',
       subtitle: `Your top albums from the ${time}.`,
-      href: `/stats/${params.username}/albums`,
+      href: `/stats/${username}/albums`
     },
     artists: {
-      title: "Top Artists",
+      title: 'Top Artists',
       subtitle: `Your top artists from the ${time}.`,
-      href: `/stats/${params.username}/artists`,
+      href: `/stats/${username}/artists`
     },
     tags: {
-      title: "Top Tags",
+      title: 'Top Tags',
       subtitle: `Your top tags from the ${time}.`,
-      href: `/stats/${params.username}/tags`,
+      href: `/stats/${username}/tags`
     },
     tracks: {
-      title: "Top Tracks",
+      title: 'Top Tracks',
       subtitle: `Your top tracks from the ${time}.`,
-      href: `/stats/${params.username}/tracks`,
+      href: `/stats/${username}/tracks`
     }
   }
 
@@ -52,14 +51,17 @@ export const StatsContainer = ({ children, page, setPage, type, viewMore, setMod
           <Header as="h2">{data[type].title}</Header>
           <Controls setPage={setPage} page={page} setMode={setMode} mode={mode} />
         </div>
-        <Header as="h4" className="text-gray-400 font-normal">{data[type].subtitle}</Header>
+        <Header as="h4" className="text-gray-400 font-normal">
+          {data[type].subtitle}
+        </Header>
       </div>
-      <div className="flex flex-wrap gap-2 justify-around items-center">
-        {children}
-      </div>
+      <div className="flex flex-wrap gap-2 justify-around items-center">{children}</div>
       {!!viewMore && (
         <div className="flex justify-end">
-          <Button onClick={() => router.push(data[type].href)} variant="outline" className="hover:cursor-pointer"><span>View more</span><Plus /> </Button>
+          <Button onClick={() => navigate({ to: data[type].href })} variant="outline" className="hover:cursor-pointer">
+            <span>View more</span>
+            <Plus />{' '}
+          </Button>
         </div>
       )}
     </div>

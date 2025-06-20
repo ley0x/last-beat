@@ -1,48 +1,39 @@
-"use client"
+'use client'
 
-import { useRouter } from 'next/navigation'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { z } from 'zod'
+import { toast } from 'sonner'
 
-import { z } from "zod"
-import { toast } from "sonner"
+import { Button } from '@components/ui/button'
 
-
-import { Button } from "@components/ui/button"
-
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@components/ui/form"
-import { Input } from "@components/ui/input"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@components/ui/form'
+import { Input } from '@components/ui/input'
+import { useNavigate } from '@tanstack/react-router'
 
 const FormSchema = z.object({
   username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+    message: 'Username must be at least 2 characters.'
+  })
 })
 
 export function Login() {
-  const router = useRouter();
+  const navigate = useNavigate()
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      username: "",
-    },
+      username: ''
+    }
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast.info(`Hello ${data.username}! 👋`, {
-      description: "We are contacting the Last.fm API to retrieve your data..."
+      description: 'We are contacting the Last.fm API to retrieve your data...'
     })
-    router.push(`/stats/${data.username}`)
+
+    navigate({ to: `/stats/${data.username}` })
   }
 
   return (
@@ -57,9 +48,7 @@ export function Login() {
               <FormControl>
                 <Input placeholder="Last.fm username" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public last.fm username.
-              </FormDescription>
+              <FormDescription>This is your public last.fm username.</FormDescription>
               <FormMessage />
             </FormItem>
           )}

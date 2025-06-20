@@ -3,6 +3,7 @@ import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'sonner'
 import { CustomBackground } from '@layout/custom-background'
 
+import { ReactQueryProvider } from "@common/react-query-provider";
 import { SidebarProvider } from "@components/ui/sidebar"
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
@@ -16,7 +17,9 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
         >
         <CustomBackground>
             <SidebarProvider>
-                {children}
+                <ReactQueryProvider>
+                    {children}
+                </ReactQueryProvider>
             </SidebarProvider>
         </CustomBackground>
         <Toaster theme="system" />

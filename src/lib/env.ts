@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
 export const environment = z
   .object({
@@ -11,6 +11,6 @@ export const environment = z
     SPOTIFY_CLIENT_SECRET: z.string(),
     GENIUS_CLIENT_ID: z.string(),
     GENIUS_CLIENT_SECRET: z.string(),
-    GENIUS_CLIENT_ACCESS_TOKEN: z.string(),
+    GENIUS_CLIENT_ACCESS_TOKEN: z.string()
   })
-  .parse(process.env);
+  .parse(process.env)
