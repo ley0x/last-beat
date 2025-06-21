@@ -1,8 +1,10 @@
 import { environment } from '@lib/env'
 import { LastFmUserInfo, UsernameSchema } from '@lib/schemas'
+import { logger, getRequestContext } from '@lib/logger'
 import { z, ZodError } from 'zod'
 import { json } from '@tanstack/react-start'
 import { createServerFileRoute } from '@tanstack/react-start/server'
+import { handleApiError } from '@/lib/errors'
 
 const SearchParamsSchema = z.object({
   q: UsernameSchema
@@ -26,13 +28,9 @@ export const ServerRoute = createServerFileRoute('/api/lastfm/user/info').method
       const data = await res.json()
       const infos = LastFmUserInfo.parse(data.user)
 
-      return Response.json({ success: true, data: infos })
-    } catch (e: Error | unknown) {
-      console.error('Error:', e)
-      if (e instanceof ZodError) {
-        return json({ success: false, error: 'Invalid query parameters' }, { status: 400 })
-      }
-      return json({ success: false, error: 'Internal server error' }, { status: 500 })
+      return json({ success: true, data: infos })
+    } catch (e: unknown) {
+      return handleApiError(e, request)
     }
   }
 })

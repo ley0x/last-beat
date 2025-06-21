@@ -1,10 +1,11 @@
 import { environment } from '@lib/env'
 import { LastFmAlbumSchema } from '@lib/schemas'
 
-import { z, ZodError } from 'zod'
+import { z } from 'zod'
 import { json } from '@tanstack/react-start'
 
 import { createServerFileRoute } from '@tanstack/react-start/server'
+import { handleApiError } from '@/lib/errors'
 
 const SearchParamsSchema = z.object({
   mbid: z.string().min(2).max(200).trim()
@@ -28,13 +29,9 @@ export const ServerRoute = createServerFileRoute('/api/lastfm/album/mbid').metho
       const data = await res.json()
       const album = LastFmAlbumSchema.parse(data.album)
 
-      return Response.json({ success: true, data: album })
+      return json({ success: true, data: album })
     } catch (e: Error | unknown) {
-      console.error('Error:', e)
-      if (e instanceof ZodError) {
-        return json({ success: false, error: 'Invalid query parameters' }, { status: 400 })
-      }
-      return json({ success: false, error: 'Internal server error' }, { status: 500 })
+      return handleApiError(e, request)
     }
   }
 })

@@ -34,11 +34,13 @@ export const spotifyApiRequest = async (endpoint: string, options: RequestInit =
   const accessToken = await getSpotifyAccessToken()
   const BASE_URL = 'https://api.spotify.com/v1'
 
-  return fetch(`${BASE_URL}/${endpoint}`, {
+  const res = await fetch(`${BASE_URL}${endpoint}`, {
     ...options,
     headers: {
       ...options.headers,
       Authorization: `Bearer ${accessToken}`
     }
   })
+  if (!res.ok) throw new Error(`Spotify API error: ${res.status} - ${res.statusText}`)
+  return res
 }
