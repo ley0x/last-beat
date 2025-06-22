@@ -1,45 +1,39 @@
-import {
-  HeadContent,
-  Link,
-  Outlet,
-  Scripts,
-  createRootRoute,
-} from '@tanstack/react-router'
+import { HeadContent, Link, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import * as React from 'react'
 import { DefaultCatchBoundary } from '@components/default-cache-boundary'
 import { NotFound } from '@components/not-found'
 import { seo } from '@lib/utils'
 
-import appCss from "@styles/globals.css?url"
+import appCss from '@styles/globals.css?url'
 import { Providers } from '@/components/providers/providers'
 import { Layout } from '@/components/layout/layout'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 export const Route = createRootRoute({
   head: () => ({
     meta: [
       {
-        charSet: 'utf-8',
+        charSet: 'utf-8'
       },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
+        content: 'width=device-width, initial-scale=1'
       },
       ...seo({
-        title:
-          'LastBeat | Music Statistics and more',
-        description: `The Rhythm of Your Life, Quantified`,
-      }),
+        title: 'LastBeat | Music Statistics and more',
+        description: `The Rhythm of Your Life, Quantified`
+      })
     ],
     links: [
       {
         rel: 'stylesheet',
-        href: appCss,
+        href: appCss
       },
-      { rel: 'icon', href: '/favicon.ico' },
-    ],
+      { rel: 'icon', href: '/favicon.ico' }
+    ]
   }),
-  errorComponent: (props) => {
+  errorComponent: props => {
     return (
       <RootDocument>
         <DefaultCatchBoundary {...props} />
@@ -47,7 +41,7 @@ export const Route = createRootRoute({
     )
   },
   notFoundComponent: () => <NotFound />,
-  component: RootComponent,
+  component: RootComponent
 })
 
 function RootComponent() {
@@ -66,11 +60,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body className="relative">
         <Providers>
-          <Layout>
-            {children}
-          </Layout>
+          <Layout>{children}</Layout>
+          <TanStackRouterDevtools position="bottom-right" />
+          <ReactQueryDevtools buttonPosition="bottom-left" />
         </Providers>
-        <TanStackRouterDevtools position="bottom-right" />
         <Scripts />
       </body>
     </html>

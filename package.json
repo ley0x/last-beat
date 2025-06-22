@@ -7,7 +7,9 @@
   "scripts": {
     "type-check": "tsc --noEmit",
     "dev": "vite dev",
-    "build": "vite build"
+    "build": "vite build",
+    "start": "node .output/server/index.mjs",
+    "lint": "eslint src --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 0"
   },
   "author": "ley0x",
   "packageManager": "pnpm@10.9.0",
@@ -63,6 +65,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@tanstack/react-query-devtools": "^5.81.2",
     "@tanstack/react-router-devtools": "^1.121.21",
     "@types/downloadjs": "^1.4.6",
     "@types/node": "^20",
