@@ -1,5 +1,4 @@
 import { LastFmTopAlbums } from '@lib/schemas'
-import React from 'react'
 import { z } from 'zod'
 
 import { Link } from "@tanstack/react-router"

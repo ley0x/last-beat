@@ -1,12 +1,19 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Layout } from '@/components/layout/layout'
+import { Main } from '@common/main'
+import { Wrapper } from '@common/wrapper'
+
+import { ComingSoon } from '@common/comming-soon'
 
 export const Route = createFileRoute('/tierlists')({
-  component: RouteComponent,
+  component: RouteComponent
 })
 
 function RouteComponent() {
   return (
-    <div>Hello "/tierlists"!</div>
+    <Main>
+      <Wrapper className="flex-col gap-5 py-5">
+        <ComingSoon />
+      </Wrapper>
+    </Main>
   )
 }

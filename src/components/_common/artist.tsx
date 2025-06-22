@@ -1,5 +1,5 @@
 import { LastFmTopArtists } from '@lib/schemas'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { z } from 'zod'
 
 import { Link } from "@tanstack/react-router"
@@ -11,7 +11,6 @@ import { cn, findLargestImage } from '@lib/utils';
 import { useQuery } from '@tanstack/react-query';
 
 import Header from '@common/header';
-import { ErrorStatus } from '@common/error-status';
 import { ArtistSkeleton } from '@common/artist-skeleton';
 
 type Props = {
@@ -38,7 +37,7 @@ const search = async (artistName: string) => {
 export const Artist = ({ artist, className }: Props) => {
   const [profilePicture, setProfilePicture] = useState(findLargestImage(artist.image));
 
-  const { isPending, isError, data } = useQuery({ queryKey: ['search-profile-picture', artist.name], queryFn: () => search(artist.name) });
+  const { isPending, data } = useQuery({ queryKey: ['search-profile-picture', artist.name], queryFn: () => search(artist.name) });
 
   useEffect(() => {
     if (!data) return;
@@ -47,10 +46,6 @@ export const Artist = ({ artist, className }: Props) => {
 
   if (isPending) {
     return <ArtistSkeleton />
-  }
-
-  if (isError) {
-    return (<ErrorStatus className="w-34" message={"Artist not found"} />)
   }
 
   return (

@@ -1,12 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Layout } from '@/components/layout/layout'
+import { Main } from '@common/main'
+
+import { TopsterDndContext } from '@topsters/topster-dnd-context'
 
 export const Route = createFileRoute('/topsters')({
-  component: RouteComponent,
+  component: RouteComponent
 })
 
 function RouteComponent() {
   return (
-    <div>Hello "/topsters"!</div>
+    <Main className="flex flex-col grow p-2 overflow-hidden max-w-full">
+      <div className="w-full flex flex-col 2xl:flex-row gap-2">
+        <TopsterDndContext />
+      </div>
+    </Main>
   )
 }

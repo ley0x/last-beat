@@ -1,5 +1,5 @@
 import { LastFmTopTracks } from '@lib/schemas'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { z } from 'zod'
 
 import { Link } from "@tanstack/react-router"
