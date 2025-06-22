@@ -9,7 +9,7 @@ export const Route = createFileRoute('/topsters')({
 
 function RouteComponent() {
   return (
-    <Main className="flex flex-col grow p-2 overflow-hidden max-w-full">
+    <Main className="flex flex-col grow p-2 max-w-full">
       <div className="w-full flex flex-col 2xl:flex-row gap-2">
         <TopsterDndContext />
       </div>

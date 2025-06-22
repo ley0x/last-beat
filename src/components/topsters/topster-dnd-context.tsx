@@ -37,8 +37,8 @@ export const TopsterDndContext = () => {
           <section className="flex-1 flex flex-col gap-2">
             <TopsterGridHeader elementRef={cardRef} />
 
-            <Card className="overflow-hidden w-full pt-4 max-w-full">
-              <section ref={cardRef} className="bg-card mx-auto w-min min-w-fit">
+            <Card ref={cardRef} className="overflow-hidden w-full pt-4 max-w-full">
+              <section className="bg-card mx-auto w-min min-w-fit">
                 <CardHeader className="gap-1">
                   <CardTitle>
                     <Input

@@ -5,7 +5,7 @@ import { Download, LoaderCircle } from 'lucide-react'
 
 import { Button } from '@components/ui/button'
 
-import { toJpeg } from 'html-to-image'
+import { toPng } from 'html-to-image'
 import slugify from 'slugify'
 
 import download from 'downloadjs'
@@ -24,9 +24,14 @@ export const DownloadTopster = ({ elementRef }: Props) => {
     setLoading(true)
 
     if (!elementRef.current) return
-    toJpeg(elementRef.current, { cacheBust: false, pixelRatio: 1, skipFonts: true, quality: 1 })
+    toPng(elementRef.current, {
+      cacheBust: true,
+      pixelRatio: 2,
+      skipFonts: false,
+      quality: 1
+    })
       .then(dataUrl => {
-        const name = slugify(`${topsterName}-topster.jpeg`, { lower: true })
+        const name = slugify(`${topsterName}-topster.png`, { lower: true })
         download(dataUrl, name)
         setLoading(false)
       })
