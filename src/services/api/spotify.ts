@@ -27,7 +27,6 @@ export const fetchSearchSpotifyTrack = async (
   artist: string
 ): Promise<z.infer<typeof SpotifyTrackSchema>> => {
   const url = new URL('/api/spotify/track/search', window.location.origin)
-  console.log({ name, artist })
   url.searchParams.set('name', encodeURIComponent(name))
   url.searchParams.set('artist', encodeURIComponent(artist))
   const res = await fetch(url.toString())

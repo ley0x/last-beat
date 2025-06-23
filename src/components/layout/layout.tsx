@@ -1,17 +1,19 @@
-import { AppSidebar } from "@layout/app-sidebar";
-import { Navbar } from "@layout/navbar";
+import { AppSidebar } from '@layout/app-sidebar'
+import { Navbar } from '@layout/navbar'
+import { Footer } from '@layout/footer'
 
 type Props = {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export const Layout = ({ children }: Props) => {
   return (
     <>
       <AppSidebar />
-      <div className="flex flex-col w-full min-h-screen">
+      <div className="relative flex flex-col w-full h-max min-h-screen">
         <Navbar />
         {children}
+        <Footer />
       </div>
     </>
   )

@@ -1,15 +1,12 @@
 // app/routes/index.tsx
 import { createFileRoute } from '@tanstack/react-router'
 
-
-import { Charts } from "@landing-page/charts";
-import { Hero } from "@landing-page/hero";
-import { LyricsCards } from "@landing-page/lyrics-cards";
-import { Stats } from "@landing-page/stats";
-import { Topsters } from "@landing-page/topsters";
-
-import { Footer } from "@layout/footer";
-import { Main } from '@/components/_common/main';
+import { Charts } from '@landing-page/charts'
+import { Hero } from '@landing-page/hero'
+import { LyricsCards } from '@landing-page/lyrics-cards'
+import { Stats } from '@landing-page/stats'
+import { Topsters } from '@landing-page/topsters'
+import { Main } from '@/components/_common/main'
 
 const Home = () => {
   return (
@@ -21,10 +18,9 @@ const Home = () => {
         <Topsters />
         <LyricsCards />
       </div>
-      <Footer />
     </Main>
-  );
+  )
 }
 export const Route = createFileRoute('/')({
-  component: Home,
+  component: Home
 })

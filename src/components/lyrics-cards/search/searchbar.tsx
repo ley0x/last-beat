@@ -77,7 +77,6 @@ export const SearchBar = ({ setLoading, setFoundTracks }: Props) => {
   }
 
   const onSubmit: SubmitHandler<Inputs> = async data => {
-    console.log('onSubmit', data)
     setSelectedTrack(null)
     setLyrics('')
     setSelectedLyrics('')

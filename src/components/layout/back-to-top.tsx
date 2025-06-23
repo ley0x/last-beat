@@ -21,7 +21,7 @@ const BackToTop = () => {
   }
 
   return (
-    <Button onClick={scrollToTop} size="icon" variant="outline" className="rounded-full">
+    <Button onClick={scrollToTop} size="icon" variant="outline" className="cursor-pointer rounded-full">
       <ArrowUp className="text-xl" />
     </Button>
   )

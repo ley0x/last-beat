@@ -15,12 +15,10 @@ import { Link, useMatches } from '@tanstack/react-router'
 
 // Helper function to generate breadcrumb title from route path
 const generateBreadcrumbTitle = (pathname: string, params?: Record<string, string>) => {
-  console.log({ pathname, params })
   if (pathname === '/') return 'Last Beat'
 
   // Remove / at start and end then split by /
   const segments = pathname.slice(1, -1).split('/')
-  console.log({ segments })
 
   // Get the last segment for the title
   const lastSegment = segments[segments.length - 1]
