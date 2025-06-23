@@ -33,7 +33,6 @@ export const Stats = () => {
               alt="John Coltrane"
               src="/artists/john-coltrane.jpg"
               className="h-96 w-full object-cover sm:h-72 md:h-full"
-              objectFit="cover"
               width={707}
               height={900}
             />
@@ -41,7 +40,6 @@ export const Stats = () => {
               alt="Donna Summer"
               src="/artists/donna-summer.jpg"
               className="h-96 w-full object-cover sm:h-72 md:h-full"
-              objectFit="cover"
               width={687}
               height={1024}
             />

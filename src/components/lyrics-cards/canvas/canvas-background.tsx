@@ -15,8 +15,7 @@ export const CanvasBackground = () => {
           <img
             src={img}
             alt="Illustration to lyrics"
-            fill
-            className="object-cover"
+            className="object-fill"
           />
         </div>
       )}

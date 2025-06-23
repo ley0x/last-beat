@@ -8,22 +8,22 @@ import { SidebarProvider } from "@components/ui/sidebar"
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Provider>
+    <ReactQueryProvider>
+      <Provider>
         <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-        <CustomBackground>
+          <CustomBackground>
             <SidebarProvider>
-                <ReactQueryProvider>
-                    {children}
-                </ReactQueryProvider>
+              {children}
             </SidebarProvider>
-        </CustomBackground>
-        <Toaster theme="system" />
+          </CustomBackground>
+          <Toaster theme="system" />
         </ThemeProvider>
-    </Provider>
+      </Provider>
+    </ReactQueryProvider>
   )
 }

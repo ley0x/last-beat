@@ -36,7 +36,7 @@ export const Hero = () => {
             </Link>
 
             <Link
-              to="/charts"
+              to="/stats"
               className="block w-full rounded-sm bg-white px-12 py-3 text-sm font-medium text-muted shadow-sm focus:ring-3 focus:ring-muted-foreground focus:outline-hidden sm:w-auto"
             >
               Explore charts

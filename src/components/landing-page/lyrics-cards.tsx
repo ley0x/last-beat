@@ -12,7 +12,6 @@ export const LyricsCards = () => {
               alt="John Coltrane"
               src="/artists/sade.jpg"
               className="h-96 w-full object-cover sm:h-72 md:h-full"
-              objectFit="cover"
               width={707}
               height={900}
             />
@@ -20,7 +19,6 @@ export const LyricsCards = () => {
               alt="Nina Simone"
               src="/artists/nina-simone.jpg"
               className="h-96 w-full object-cover sm:h-72 md:h-full"
-              objectFit="cover"
               width={687}
               height={1024}
             />
@@ -37,7 +35,7 @@ export const LyricsCards = () => {
 
               <div className="mt-4 lg:mt-8">
                 <Link
-                  to="/cards"
+                  to="/lyrics-cards"
                   className="inline-block rounded-sm border border-white bg-white px-12 py-3 text-sm font-medium text-red-500 transition hover:bg-transparent hover:text-white focus:ring-3 focus:ring-red-400 focus:outline-hidden"
                 >
                   Generate cards

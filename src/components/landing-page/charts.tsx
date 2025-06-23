@@ -1,4 +1,3 @@
-;
 import { Link } from "@tanstack/react-router";
 
 import { Wrapper } from "@common/wrapper";
@@ -22,7 +21,7 @@ export const Charts = () => {
           </p>
           <div className="mt-4 md:mt-8">
             <Link
-              to="#"
+              to="/stats"
               className="inline-block rounded-sm bg-primary px-12 py-3 text-sm font-medium text-white transition hover:bg-red-500 focus:ring-3 focus:outline-hidden ring-red-400"
             >
               Explore charts

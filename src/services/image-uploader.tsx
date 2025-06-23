@@ -1,4 +1,4 @@
-import React, { useRef, useState, ChangeEventHandler } from 'react'
+import { useRef, useState, ChangeEventHandler } from 'react'
 import { File } from 'lucide-react'
 
 import Header from '@common/header'

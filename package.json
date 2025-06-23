@@ -7,7 +7,7 @@
   "scripts": {
     "type-check": "tsc --noEmit",
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "vite build && tsc --noEmit",
     "start": "node .output/server/index.mjs",
     "lint": "eslint src --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 0"
   },

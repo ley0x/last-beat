@@ -15,23 +15,15 @@ import { Link, useMatches } from '@tanstack/react-router'
 
 // Helper function to generate breadcrumb title from route path
 const generateBreadcrumbTitle = (pathname: string, params?: Record<string, string>) => {
+  console.log({ pathname, params })
   if (pathname === '/') return 'Last Beat'
 
-  // Remove leading slash and split by /
-  const segments = pathname.slice(1).split('/')
-
-  // Handle parameterized routes
-  const processedSegments = segments.map(segment => {
-    // If segment starts with $, it's a parameter
-    if (segment.startsWith('$')) {
-      const paramName = segment.slice(1) // Remove $
-      return params?.[paramName] || segment
-    }
-    return segment
-  })
+  // Remove / at start and end then split by /
+  const segments = pathname.slice(1, -1).split('/')
+  console.log({ segments })
 
   // Get the last segment for the title
-  const lastSegment = processedSegments[processedSegments.length - 1]
+  const lastSegment = segments[segments.length - 1]
 
   // Special formatting for specific routes
   if (lastSegment === 'lyrics-cards') return 'Lyrics Cards'
@@ -39,15 +31,17 @@ const generateBreadcrumbTitle = (pathname: string, params?: Record<string, strin
   if (lastSegment === 'topsters') return 'Topsters'
   if (lastSegment === 'covers') return 'Covers'
   if (lastSegment === 'stats') return 'Stats'
+  if (lastSegment === 'albums') return 'Albums'
+  if (lastSegment === 'artists') return 'Artists'
+  if (lastSegment === 'tracks') return 'Tracks'
 
-  // Capitalize first letter
   return lastSegment
 }
 
 // Helper function to build the path for intermediate breadcrumb items
 const buildPathForSegments = (segments: string[], index: number, params?: Record<string, string>) => {
   const pathSegments = segments.slice(0, index + 1)
-  return (
+  let path =
     '/' +
     pathSegments
       .map(segment => {
@@ -58,7 +52,14 @@ const buildPathForSegments = (segments: string[], index: number, params?: Record
         return segment
       })
       .join('/')
-  )
+
+  // Add trailing slash for index routes (when the last segment is not empty)
+  // This handles cases like /stats/ and /stats/$username/
+  if (path !== '/' && !path.endsWith('/')) {
+    path += '/'
+  }
+
+  return path
 }
 
 const BreadcrumbNav = () => {
@@ -78,7 +79,7 @@ const BreadcrumbNav = () => {
   // Build breadcrumb path by analyzing the current pathname
   const pathname = currentMatch.pathname
   const params = currentMatch.params
-  const segments = pathname.slice(1).split('/')
+  const segments = pathname.slice(1).split('/').filter(Boolean) // Remove empty segments
 
   const breadcrumbItems = [
     <BreadcrumbItem key="home">
@@ -92,29 +93,30 @@ const BreadcrumbNav = () => {
 
   // Build breadcrumbs for each segment
   segments.forEach((segment, index) => {
-    const isLast = index === segments.length - 1
     const segmentPath = buildPathForSegments(segments, index, params)
     const title = generateBreadcrumbTitle(segmentPath, params)
+
+    // Compare paths by normalizing trailing slashes
+    const normalizePathForComparison = (path: string) => (path.endsWith('/') ? path : path + '/')
+    const isCurrentPage = normalizePathForComparison(segmentPath) === normalizePathForComparison(pathname)
 
     // Add separator
     breadcrumbItems.push(<BreadcrumbSeparator key={`separator-${index}`} />)
 
     // Add breadcrumb item
-    if (isLast) {
-      // Last item is not clickable
+    if (isCurrentPage) {
+      // Current page is not clickable
       breadcrumbItems.push(
         <BreadcrumbItem key={segmentPath}>
-          <BreadcrumbPage className="capitalize">{title}</BreadcrumbPage>
+          <BreadcrumbPage>{title}</BreadcrumbPage>
         </BreadcrumbItem>
       )
     } else {
-      // Intermediate items are clickable
+      // Other items are clickable
       breadcrumbItems.push(
         <BreadcrumbItem key={segmentPath}>
           <BreadcrumbLink asChild>
-            <Link to={segmentPath} className="capitalize">
-              {title}
-            </Link>
+            <Link to={segmentPath}>{title}</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
       )
