@@ -15,8 +15,7 @@ function RouteComponent() {
     const { data, error } = await signIn.social({
       provider: 'spotify',
       errorCallbackURL: '/error',
-      newUserCallbackURL: '/welcome',
-      // requestSignUp: true
+      newUserCallbackURL: '/welcome'
     })
 
     if (error) {
