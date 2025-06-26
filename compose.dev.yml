@@ -1,0 +1,36 @@
+services:
+  app:
+    container_name: app-dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.output
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+
+  db:
+    image: cgr.dev/chainguard/postgres:latest
+    container_name: db-dev
+    env_file:
+      - .env
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lastbeat -d app"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  postgres_data:

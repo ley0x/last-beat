@@ -1,0 +1,30 @@
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    depends_on:
+      - db
+  db:
+    image: cgr.dev/chainguard/postgres:latest
+    container_name: db
+    env_file:
+      - .env
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

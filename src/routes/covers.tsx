@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useRouter } from '@tanstack/react-router'
 
 import { Main } from '@common/main'
 import { Wrapper } from '@common/wrapper'
@@ -6,11 +6,27 @@ import { Wrapper } from '@common/wrapper'
 import { Covers } from '@covers/covers'
 import Header from '@common/header'
 
+import { requireAuth } from '@/services/server/require-auth'
+import { Button } from '@/components/ui/button'
+import { signOut } from '@/lib/auth-client'
+
 export const Route = createFileRoute('/covers')({
-  component: RouteComponent
+  component: RouteComponent,
+  loader: async () => {
+    const user = await requireAuth()
+    return { user }
+  }
 })
 
 function RouteComponent() {
+  const { user } = Route.useLoaderData()
+  const router = useRouter()
+
+  const handleClick = async () => {
+    await signOut()
+    await router.invalidate();
+  }
+
   return (
     <Main>
       <Wrapper className="flex-col gap-5 py-5">
@@ -27,6 +43,16 @@ function RouteComponent() {
             (usually bad resolution but largest choice) to download your album covers.
           </p>
         </header>
+        <section>
+          <h1>Hello "/welcome/"!</h1>
+          <h2>User: {user.name}</h2>
+          <h2>Email: {user.email}</h2>
+          <h2>Image: {user.image}</h2>
+          <p>You are signed in!</p>
+          <Button onClick={handleClick} className="cursor-pointer">
+            Sign out
+          </Button>
+        </section>
         <Covers />
       </Wrapper>
     </Main>

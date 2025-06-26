@@ -60,3 +60,4 @@ routeTree.gen.ts
 
 .tanstack
 .nitro
+.pnpm-store

@@ -7,7 +7,7 @@ type Props = {
 
 export const Wrapper = ({ children, className }: Props) => {
   return (
-    <div className={cn('flex my-0 mx-auto w-11/12 max-w-6xl', className)}>
+    <div className={cn('flex my-0 mx-auto w-11/12', className)}>
       {children}
     </div>
   );

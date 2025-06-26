@@ -5,7 +5,9 @@ import { Profile } from '@/components/stats/profile'
 import { LastFmUserInfo, UsernameSchema } from '@/lib/schemas'
 import { lastfmUserExists } from '@/services/server/lastfm-user-exists'
 import { createFileRoute, ErrorComponent, Outlet } from '@tanstack/react-router'
+
 import { z } from 'zod'
+
 
 export const Route = createFileRoute('/stats/$username')({
   errorComponent: ErrorComponent,
@@ -14,7 +16,8 @@ export const Route = createFileRoute('/stats/$username')({
   },
   component: RouteComponent,
   loader: async ({ params }) => {
-    const { username } = z.object({ username: UsernameSchema }).parse(await params)
+    const { username } = z.object({ username: UsernameSchema }).parse(params)
+
     await lastfmUserExists({ data: username })
     const profile = await fetch(`/api/lastfm/user/info?q=${username}`)
       .then(res => res.json())

@@ -10,13 +10,33 @@ ENV GENIUS_CLIENT_ID=$GENIUS_CLIENT_ID
 ENV GENIUS_CLIENT_SECRET=$GENIUS_CLIENT_SECRET
 ENV GENIUS_CLIENT_ACCESS_TOKEN=$GENIUS_CLIENT_ACCESS_TOKEN
 
+ENV NODE_ENV=$NODE_ENV
+
+
+# Development stage
+FROM base AS development
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+RUN corepack enable pnpm
+
+COPY package.json pnpm-lock.yaml ./
+
+RUN pnpm i --frozen-lockfile
+
+EXPOSE 3000
+
+CMD ["pnpm", "dev"]
+
+
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
+COPY package.json pnpm-lock.yaml ./
 
 RUN corepack enable pnpm && pnpm i --frozen-lockfile
+
 
 FROM base AS builder
 WORKDIR /app
@@ -27,8 +47,6 @@ RUN corepack enable pnpm && pnpm run build
 
 FROM base AS runner
 WORKDIR /app
-
-ENV NODE_ENV=production
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 tanstack

@@ -10,7 +10,7 @@ export const Layout = ({ children }: Props) => {
   return (
     <>
       <AppSidebar />
-      <div className="relative flex flex-col w-full h-max min-h-screen">
+      <div className="relative flex flex-col w-full h-max justify-between min-h-screen">
         <Navbar />
         {children}
         <Footer />
